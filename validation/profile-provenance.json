@@ -1,0 +1,97 @@
+{
+  "bambu_studio_version": "02.09.01.70",
+  "release": "https://github.com/bambulab/BambuStudio/releases/tag/v02.09.01.70",
+  "machine": "Bambu Lab P1S 0.2 nozzle",
+  "official_machine_default_process": "0.10mm Standard @BBL X1C 0.2 nozzle",
+  "process": "Keychains 0.10mm Solid @P1S 0.2",
+  "filament_parent": "Generic PLA @0.2 nozzle",
+  "physical_printer_used": false,
+  "account_or_device_profile_used": false,
+  "stock_resource_sha256": {
+    "machine/Bambu Lab P1S 0.2 nozzle.json": "7818342db83a7c31f4f918507bff4d3fc135e65aaa2dbecd9e2f2eb21bcc5f79",
+    "machine/Bambu Lab P1S 0.4 nozzle.json": "2fe75b68724125eb47c03ed5dc59ddb3f2f606eb308641fc2985082b06c517c1",
+    "machine/fdm_bbl_3dp_001_common.json": "f911d4012d803184927b48d149eb18e30e98317109424ecc988caeb9c204504a",
+    "machine/fdm_machine_common.json": "8adb536acf0fda1ff91e437d6581a2e501ac98b8eea4004115edfd059498c64e",
+    "machine/Bambu Lab P1S 0.4 nozzle template machine_start_gcode.json": "ecfedd58ee4775dec2dafe0a14c1adbcd1fe3c83d2f85e9a252cceec05d2730e",
+    "machine/Bambu Lab P1S 0.4 nozzle template machine_end_gcode.json": "766999ac6456c7ddd82aa47a3dbd9ef71d1e9333483305999b3530befe22ab7d",
+    "machine/Bambu Lab P1S 0.4 nozzle template time_lapse_gcode.json": "af84ee5b92597644c2a27ee45a0c811b748bcc8230b7c378a16d1fd405b46f44",
+    "machine/Bambu Lab P1S 0.4 nozzle template change_filament_gcode.json": "3194e4322c3b8953a187e11a0ccc198949244065fb5caf62a67443f8acc54dde",
+    "machine/Bambu Lab P1S 0.4 nozzle template layer_change_gcode.json": "f0ca694af70aec99a72501da294b8c73b8d655e8adab004325b27d2df83b98f1",
+    "machine/Bambu Lab P1S 0.2 nozzle template machine_start_gcode.json": "82d224216a32479c37c7b88c86dce3c17807418c37474460f5a9a342b6c8d077",
+    "process/0.10mm Standard @BBL X1C 0.2 nozzle.json": "177d2ca0d92d90a2e84ebf47d017f193e148c260e198ab51431c0ab31e20d0c8",
+    "process/fdm_process_single_0.10_nozzle_0.2.json": "fc39bdf0a69a7b94a6d4593858968adfd2fcfb5984d920fd932419a2c2320ba7",
+    "process/fdm_process_single_common.json": "05b38ac1318e465e817978b36da51754f928da0172738a20bb3a8d4a69eb4769",
+    "process/fdm_process_common.json": "01aade8883965f60ec3e481680946a13d1656ed94741d887125938edf4d3e36b",
+    "filament/Generic PLA @0.2 nozzle.json": "5b1b46284909803787cdb0c582196a389ecbe1e08d23fdcfce20f1daeaaf3af3",
+    "filament/Generic PLA @base.json": "3443baeb4d1df92fd62715f59e0b65cdfaeb9a56a4cc280d0b0cdd2f20d98187",
+    "filament/fdm_filament_pla.json": "94dea69d9e7270e2321ac191749bad102150c49a7b8eceff8a2dd4ca4fd6ff10",
+    "filament/fdm_filament_common.json": "20cd180533ef29214dea72fb96173758719a263f6109a781a5ecdd22b6ba771f"
+  },
+  "process_overrides": {
+    "layer_height": "0.1",
+    "initial_layer_print_height": "0.1",
+    "wall_loops": "6",
+    "top_shell_layers": "8",
+    "bottom_shell_layers": "8",
+    "sparse_infill_density": "100%",
+    "sparse_infill_pattern": "zig-zag",
+    "outer_wall_speed": [
+      "40",
+      "40"
+    ],
+    "inner_wall_speed": [
+      "60",
+      "60"
+    ],
+    "top_surface_speed": [
+      "30",
+      "30"
+    ],
+    "enable_support": "0",
+    "enable_prime_tower": "1",
+    "flush_into_infill": "0",
+    "flush_into_objects": "0"
+  },
+  "palette": [
+    {
+      "slot": 1,
+      "color": "White",
+      "rgb": "#F6F5EE"
+    },
+    {
+      "slot": 2,
+      "color": "Black",
+      "rgb": "#161616"
+    },
+    {
+      "slot": 3,
+      "color": "Green",
+      "rgb": "#238636"
+    },
+    {
+      "slot": 4,
+      "color": "Light green",
+      "rgb": "#9DD96C"
+    }
+  ],
+  "bed": "Textured PEI Plate; select your actual bed surface before printing.",
+  "flush_volumes_mm3_from_row_to_column": [
+    0,
+    250,
+    300,
+    250,
+    800,
+    0,
+    600,
+    750,
+    600,
+    250,
+    0,
+    500,
+    400,
+    250,
+    300,
+    0
+  ],
+  "flush_note": "Conservative starting volumes; actual pigment transitions still need a physical first print."
+}

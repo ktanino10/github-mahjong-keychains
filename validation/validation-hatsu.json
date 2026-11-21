@@ -1,0 +1,81 @@
+{
+  "variant": "hatsu",
+  "parts": {
+    "black_back": {
+      "file": "print-package/STL/03-hatsu/black_back-black.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          0.0
+        ],
+        [
+          10.5,
+          22.0,
+          5.5
+        ]
+      ],
+      "volume_mm3": 3478.601532827492,
+      "faces": 1740,
+      "watertight": true,
+      "components": 1
+    },
+    "white_body": {
+      "file": "print-package/STL/03-hatsu/white_body-white.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          5.5
+        ],
+        [
+          10.5,
+          14.0,
+          16.5
+        ]
+      ],
+      "volume_mm3": 6254.215129602629,
+      "faces": 15472,
+      "watertight": true,
+      "components": 1
+    },
+    "inlay": {
+      "file": "print-package/STL/03-hatsu/inlay-green.stl",
+      "bounds_mm": [
+        [
+          -4.371079444885254,
+          -10.324999809265137,
+          15.699999809265137
+        ],
+        [
+          7.787499904632568,
+          11.394408226013184,
+          16.5
+        ]
+      ],
+      "volume_mm3": 90.8251570184566,
+      "faces": 12476,
+      "watertight": true,
+      "components": 7
+    },
+    "light_inlay": {
+      "file": "print-package/STL/03-hatsu/light_inlay-light-green.stl",
+      "bounds_mm": [
+        [
+          -7.787499904632568,
+          -10.324999809265137,
+          15.699999809265137
+        ],
+        [
+          7.787499904632568,
+          1.225000023841858,
+          16.5
+        ]
+      ],
+      "volume_mm3": 58.69753859183564,
+      "faces": 2376,
+      "watertight": true,
+      "components": 6
+    }
+  }
+}

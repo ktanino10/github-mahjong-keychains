@@ -1,0 +1,271 @@
+{
+  "body_and_lug_bounds_mm": [
+    [
+      -10.5,
+      -14.0,
+      0.0
+    ],
+    [
+      10.5,
+      22.0,
+      16.5
+    ]
+  ],
+  "tile_body_dimensions_hwt_mm": [
+    28,
+    21,
+    16.5
+  ],
+  "body_black_back_thickness_mm": 5.5,
+  "body_white_side_thickness_mm": 11,
+  "ear_color": "black",
+  "ear_black_thickness_mm": 5,
+  "common_color_boundary_z_mm": 5.5,
+  "protruding_lug": true,
+  "hole_midsection_measured_diameter_mm": [
+    4.597535947003049,
+    4.600001689329632
+  ],
+  "hole_axis": "Z",
+  "hole_center_mm": [
+    0,
+    17,
+    2.5
+  ],
+  "lug_thickness_mm": 5.0,
+  "nominal_lug_wall_mm": 2.7,
+  "nominal_mouth_wall_mm": 2.1,
+  "reference_volume_mm3": 9882.339358040414,
+  "variant_checks": {
+    "git_branch": {
+      "variant": "git_branch",
+      "parts": {
+        "black_back": {
+          "file": "print-package/STL/01-git-branch/black_back-black.stl",
+          "bounds_mm": [
+            [
+              -10.5,
+              -14.0,
+              0.0
+            ],
+            [
+              10.5,
+              22.0,
+              5.5
+            ]
+          ],
+          "volume_mm3": 3478.601532827492,
+          "faces": 1740,
+          "watertight": true,
+          "components": 1
+        },
+        "white_body": {
+          "file": "print-package/STL/01-git-branch/white_body-white.stl",
+          "bounds_mm": [
+            [
+              -10.5,
+              -14.0,
+              5.5
+            ],
+            [
+              10.5,
+              14.0,
+              16.5
+            ]
+          ],
+          "volume_mm3": 6345.717581306664,
+          "faces": 3212,
+          "watertight": true,
+          "components": 1
+        },
+        "inlay": {
+          "file": "print-package/STL/01-git-branch/inlay-green.stl",
+          "bounds_mm": [
+            [
+              -7.916666507720947,
+              -8.75,
+              15.699999809265137
+            ],
+            [
+              7.916666507720947,
+              8.75,
+              16.5
+            ]
+          ],
+          "volume_mm3": 58.02024390625632,
+          "faces": 2624,
+          "watertight": true,
+          "components": 1
+        },
+        "blank": {
+          "file": "validation/reference-blank.stl",
+          "bounds_mm": [
+            [
+              -10.5,
+              -14.0,
+              0.0
+            ],
+            [
+              10.5,
+              22.0,
+              16.5
+            ]
+          ],
+          "volume_mm3": 9882.339358040414,
+          "faces": 1940,
+          "watertight": true,
+          "components": 1
+        }
+      },
+      "volume_sum_error_mm3": -1.8189894035458565e-12
+    },
+    "octocat": {
+      "variant": "octocat",
+      "parts": {
+        "black_back": {
+          "file": "print-package/STL/02-octocat/black_back-black.stl",
+          "bounds_mm": [
+            [
+              -10.5,
+              -14.0,
+              0.0
+            ],
+            [
+              10.5,
+              22.0,
+              5.5
+            ]
+          ],
+          "volume_mm3": 3478.601532827492,
+          "faces": 1740,
+          "watertight": true,
+          "components": 1
+        },
+        "white_body": {
+          "file": "print-package/STL/02-octocat/white_body-white.stl",
+          "bounds_mm": [
+            [
+              -10.5,
+              -14.0,
+              5.5
+            ],
+            [
+              10.5,
+              14.0,
+              16.5
+            ]
+          ],
+          "volume_mm3": 6306.057029794556,
+          "faces": 10588,
+          "watertight": true,
+          "components": 1
+        },
+        "inlay": {
+          "file": "print-package/STL/02-octocat/inlay-black.stl",
+          "bounds_mm": [
+            [
+              -8.225000381469727,
+              -7.9670000076293945,
+              15.699999809265137
+            ],
+            [
+              8.225000381469727,
+              7.9670000076293945,
+              16.5
+            ]
+          ],
+          "volume_mm3": 97.68079541836453,
+          "faces": 9988,
+          "watertight": true,
+          "components": 1
+        }
+      },
+      "volume_sum_error_mm3": -1.8189894035458565e-12
+    },
+    "hatsu": {
+      "variant": "hatsu",
+      "parts": {
+        "black_back": {
+          "file": "print-package/STL/03-hatsu/black_back-black.stl",
+          "bounds_mm": [
+            [
+              -10.5,
+              -14.0,
+              0.0
+            ],
+            [
+              10.5,
+              22.0,
+              5.5
+            ]
+          ],
+          "volume_mm3": 3478.601532827492,
+          "faces": 1740,
+          "watertight": true,
+          "components": 1
+        },
+        "white_body": {
+          "file": "print-package/STL/03-hatsu/white_body-white.stl",
+          "bounds_mm": [
+            [
+              -10.5,
+              -14.0,
+              5.5
+            ],
+            [
+              10.5,
+              14.0,
+              16.5
+            ]
+          ],
+          "volume_mm3": 6254.215129602629,
+          "faces": 15472,
+          "watertight": true,
+          "components": 1
+        },
+        "inlay": {
+          "file": "print-package/STL/03-hatsu/inlay-green.stl",
+          "bounds_mm": [
+            [
+              -4.371079444885254,
+              -10.324999809265137,
+              15.699999809265137
+            ],
+            [
+              7.787499904632568,
+              11.394408226013184,
+              16.5
+            ]
+          ],
+          "volume_mm3": 90.8251570184566,
+          "faces": 12476,
+          "watertight": true,
+          "components": 7
+        },
+        "light_inlay": {
+          "file": "print-package/STL/03-hatsu/light_inlay-light-green.stl",
+          "bounds_mm": [
+            [
+              -7.787499904632568,
+              -10.324999809265137,
+              15.699999809265137
+            ],
+            [
+              7.787499904632568,
+              1.225000023841858,
+              16.5
+            ]
+          ],
+          "volume_mm3": 58.69753859183564,
+          "faces": 2376,
+          "watertight": true,
+          "components": 6
+        }
+      },
+      "volume_sum_error_mm3": 0.0
+    }
+  },
+  "physical_print_performed": false,
+  "hardware_fit_physically_tested": false,
+  "sliced_gcode_provided": false
+}

@@ -1,0 +1,62 @@
+{
+  "artwork": [
+    {
+      "file": "git-branch-24.svg",
+      "source": "https://github.com/primer/octicons/blob/main/icons/git-branch-24.svg",
+      "license": "MIT; see the adjacent octicons-LICENSE.txt."
+    },
+    {
+      "file": "github-invertocat.svg",
+      "source": "https://brand.github.com/GitHub_Logos.zip",
+      "guidelines": "https://brand.github.com/foundations/logo",
+      "modifications": "Uniform scaling only. GitHub trademark rights are not granted."
+    },
+    {
+      "file": "hatsu.svg",
+      "source": "Pre-existing single-glyph outline supplied with the accepted design.",
+      "font_files_distributed": false,
+      "note": "Not covered by the source-code license. No system font is needed by this build."
+    }
+  ],
+  "size_reference": {
+    "product": "AMOS SMART",
+    "url": "https://www.alban.co.jp/products/detail/682",
+    "scope": "External tile body dimensions only; not equivalent material, weight or strength."
+  },
+  "hardware_references": [
+    {
+      "url": "https://www.amazon.co.jp/dp/B0DN6JW6LK",
+      "shape": "Ball chain with connector",
+      "listed_length_mm": 120,
+      "listed_ball_diameter_mm": 2.4,
+      "approximate": [
+        "pitch",
+        "ball count",
+        "connector dimensions",
+        "drape",
+        "silver finish"
+      ]
+    },
+    {
+      "url": "https://www.amazon.co.jp/dp/B0FX47WYC4",
+      "shape": "Round wire-gate clasp, jump ring, axial swivel and lower ring",
+      "listing_length_mm": [
+        42,
+        44
+      ],
+      "listing_width_mm": 18,
+      "approximate": [
+        "internal proportions",
+        "lower ring bore",
+        "wire thickness"
+      ],
+      "fit": "Unverified reference only; ball-chain mounting is the supported design intent."
+    }
+  ],
+  "source_asset_sha256": {
+    "git-branch-24.svg": "76b97dde63b49eaa91978209f31f09c829cd690959fbcd7bbafdf96fa0a81474",
+    "github-invertocat.svg": "693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1",
+    "hatsu.svg": "ad2515b54377e374b218dfdbc5046dc93931092029e343ec0506d233374b35f5",
+    "octicons-LICENSE.txt": "da259c8bd0de62713ccdcf88910aebca810644f98c2c912bad814fc79ea778df"
+  }
+}

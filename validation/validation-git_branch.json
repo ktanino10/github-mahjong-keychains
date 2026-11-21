@@ -1,0 +1,81 @@
+{
+  "variant": "git_branch",
+  "parts": {
+    "black_back": {
+      "file": "print-package/STL/01-git-branch/black_back-black.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          0.0
+        ],
+        [
+          10.5,
+          22.0,
+          5.5
+        ]
+      ],
+      "volume_mm3": 3478.601532827492,
+      "faces": 1740,
+      "watertight": true,
+      "components": 1
+    },
+    "white_body": {
+      "file": "print-package/STL/01-git-branch/white_body-white.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          5.5
+        ],
+        [
+          10.5,
+          14.0,
+          16.5
+        ]
+      ],
+      "volume_mm3": 6345.717581306664,
+      "faces": 3212,
+      "watertight": true,
+      "components": 1
+    },
+    "inlay": {
+      "file": "print-package/STL/01-git-branch/inlay-green.stl",
+      "bounds_mm": [
+        [
+          -7.916666507720947,
+          -8.75,
+          15.699999809265137
+        ],
+        [
+          7.916666507720947,
+          8.75,
+          16.5
+        ]
+      ],
+      "volume_mm3": 58.02024390625632,
+      "faces": 2624,
+      "watertight": true,
+      "components": 1
+    },
+    "blank": {
+      "file": "validation/reference-blank.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          0.0
+        ],
+        [
+          10.5,
+          22.0,
+          16.5
+        ]
+      ],
+      "volume_mm3": 9882.339358040414,
+      "faces": 1940,
+      "watertight": true,
+      "components": 1
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "variant": "octocat",
+  "parts": {
+    "black_back": {
+      "file": "print-package/STL/02-octocat/black_back-black.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          0.0
+        ],
+        [
+          10.5,
+          22.0,
+          5.5
+        ]
+      ],
+      "volume_mm3": 3478.601532827492,
+      "faces": 1740,
+      "watertight": true,
+      "components": 1
+    },
+    "white_body": {
+      "file": "print-package/STL/02-octocat/white_body-white.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          5.5
+        ],
+        [
+          10.5,
+          14.0,
+          16.5
+        ]
+      ],
+      "volume_mm3": 6306.057029794556,
+      "faces": 10588,
+      "watertight": true,
+      "components": 1
+    },
+    "inlay": {
+      "file": "print-package/STL/02-octocat/inlay-black.stl",
+      "bounds_mm": [
+        [
+          -8.225000381469727,
+          -7.9670000076293945,
+          15.699999809265137
+        ],
+        [
+          8.225000381469727,
+          7.9670000076293945,
+          16.5
+        ]
+      ],
+      "volume_mm3": 97.68079541836453,
+      "faces": 9988,
+      "watertight": true,
+      "components": 1
+    }
+  }
+}

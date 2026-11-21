@@ -1,0 +1,313 @@
+{
+  "slicer": "BambuStudio-02.09.01.70",
+  "method": "Native CLI reopen and slice, no printer connection",
+  "geometry_tolerance_mm": 2e-05,
+  "physical_print_and_strength_tested": false,
+  "projects": [
+    {
+      "project": "print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf",
+      "sha256": "acac64efad8f06b0d9e5695348dbfe919964e66c16d84381da9f63131a3c760e",
+      "reopened_without_external_presets_or_setting_overrides": true,
+      "slicer_return_code": 0,
+      "plate_warning_message": "",
+      "objects": 3,
+      "parts": [
+        {
+          "part": "git_branch/black_back",
+          "slot": 2,
+          "triangles": 1740,
+          "max_vertex_distance_mm": 1.0004533546149764e-06,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "git_branch/white_body",
+          "slot": 1,
+          "triangles": 3212,
+          "max_vertex_distance_mm": 5.157993439097885e-08,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "git_branch/inlay",
+          "slot": 3,
+          "triangles": 2624,
+          "max_vertex_distance_mm": 4.81310550521654e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "octocat/black_back",
+          "slot": 2,
+          "triangles": 1740,
+          "max_vertex_distance_mm": 1.0004533546149764e-06,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "octocat/white_body",
+          "slot": 1,
+          "triangles": 10588,
+          "max_vertex_distance_mm": 5.157993439097885e-08,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "octocat/inlay",
+          "slot": 2,
+          "triangles": 9988,
+          "max_vertex_distance_mm": 4.813146858925319e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "hatsu/black_back",
+          "slot": 2,
+          "triangles": 1740,
+          "max_vertex_distance_mm": 1.0004533546149764e-06,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "hatsu/white_body",
+          "slot": 1,
+          "triangles": 15472,
+          "max_vertex_distance_mm": 5.157993439097885e-08,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "hatsu/inlay",
+          "slot": 3,
+          "triangles": 12476,
+          "max_vertex_distance_mm": 5.404805367873717e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "hatsu/light_inlay",
+          "slot": 4,
+          "triangles": 2376,
+          "max_vertex_distance_mm": 6.361383292475044e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        }
+      ],
+      "layers": 165,
+      "black_layers_1_based": [
+        1,
+        55
+      ],
+      "white_layers_1_based": [
+        56,
+        157
+      ],
+      "surface_inlay_layers_1_based": [
+        158,
+        165
+      ],
+      "used_project_slots": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "filament_changes": 25,
+      "estimated_print_seconds": 40311.40625,
+      "estimated_filament_grams_including_flush_and_tower": 53.84368181228638,
+      "local_toolpath_sha256": "5efb3a25d09f75eeb1a14ac3b07eab5732d0e5a0af8085eca19a7d80b522211f",
+      "gcode_published": false,
+      "printer_transmission_performed": false,
+      "cli_diagnostics": [
+        "CLI version banner logged at warning level",
+        "Desktop bundle lacks optional machine_full/process_full lookup copies; embedded project settings were used",
+        "Known CLI branch message when an existing flush matrix needs no recalculation; project colors and actual toolpaths verified separately",
+        "Single-nozzle compatibility mapping initialized from the embedded filament map",
+        "Support-constructor default; support generation is disabled in this project"
+      ]
+    },
+    {
+      "project": "print-package/projects/git-branch-P1S-0.2-AMS-PLA.3mf",
+      "sha256": "f8772a364387e7c86eef79ba22749a6504fb5892acf68e5ec39cc76de933ea49",
+      "reopened_without_external_presets_or_setting_overrides": true,
+      "slicer_return_code": 0,
+      "plate_warning_message": "",
+      "objects": 1,
+      "parts": [
+        {
+          "part": "git_branch/black_back",
+          "slot": 2,
+          "triangles": 1740,
+          "max_vertex_distance_mm": 1.0004533546149764e-06,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "git_branch/white_body",
+          "slot": 1,
+          "triangles": 3212,
+          "max_vertex_distance_mm": 5.157993439097885e-08,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "git_branch/inlay",
+          "slot": 3,
+          "triangles": 2624,
+          "max_vertex_distance_mm": 4.81310550521654e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        }
+      ],
+      "layers": 165,
+      "black_layers_1_based": [
+        1,
+        55
+      ],
+      "white_layers_1_based": [
+        56,
+        157
+      ],
+      "surface_inlay_layers_1_based": [
+        158,
+        165
+      ],
+      "used_project_slots": [
+        1,
+        2,
+        3
+      ],
+      "filament_changes": 9,
+      "estimated_print_seconds": 14984.3271484375,
+      "estimated_filament_grams_including_flush_and_tower": 20.13232970237732,
+      "local_toolpath_sha256": "d27c5107107cf447a5abc3eeebf1e5a2679929408e2c20aa1e24bba0e1e48ebd",
+      "gcode_published": false,
+      "printer_transmission_performed": false,
+      "cli_diagnostics": [
+        "CLI version banner logged at warning level",
+        "Desktop bundle lacks optional machine_full/process_full lookup copies; embedded project settings were used",
+        "Known CLI branch message when an existing flush matrix needs no recalculation; project colors and actual toolpaths verified separately",
+        "Single-nozzle compatibility mapping initialized from the embedded filament map",
+        "Support-constructor default; support generation is disabled in this project"
+      ]
+    },
+    {
+      "project": "print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf",
+      "sha256": "2957fecf5a3507497c6115a40fc169512c8995b175f8d4518938ec0a8843e211",
+      "reopened_without_external_presets_or_setting_overrides": true,
+      "slicer_return_code": 0,
+      "plate_warning_message": "",
+      "objects": 1,
+      "parts": [
+        {
+          "part": "octocat/black_back",
+          "slot": 2,
+          "triangles": 1740,
+          "max_vertex_distance_mm": 1.0004533546149764e-06,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "octocat/white_body",
+          "slot": 1,
+          "triangles": 10588,
+          "max_vertex_distance_mm": 5.157993439097885e-08,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "octocat/inlay",
+          "slot": 2,
+          "triangles": 9988,
+          "max_vertex_distance_mm": 4.813146858925319e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        }
+      ],
+      "layers": 165,
+      "black_layers_1_based": [
+        1,
+        55
+      ],
+      "white_layers_1_based": [
+        56,
+        157
+      ],
+      "surface_inlay_layers_1_based": [
+        158,
+        165
+      ],
+      "used_project_slots": [
+        1,
+        2
+      ],
+      "filament_changes": 9,
+      "estimated_print_seconds": 15351.3779296875,
+      "estimated_filament_grams_including_flush_and_tower": 20.87455654144287,
+      "local_toolpath_sha256": "28bcb92770bfe3976eaa4a73e0f4941d6ede2f90c4633b58c06e8dee04808879",
+      "gcode_published": false,
+      "printer_transmission_performed": false,
+      "cli_diagnostics": [
+        "CLI version banner logged at warning level",
+        "Desktop bundle lacks optional machine_full/process_full lookup copies; embedded project settings were used",
+        "Known CLI branch message when an existing flush matrix needs no recalculation; project colors and actual toolpaths verified separately",
+        "Single-nozzle compatibility mapping initialized from the embedded filament map",
+        "Support-constructor default; support generation is disabled in this project"
+      ]
+    },
+    {
+      "project": "print-package/projects/hatsu-P1S-0.2-AMS-PLA.3mf",
+      "sha256": "7ccf191915cceefc5c0ef562ebdeca65a9448661612e605c6b879abb6f7afefb",
+      "reopened_without_external_presets_or_setting_overrides": true,
+      "slicer_return_code": 0,
+      "plate_warning_message": "",
+      "objects": 1,
+      "parts": [
+        {
+          "part": "hatsu/black_back",
+          "slot": 2,
+          "triangles": 1740,
+          "max_vertex_distance_mm": 1.0004533546149764e-06,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "hatsu/white_body",
+          "slot": 1,
+          "triangles": 15472,
+          "max_vertex_distance_mm": 5.157993439097885e-08,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "hatsu/inlay",
+          "slot": 3,
+          "triangles": 12476,
+          "max_vertex_distance_mm": 5.404805367873717e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "hatsu/light_inlay",
+          "slot": 4,
+          "triangles": 2376,
+          "max_vertex_distance_mm": 6.361383292475044e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        }
+      ],
+      "layers": 165,
+      "black_layers_1_based": [
+        1,
+        55
+      ],
+      "white_layers_1_based": [
+        56,
+        157
+      ],
+      "surface_inlay_layers_1_based": [
+        158,
+        165
+      ],
+      "used_project_slots": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "filament_changes": 17,
+      "estimated_print_seconds": 18150.12109375,
+      "estimated_filament_grams_including_flush_and_tower": 24.299235463142395,
+      "local_toolpath_sha256": "9fdfe62a0e03a454878385be9097bb9f87939323bff973099d28ca7236342a59",
+      "gcode_published": false,
+      "printer_transmission_performed": false,
+      "cli_diagnostics": [
+        "CLI version banner logged at warning level",
+        "Desktop bundle lacks optional machine_full/process_full lookup copies; embedded project settings were used",
+        "Known CLI branch message when an existing flush matrix needs no recalculation; project colors and actual toolpaths verified separately",
+        "Single-nozzle compatibility mapping initialized from the embedded filament map",
+        "Support-constructor default; support generation is disabled in this project"
+      ]
+    }
+  ]
+}

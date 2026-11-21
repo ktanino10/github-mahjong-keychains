@@ -1,0 +1,16 @@
+{
+  "printed_geometry_modified": false,
+  "source_copy_sha256_match": true,
+  "parts": {
+    "01-git-branch/black_back-black.stl": "5bdca957b3435ad955c64f8f479cd36853d867b77de892b97a44a46ed468d4f8",
+    "01-git-branch/inlay-green.stl": "5095aa52f00f97774e1797cbddfcebf5aad1c6b851605ebcd42573ca8f847162",
+    "01-git-branch/white_body-white.stl": "0e959146cbd183f20e2d6ad95995ea51d10ae63855b293501f4ca07918b490c9",
+    "02-octocat/black_back-black.stl": "5bdca957b3435ad955c64f8f479cd36853d867b77de892b97a44a46ed468d4f8",
+    "02-octocat/inlay-black.stl": "cc8de22fac5ebc599345da33adc5d009e96295942c8561b8c88774adb4532f4a",
+    "02-octocat/white_body-white.stl": "1cc0c71cebd3073bc2b50e5e977ba74a7f7120ce223f3a29de9ef8befd6ca227",
+    "03-hatsu/black_back-black.stl": "5bdca957b3435ad955c64f8f479cd36853d867b77de892b97a44a46ed468d4f8",
+    "03-hatsu/inlay-green.stl": "82ee184f8ff9a3f938aaeb6302afbf61c1ace8636ba169ef587b635db8270244",
+    "03-hatsu/light_inlay-light-green.stl": "afa74f2db3eaf1fe802e3ac548562cf992c075782d9b489d71dc4cf927e81943",
+    "03-hatsu/white_body-white.stl": "ffd98e9280dbe786c991e24f9f7f595be49b7ae4261a239bdd33d500a6aeb11f"
+  }
+}
