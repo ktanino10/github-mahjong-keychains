@@ -56,8 +56,8 @@ try {
   track(page);
   await page.goto(url);
   await ready(page);
-  assert.equal(await number(page, "meshes"), 10);
-  assert.equal(await number(page, "designs"), 3);
+  assert.equal(await number(page, "meshes"), 13);
+  assert.equal(await number(page, "designs"), 4);
   assert.equal(await page.locator("#viewport").getAttribute("data-selection"), "all");
   assert.equal(await page.locator("#show-hardware").isChecked(), true);
   assert.equal(await page.locator("#auto-rotate").getAttribute("aria-pressed"), "false");
@@ -77,7 +77,7 @@ try {
   assert.equal(structural.headings.length, 1);
   assert.equal(structural.invalidControls, 0);
   assert.equal(structural.externalSources, 0);
-  results.push("Offline first load: three models, ten exact printed parts, named controls, no external assets.");
+  results.push("Offline first load: four models, thirteen exact printed parts, named controls, no external assets.");
   await snapshot(page, "viewer-ja-ball-chain.png");
 
   await page.getByRole("button", { name: "表", exact: true }).click();
@@ -125,16 +125,45 @@ try {
   for (const id of ["git_branch", "octocat", "hatsu"]) await select(page, id);
   assert.equal(await page.locator("#color-count").textContent(), "4色");
   assert.equal(await page.locator("#light-green-chip").isVisible(), true);
+  assert.equal(await page.locator("#red-chip").isVisible(), false);
   await page.getByRole("checkbox", { name: /金具を表示/ }).uncheck();
   assert.equal(await page.locator("#viewport").getAttribute("data-hardware"), "false");
   await page.getByRole("button", { name: "斜め", exact: true }).click();
   await snapshot(page, "hatsu-without-chain.png");
+  await select(page, "chun");
+  assert.equal(await page.locator("#color-count").textContent(), "3色");
+  assert.equal(await page.locator("#green-chip").isVisible(), false);
+  assert.equal(await page.locator("#light-green-chip").isVisible(), false);
+  assert.equal(await page.locator("#red-chip").isVisible(), true);
+  assert.ok((await page.locator(".print-split").textContent()).includes("別プロジェクト"));
+  assert.ok((await page.locator(".print-split").textContent()).includes("4スロットAMS"));
+  assert.match(await page.locator('[data-i18n="downloadChun"]').getAttribute("href"), /\/chun-P1S-0\.2-AMS-PLA\.3mf$/);
+  assert.match(await page.locator('[data-i18n="downloadAll"]').getAttribute("href"), /\/all-three-P1S-0\.2-AMS-PLA\.3mf$/);
+  assert.match(await page.locator('[data-i18n="downloadBundle"]').getAttribute("href"), /github-mahjong-keychains-P1S-0\.2-AMS-PLA\.zip$/);
+  assert.ok((await canvas.getAttribute("aria-label")).includes("カスタム絵柄"));
+  await page.getByRole("checkbox", { name: /金具を表示/ }).check();
+  await page.getByRole("button", { name: "表", exact: true }).click();
+  await snapshot(page, "viewer-ja-chun.png");
+  await page.getByRole("button", { name: "English", exact: true }).click();
+  assert.equal(await page.locator("#selection-name").textContent(), "Chun / Custom red dragon");
+  assert.equal(await page.locator("#color-count").textContent(), "3 colors");
+  assert.ok((await page.locator(".print-split").textContent()).includes("5 colors"));
+  assert.ok((await page.locator(".print-split").textContent()).includes("physical red spool"));
+  assert.ok((await page.locator('[data-i18n="downloadChun"]').textContent()).includes("separate"));
+  assert.ok((await canvas.getAttribute("aria-label")).includes("Custom red dragon"));
+  await snapshot(page, "viewer-en-chun.png");
+  await page.getByRole("button", { name: "日本語", exact: true }).click();
+  await page.getByRole("checkbox", { name: /金具を表示/ }).uncheck();
+  results.push("Chun has white/black/red only, bilingual accessible selection, a separate three-color download, unchanged all-three URL, and an explicit five-color/four-slot AMS warning.");
   await select(page, "octocat");
   assert.equal(await page.locator("#green-chip").isVisible(), false);
   assert.equal(await page.locator("#light-green-chip").isVisible(), false);
+  assert.equal(await page.locator("#red-chip").isVisible(), false);
   await page.getByRole("button", { name: "裏", exact: true }).click();
   await snapshot(page, "octocat-back-closeup.png");
   await select(page, "all");
+  assert.equal(await page.locator("#red-chip").isVisible(), true);
+  assert.equal(await page.locator("#color-count").textContent(), "計5色");
   await page.getByRole("checkbox", { name: /金具を表示/ }).check();
   results.push("All design selectors, chain removal/re-fit, color count and black back close-up.");
 
@@ -185,7 +214,7 @@ try {
   await page.locator('[data-view="angle"]').click();
   await snapshot(page, "viewer-en-ball-chain.png");
   assert.ok((await page.locator("body").ariaSnapshot()).includes("Show hardware"));
-  for (const [id, colors] of [["octocat", "2 colors"], ["hatsu", "4 colors"], ["all", "2–4 colors"]]) {
+  for (const [id, colors] of [["octocat", "2 colors"], ["hatsu", "4 colors"], ["chun", "3 colors"], ["all", "5 total colors"]]) {
     await select(page, id);
     assert.equal(await page.locator("#color-count").textContent(), colors);
   }
@@ -207,8 +236,8 @@ try {
   assert.equal(await page.locator("#viewport").getAttribute("data-selection"), "all");
   assert.equal(await page.locator("html").getAttribute("lang"), "en");
   await page.getByRole("button", { name: "日本語", exact: true }).click();
-  assert.equal(await page.locator("#color-count").textContent(), "2〜4色");
-  assert.equal(await page.locator("#selection-name").textContent(), "3種類を並べて表示");
+  assert.equal(await page.locator("#color-count").textContent(), "計5色");
+  assert.equal(await page.locator("#selection-name").textContent(), "4種類を並べて表示");
   assert.ok((await page.locator("#hardware-note").textContent()).includes("球径2.4 mm"));
   await unlink(saved);
   results.push("Downloaded HTML reopens offline in the chosen language and switches back to Japanese.");
@@ -235,7 +264,10 @@ try {
   const stable = await number(mobile, "angle");
   await mobile.waitForTimeout(500);
   assert.ok(angularDistance(await number(mobile, "angle"), stable) < 0.05);
-  await snapshot(mobile, "mobile-all-three.png");
+  await snapshot(mobile, "mobile-all-four.png");
+  await select(mobile, "chun");
+  assert.equal(await mobile.locator("#red-chip").isVisible(), true);
+  assert.equal(await mobile.locator("#green-chip").isVisible(), false);
   await select(mobile, "git_branch");
   await mobile.getByRole("checkbox", { name: /金具を表示/ }).uncheck();
   await mobile.getByRole("button", { name: "裏", exact: true }).click();
@@ -273,6 +305,11 @@ try {
   await mobile.getByRole("checkbox", { name: /Show hardware/ }).check();
   await mobile.locator('[data-view="angle"]').click();
   await snapshot(mobile, "viewer-mobile-en.png");
+  for (const width of [320, 600, 800]) {
+    await mobile.setViewportSize({ width, height: 844 });
+    assert.ok(await mobile.evaluate(() => document.documentElement.scrollWidth - innerWidth <= 1), `Horizontal overflow at ${width}px`);
+    assert.equal(await mobile.locator('input[name="design"]').count(), 5);
+  }
   results.push("390 px mobile layout, reduced motion, native touch rotation and pinch zoom.");
   await mobileContext.close();
 } finally {

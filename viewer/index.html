@@ -12,7 +12,7 @@
 <body data-state="loading">
   <header class="page-header">
     <div class="heading">
-      <p class="eyebrow" data-i18n="eyebrow">GitHubモチーフ / 立体ビュー</p>
+      <p class="eyebrow" data-i18n="eyebrow">GitHubモチーフ・カスタム絵柄 / 立体ビュー</p>
       <h1 data-i18n="heading">麻雀牌キーホルダー</h1>
     </div>
     <div class="header-actions">
@@ -33,11 +33,11 @@
         <div class="stage-heading">
           <div>
             <span class="status-dot" aria-hidden="true"></span>
-            <span id="selection-name" aria-live="polite">3種類を並べて表示</span>
+            <span id="selection-name" aria-live="polite">4種類を並べて表示</span>
           </div>
           <span class="model-label" data-i18n="cg">完成イメージ / CG</span>
         </div>
-        <img id="poster" class="poster" src="data:image/jpeg;base64,__POSTER__" alt="Git branch、Invertocat、發の3種類とボールチェーンの参考CG。本体厚16.5 mm、耳厚5 mm。" data-i18n-alt="poster">
+        <img id="poster" class="poster" src="data:image/jpeg;base64,__POSTER__" alt="Git branch、Invertocat、發、カスタムの中の4種類とボールチェーンの参考CG。本体厚16.5 mm、耳厚5 mm。" data-i18n-alt="poster">
         <div id="loader" class="message-overlay" role="status">
           <span class="loading-ring" aria-hidden="true"></span>
           <p data-i18n="loading">3Dモデルを読み込んでいます</p>
@@ -85,8 +85,8 @@
         <div class="design-list">
           <label class="design-choice all-choice">
             <input type="radio" name="design" value="all" checked>
-            <span class="miniature all-mini" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="choice-copy"><strong data-i18n="all">3種類</strong><small data-i18n="together">並べて見る</small></span>
+            <span class="miniature all-mini" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span class="choice-copy"><strong data-i18n="all">4種類</strong><small data-i18n="together">並べて見る</small></span>
             <span class="selected-mark" aria-hidden="true"></span>
           </label>
           <label class="design-choice">
@@ -105,6 +105,12 @@
             <input type="radio" name="design" value="hatsu">
             <span class="miniature hatsu-mini" aria-hidden="true">發</span>
             <span class="choice-copy"><strong data-i18n="hatsuName">發</strong><small data-i18n="hatsuDetail">濃淡グリーンの4列×3行グリッド</small></span>
+            <span class="selected-mark" aria-hidden="true"></span>
+          </label>
+          <label class="design-choice">
+            <input type="radio" name="design" value="chun">
+            <span class="miniature chun-mini" aria-hidden="true">__CHUN_ICON__</span>
+            <span class="choice-copy"><strong data-i18n="chunName">中</strong><small data-i18n="chunDetail">赤い中＋下が開いた猫頭の輪郭</small></span>
             <span class="selected-mark" aria-hidden="true"></span>
           </label>
         </div>
@@ -145,8 +151,10 @@
           <span><i class="black-chip" aria-hidden="true"></i><span data-i18n="black">黒</span></span>
           <span id="green-chip"><i class="green-chip" aria-hidden="true"></i><span data-i18n="green">緑</span></span>
           <span id="light-green-chip"><i class="light-green-chip" aria-hidden="true"></i><span data-i18n="lightGreen">薄緑</span></span>
-          <small id="color-count">2〜4色</small>
+          <span id="red-chip"><i class="red-chip" aria-hidden="true"></i><span data-i18n="red">赤</span></span>
+          <small id="color-count">計5色</small>
         </div>
+        <p class="print-split" data-i18n="printSplit">印刷は既存3種（4色）＋中（3色）の別プロジェクトです。全4種の5色を1台の4スロットAMSで同時には扱えません。中の印刷時は赤スプールを用意し、実際のAMSとの対応を確認してください。</p>
         <p class="spec-note" data-i18n="specNote">本体は黒5.5 mm＋白側11 mm。境目はz=5.5 mmで統一し、耳全体は黒です。表面インレイはz=15.7〜16.5 mm。</p>
       </section>
     </aside>
@@ -156,20 +164,22 @@
     <h2 id="print-title" data-i18n="printTitle">設定済み印刷プロジェクト</h2>
     <p data-i18n="printInfo">P1S · 0.2 mmノズル · AMS · PLA。パーツの塗り分け済み。実際のAMSスプールとの対応は印刷時に確認してください。</p>
     <div class="print-links">
-      <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadAll">3種類まとめて（3MF）</a>
+      <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadAll">既存3種セット・4色（3MF）</a>
+      <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/chun-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadChun">中・別プロジェクト・3色（3MF）</a>
       <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/git-branch-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadBranch">Git branch（3MF）</a>
       <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadOctocat">Invertocat（3MF）</a>
       <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/hatsu-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadHatsu">發（3MF）</a>
     </div>
+    <p><a class="bundle-link" href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/docs/downloads/github-mahjong-keychains-P1S-0.2-AMS-PLA.zip" data-i18n="downloadBundle">一式ZIP（5プロジェクト・13 STL・日英説明・HTML）</a></p>
     <p class="download-note" data-i18n="onlineDownloads">3MFのダウンロードにはインターネット接続が必要です。HTMLの表示・保存はオフラインで使えます。</p>
   </section>
   <footer class="page-footer">
-    <p data-i18n="footer">牌・耳・絵柄の形状は元の印刷用10パーツと同一です。金具はCGのみで印刷データに含みません。実機印刷・現物金具との適合・強度試験は未実施です。</p>
+    <p data-i18n="footer">既存の10パーツを保持し、同じ本体・耳で中の3パーツを追加しました。金具はCGのみで印刷データに含みません。実機印刷・現物金具との適合・強度試験は未実施です。</p>
     <span class="offline-note" data-i18n="offline">オフライン対応</span>
     <details class="credits">
       <summary data-i18n="credits">素材・ライセンス</summary>
       <div class="credit-content">
-        <p data-i18n="rights">GitHub公式商品ではありません。GitHubロゴと商標の権利は各権利者に帰属します。コードのライセンスはロゴ・字形・派生モデルの再利用許諾ではありません。</p>
+        <p data-i18n="rights">GitHub公式商品ではありません。中は提供画像を基にしたカスタム絵柄で、新しい公式ロゴではありません。ロゴ・商標・元の絵柄の権利は各権利者に帰属します。コードのライセンスはロゴ・字形・派生モデルの再利用許諾ではありません。</p>
         <p><a href="https://brand.github.com/foundations/logo" target="_blank" rel="noreferrer noopener" data-i18n="githubLogo">GitHubロゴのガイドライン</a> · <a href="https://github.com/primer/octicons" target="_blank" rel="noreferrer noopener">Octicons</a></p>
         <p data-i18n="licenseNote">以下は同梱ライブラリ・フォント・Octiconsの原文ライセンスです。</p>
         <pre>__LICENSES__</pre>

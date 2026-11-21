@@ -10,6 +10,8 @@ import struct
 import subprocess
 import zipfile
 
+from PIL import Image
+
 
 ROOT = Path(__file__).resolve().parents[1]
 TEXT_EXTENSIONS = {".md", ".txt", ".json", ".py", ".ts", ".mjs", ".css", ".html", ".scad", ".csv", ".svg", ".xml", ".config", ".model", ".rels"}
@@ -63,6 +65,13 @@ def check_blob(name, content):
     if path.suffix.lower() == ".stl":
         check_text(name, content[:80].decode("ascii", errors="replace"))
         return
+    if path.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"}:
+        with Image.open(io.BytesIO(content)) as image:
+            metadata = {**image.info, "EXIF": dict(image.getexif())}
+            for key, value in metadata.items():
+                text = value.decode("utf-8", errors="replace") if isinstance(value, bytes) else str(value)
+                check_text(f"{name}!{key}", text)
+        return
     if path.suffix.lower() == ".ttf":
         if path.name not in {"BigShoulders-Bold.ttf", "DMMono-Regular.ttf"}:
             failures.append(f"{name}: unapproved font program")
@@ -115,11 +124,11 @@ for name, expected in manifest.items():
 projects = json.loads((ROOT / "validation/slicer-checks.json").read_text())["projects"]
 for project in projects:
     assert hashlib.sha256((ROOT / project["project"]).read_bytes()).hexdigest() == project["sha256"]
-assert len(projects) == 4
-assert len(list((ROOT / "print-package/STL").rglob("*.stl"))) == 10
-assert len(list((ROOT / "print-package/projects").glob("*.3mf"))) == 4
+assert len(projects) == 5
+assert len(list((ROOT / "print-package/STL").rglob("*.stl"))) == 13
+assert len(list((ROOT / "print-package/projects").glob("*.3mf"))) == 5
 
 if failures:
     raise SystemExit("Public artifact audit failed:\n" + "\n".join(failures))
 print(f"PASS: {len(files)} publishable files, {scanned} files/archive members; no private paths or credentials detected.")
-print("PASS: project hashes, ten unchanged STLs, local documentation links and all embedded viewer assets.")
+print("PASS: five project hashes, ten unchanged + three Chun STLs, documentation links and embedded viewer assets.")

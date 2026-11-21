@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import subprocess
 import xml.etree.ElementTree as ET
 import zipfile
@@ -12,23 +13,25 @@ import zipfile
 import numpy as np
 import trimesh
 
-from package_models import CORE, MACHINE, PALETTE, PROCESS, ROOT, VARIANTS, VERSION, slot_for, write_json
+from package_models import CORE, MACHINE, PROCESS, PROJECTS, ROOT, VARIANTS, VERSION, project_materials, slot_for, write_json
 
 
 PRODUCTION = "http://schemas.microsoft.com/3dmanufacturing/production/2015/06"
 NS = {"m": CORE}
-EXPECTED = {"all-three": list(VARIANTS), **{key: [key] for key in VARIANTS}}
+EXPECTED = PROJECTS
 
 
-def check_settings(config):
+def check_settings(config, selected):
+    palette, _ = project_materials(selected)
+    count = len(palette)
     assert config["printer_settings_id"] == MACHINE
     assert config["printer_model"] == "Bambu Lab P1S"
     assert config["printer_variant"] == "0.2"
     assert config["nozzle_diameter"] == ["0.2"]
     assert config["print_settings_id"] == PROCESS
-    assert config["filament_colour"] == [color for _, color in PALETTE]
-    assert config["filament_type"] == ["PLA"] * 4
-    assert len(config["filament_settings_id"]) == 4
+    assert config["filament_colour"] == [color for _, color in palette]
+    assert config["filament_type"] == ["PLA"] * count
+    assert len(config["filament_settings_id"]) == count
     assert all(float(value) == 1.75 for value in config["filament_diameter"])
     assert all(float(value) == 1.6 for value in config["filament_max_volumetric_speed"])
     assert float(config["layer_height"]) == 0.1
@@ -39,8 +42,8 @@ def check_settings(config):
     assert config["enable_prime_tower"] == "1"
     assert config["enable_support"] == "0"
     assert config["curr_bed_type"] == "Textured PEI Plate"
-    assert len(config["flush_volumes_matrix"]) == 16
-    assert all(float(value) > 0 for i, value in enumerate(config["flush_volumes_matrix"]) if i % 5)
+    assert len(config["flush_volumes_matrix"]) == count * count
+    assert all(float(value) > 0 for i, value in enumerate(config["flush_volumes_matrix"]) if i % (count + 1))
 
 
 def transform(value):
@@ -67,7 +70,7 @@ def inspect_project(path, selected):
     with zipfile.ZipFile(path) as archive:
         assert archive.testzip() is None
         assert not any(name.endswith((".gcode", ".gcode.3mf")) for name in archive.namelist())
-        check_settings(json.loads(archive.read("Metadata/project_settings.config")))
+        check_settings(json.loads(archive.read("Metadata/project_settings.config")), selected)
         main = ET.fromstring(archive.read("3D/3dmodel.model"))
         assert main.get("unit") == "millimeter"
         settings = ET.fromstring(archive.read("Metadata/model_settings.config"))
@@ -147,7 +150,48 @@ def classify_cli_diagnostics(log):
     return diagnostics
 
 
+def check_toolpaths(gcode, expected_layers):
+    tool = layer = object_id = feature = None
+    observed = {}
+    ams_slots = set()
+    for line in gcode.decode("utf-8").splitlines():
+        command = line.split(";", 1)[0].strip()
+        match = re.fullmatch(r"T(\d+)", command)
+        if match:
+            number = int(match[1])
+            # T1000 is the stock nozzle-load-line sentinel, not another AMS spool.
+            if number not in {255, 1000}:
+                tool = number + 1
+        match = re.match(r"M620 S(\d+)A\b", command)
+        if match:
+            ams_slots.add(int(match[1]) + 1)
+        match = re.fullmatch(r"; layer num/total_layer_count: (\d+)/\d+", line)
+        if match:
+            layer = int(match[1]) - 1
+        match = re.fullmatch(r"; OBJECT_ID: (\d+)", line)
+        if match:
+            object_id = int(match[1])
+        if line.startswith("; FEATURE: "):
+            feature = line.removeprefix("; FEATURE: ")
+        extrusion = re.search(r"\bE(-?[\d.]+)", command)
+        if (layer is not None and object_id and feature not in {None, "Custom", "Prime tower"}
+                and re.match(r"G[123] ", command) and re.search(r"\b[XY]-?[\d.]", command)
+                and extrusion and float(extrusion[1]) > 0):
+            assert tool is not None, "Object extrusion has no selected filament."
+            observed.setdefault(layer, set()).add(tool)
+    assert observed == expected_layers, "Actual object extrusion tools do not match the required layer colors."
+    expected_slots = set().union(*expected_layers.values())
+    assert ams_slots == expected_slots, "AMS selectors do not match the actual model filaments."
+    return {
+        "object_layers_verified": len(observed),
+        "actual_object_extrusion_matches_layer_colors": True,
+        "actual_ams_project_slots": sorted(ams_slots),
+        "prime_tower_and_custom_purge_excluded": True,
+    }
+
+
 def validate_slice(path, selected, parts, executable, work):
+    palette, _ = project_materials(selected)
     work.mkdir(parents=True, exist_ok=True)
     for name in ("home", "data", "output"):
         (work / name).mkdir(exist_ok=True)
@@ -175,7 +219,7 @@ def validate_slice(path, selected, parts, executable, work):
     assert {item["id"] for item in plate["filaments"]} == expected_slots
     assert all(item["main_used_g"] > 0 for item in plate["filaments"])
     with zipfile.ZipFile(work / "output/sliced.3mf") as sliced:
-        check_settings(json.loads(sliced.read("Metadata/project_settings.config")))
+        check_settings(json.loads(sliced.read("Metadata/project_settings.config")), selected)
         info = ET.fromstring(sliced.read("Metadata/slice_info.config"))
         state = {node.get("key"): node.get("value") for node in info.findall("plate/metadata")}
         assert state["outside"] == "false"
@@ -185,7 +229,7 @@ def validate_slice(path, selected, parts, executable, work):
         assert {int(node.get("id")) for node in used} == expected_slots
         for node in used:
             assert node.get("type") == "PLA"
-            assert node.get("color") == PALETTE[int(node.get("id")) - 1][1]
+            assert node.get("color") == palette[int(node.get("id")) - 1][1]
             assert float(node.get("nozzle_diameter")) == 0.2
         layers = {}
         for node in info.findall("plate/layer_filament_lists/layer_filament_list"):
@@ -204,6 +248,7 @@ def validate_slice(path, selected, parts, executable, work):
         gcode = sliced.read("Metadata/plate_1.gcode")
         assert len(gcode) > 100000
         assert b"M620" in gcode and b"M621" in gcode
+        toolpaths = check_toolpaths(gcode, layers)
         gcode_hash = hashlib.sha256(gcode).hexdigest()
     diagnostics = classify_cli_diagnostics(log_path.read_text())
     return {
@@ -219,6 +264,7 @@ def validate_slice(path, selected, parts, executable, work):
         "estimated_print_seconds": plate["total_predication"],
         "estimated_filament_grams_including_flush_and_tower": sum(item["total_used_g"] for item in plate["filaments"]),
         "local_toolpath_sha256": gcode_hash,
+        "toolpath_checks": toolpaths,
         "gcode_published": False, "printer_transmission_performed": False,
         "cli_diagnostics": diagnostics,
     }
@@ -228,11 +274,24 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--bambu", required=True, type=Path)
     parser.add_argument("--work-dir", type=Path, default=ROOT / ".work" / "verification")
+    parser.add_argument("--only", choices=EXPECTED, help="Re-slice one project and retain hash-matching evidence for the others.")
     args = parser.parse_args()
+    previous = {}
+    if args.only:
+        saved = json.loads((ROOT / "validation/slicer-checks.json").read_text())
+        assert saved["slicer"] == f"BambuStudio-{VERSION}"
+        previous = {item["project"]: item for item in saved["projects"]}
     results = []
     for name, selected in EXPECTED.items():
         path = ROOT / "print-package/projects" / f"{name}-P1S-0.2-AMS-PLA.3mf"
         parts = inspect_project(path, selected)
+        if args.only and name != args.only:
+            item = previous.get(str(path.relative_to(ROOT)))
+            if item is None or item["sha256"] != hashlib.sha256(path.read_bytes()).hexdigest():
+                raise RuntimeError(f"No matching prior slice evidence for {path.name}; run without --only.")
+            results.append(item)
+            print(f"PASS {path.name}: unchanged project; retained verified slice evidence")
+            continue
         result = validate_slice(path, selected, parts, args.bambu.resolve(), args.work_dir.resolve() / name)
         results.append(result)
         print(f"PASS {path.name}: {len(parts)} unchanged parts, 165 layers, slots {result['used_project_slots']}, no plate warnings")

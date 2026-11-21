@@ -8,7 +8,7 @@ import trimesh
 ROOT = Path(__file__).resolve().parents[1]
 scene = trimesh.load_scene(ROOT / "viewer/assets/keychains.glb")
 results = []
-for variant in ["git_branch", "octocat", "hatsu"]:
+for variant in ["git_branch", "octocat", "hatsu", "chun"]:
     report = json.loads((ROOT / "validation" / f"validation-{variant}.json").read_text())
     part_bounds = [np.array(part["bounds_mm"]) for name, part in report["parts"].items() if name != "blank"]
     overall = np.array([np.min([bounds[0] for bounds in part_bounds], axis=0),
@@ -32,13 +32,15 @@ for variant in ["git_branch", "octocat", "hatsu"]:
             assert mesh.visual.material.name == "Printed white", variant
             assert np.isclose(bounds[0, 2], 5.5, atol=0.0001), variant
             assert bounds[1, 1] <= 14.0001, variant
+        elif variant == "chun" and part == "inlay":
+            assert mesh.visual.material.name == "Printed red", variant
         results.append({
             "part": f"{variant}/{part}",
             "triangles": len(mesh.faces),
             "max_bound_difference_mm": float(np.max(np.abs(bounds - original["bounds_mm"]))),
             "volume_difference_mm3": volume - original["volume_mm3"],
         })
-assert len(results) == 10
+assert len(results) == 13
 (ROOT / "validation" / "viewer-geometry.json").write_text(json.dumps(results, indent=2) + "\n")
-print("All 10 browser meshes preserve revised printable triangle counts, dimensions and volumes.")
-print("All three ears use the black material; white geometry starts only at the shared 5.5 mm boundary.")
+print("All 13 browser meshes preserve printable triangle counts, dimensions and volumes.")
+print("All four ears are black; white starts at z=5.5 mm. Only the new Chun inlay uses red.")

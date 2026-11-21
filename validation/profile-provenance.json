@@ -93,5 +93,37 @@
     300,
     0
   ],
+  "separate_chun_project": {
+    "project": "print-package/projects/chun-P1S-0.2-AMS-PLA.3mf",
+    "palette": [
+      {
+        "slot": 1,
+        "color": "White",
+        "rgb": "#F6F5EE"
+      },
+      {
+        "slot": 2,
+        "color": "Black",
+        "rgb": "#161616"
+      },
+      {
+        "slot": 3,
+        "color": "Red",
+        "rgb": "#B33220"
+      }
+    ],
+    "flush_volumes_mm3_from_row_to_column": [
+      0,
+      250,
+      300,
+      800,
+      0,
+      600,
+      650,
+      250,
+      0
+    ],
+    "note": "Separate white/black/red project. The original three-design set retains white/black/green/light green. Map or change the physical red spool; five simultaneous colors do not fit one four-slot AMS."
+  },
   "flush_note": "Conservative starting volumes; actual pigment transitions still need a physical first print."
 }

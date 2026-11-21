@@ -1,5 +1,5 @@
 // Dimensions are millimeters. The metal chain and rings are not printed.
-variant = "git_branch"; // git_branch, octocat, hatsu
+variant = "git_branch"; // git_branch, octocat, hatsu, chun
 part = "assembled";    // assembled, white_body, black_back, inlay, light_inlay, blank
 
 body_width = 21;
@@ -103,6 +103,10 @@ module artwork_original(layer = "all") {
                     resize([0, 9.6], auto = true)
                         import("assets/hatsu.svg", center = true, $fn = 24);
         hatsu_grid(layer == "all" ? -1 : layer == "light" ? 1 : 0);
+    } else if (variant == "chun") {
+        translate([0, 0.3])
+            resize([0, 24], auto = true)
+                import("assets/chun-custom.svg", center = true);
     } else {
         assert(false, str("Unknown variant: ", variant));
     }
@@ -153,7 +157,7 @@ if (part == "black_back") {
 } else if (part == "assembled") {
     color("#191C1A") black_back();
     color("#F6F5EE") white_body();
-    color(variant == "octocat" ? "#191C1A" : "#238636") inlay();
+    color(variant == "octocat" ? "#191C1A" : variant == "chun" ? "#B33220" : "#238636") inlay();
     if (variant == "hatsu") color("#9DD96C") inlay(true);
 } else {
     assert(false, str("Unknown part: ", part));

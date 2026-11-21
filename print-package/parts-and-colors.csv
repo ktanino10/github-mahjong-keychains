@@ -1,11 +1,14 @@
-Part,Project filament slot,Color,Display RGB,Source STL
-git_branch/black_back,2,Black,#161616,STL/01-git-branch/black_back-black.stl
-git_branch/white_body,1,White,#F6F5EE,STL/01-git-branch/white_body-white.stl
-git_branch/inlay,3,Green,#238636,STL/01-git-branch/inlay-green.stl
-octocat/black_back,2,Black,#161616,STL/02-octocat/black_back-black.stl
-octocat/white_body,1,White,#F6F5EE,STL/02-octocat/white_body-white.stl
-octocat/inlay,2,Black,#161616,STL/02-octocat/inlay-black.stl
-hatsu/black_back,2,Black,#161616,STL/03-hatsu/black_back-black.stl
-hatsu/white_body,1,White,#F6F5EE,STL/03-hatsu/white_body-white.stl
-hatsu/inlay,3,Green,#238636,STL/03-hatsu/inlay-green.stl
-hatsu/light_inlay,4,Light green,#9DD96C,STL/03-hatsu/light_inlay-light-green.stl
+Part,Project filament slot,Color,Display RGB,Source STL,Print project
+git_branch/black_back,2,Black,#161616,STL/01-git-branch/black_back-black.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+git_branch/white_body,1,White,#F6F5EE,STL/01-git-branch/white_body-white.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+git_branch/inlay,3,Green,#238636,STL/01-git-branch/inlay-green.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+octocat/black_back,2,Black,#161616,STL/02-octocat/black_back-black.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+octocat/white_body,1,White,#F6F5EE,STL/02-octocat/white_body-white.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+octocat/inlay,2,Black,#161616,STL/02-octocat/inlay-black.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+hatsu/black_back,2,Black,#161616,STL/03-hatsu/black_back-black.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+hatsu/white_body,1,White,#F6F5EE,STL/03-hatsu/white_body-white.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+hatsu/inlay,3,Green,#238636,STL/03-hatsu/inlay-green.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+hatsu/light_inlay,4,Light green,#9DD96C,STL/03-hatsu/light_inlay-light-green.stl,projects/all-three-P1S-0.2-AMS-PLA.3mf
+chun/black_back,2,Black,#161616,STL/04-chun/black_back-black.stl,projects/chun-P1S-0.2-AMS-PLA.3mf
+chun/white_body,1,White,#F6F5EE,STL/04-chun/white_body-white.stl,projects/chun-P1S-0.2-AMS-PLA.3mf
+chun/inlay,3,Red,#B33220,STL/04-chun/inlay-red.stl,projects/chun-P1S-0.2-AMS-PLA.3mf

@@ -263,6 +263,79 @@
         }
       },
       "volume_sum_error_mm3": 0.0
+    },
+    "chun": {
+      "variant": "chun",
+      "parts": {
+        "black_back": {
+          "file": "print-package/STL/04-chun/black_back-black.stl",
+          "bounds_mm": [
+            [
+              -10.5,
+              -14.0,
+              0.0
+            ],
+            [
+              10.5,
+              22.0,
+              5.5
+            ]
+          ],
+          "volume_mm3": 3478.601532827492,
+          "faces": 1740,
+          "watertight": true,
+          "components": 1
+        },
+        "white_body": {
+          "file": "print-package/STL/04-chun/white_body-white.stl",
+          "bounds_mm": [
+            [
+              -10.5,
+              -14.0,
+              5.5
+            ],
+            [
+              10.5,
+              14.0,
+              16.5
+            ]
+          ],
+          "volume_mm3": 6330.964032411612,
+          "faces": 8004,
+          "watertight": true,
+          "components": 1
+        },
+        "inlay": {
+          "file": "print-package/STL/04-chun/inlay-red.stl",
+          "bounds_mm": [
+            [
+              -6.185797691345215,
+              -10.237500190734863,
+              15.699999809265137
+            ],
+            [
+              6.185797691345215,
+              10.762499809265137,
+              16.5
+            ]
+          ],
+          "volume_mm3": 72.77379280130909,
+          "faces": 7408,
+          "watertight": true,
+          "components": 2
+        }
+      },
+      "volume_sum_error_mm3": 0.0,
+      "accepted_blank_partition_matches_within_stl_precision": true,
+      "pairwise_part_intersections_have_no_volume": true,
+      "boolean_residual_boundary_facets": 1730,
+      "max_boolean_residual_inlay_surface_distance_mm": 0.0,
+      "boolean_residual_volume_mm3": -1.4210854715202004e-14,
+      "geometry_tolerance_mm": 2e-05,
+      "common_black_back_byte_identical": true,
+      "reference_blank_sha256": "7289f85126e5ef6747b7638d32ffb2b064eedc43df16c653bd758239f2365632",
+      "source_asset": "print-package/source/assets/chun-custom.svg",
+      "physical_print_and_fit_tested": false
     }
   },
   "physical_print_performed": false,

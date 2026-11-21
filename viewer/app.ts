@@ -8,7 +8,7 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { isTranslationKey, translations, type Language, type TranslationKey } from "./i18n";
 
-type Design = "git_branch" | "octocat" | "hatsu";
+type Design = "git_branch" | "octocat" | "hatsu" | "chun";
 type Selection = Design | "all";
 type View = "front" | "back" | "side" | "angle";
 type HardwareKind = "ball" | "clasp";
@@ -21,12 +21,13 @@ interface DesignModel {
   hardwareOptions: Record<HardwareKind, Object3D>;
 }
 
-const designIds: Design[] = ["git_branch", "octocat", "hatsu"];
+const designIds: Design[] = ["git_branch", "octocat", "hatsu", "chun"];
 const labels: Record<Selection, TranslationKey> = {
   all: "allSelection",
   git_branch: "branchSelection",
   octocat: "octocatSelection",
   hatsu: "hatsuSelection",
+  chun: "chunSelection",
 };
 const presets: Record<View, { theta: number; phi: number }> = {
   front: { theta: 0, phi: Math.PI / 2 },
@@ -224,7 +225,7 @@ async function main(): Promise<void> {
   gltf.scene.traverse((object) => {
     if (object.userData.role !== "design") return;
     const id: unknown = object.userData.design;
-    if (id !== "git_branch" && id !== "octocat" && id !== "hatsu") {
+    if (id !== "git_branch" && id !== "octocat" && id !== "hatsu" && id !== "chun") {
       throw new Error("The model contains an unknown design.");
     }
     const body = object.children.find((child) => child.userData.role === "body");
@@ -235,8 +236,8 @@ async function main(): Promise<void> {
     if (!ball || !clasp) throw new Error(`Purchased hardware options are missing: ${id}`);
     models.push({ id, root: object, body, hardware, hardwareOptions: { ball, clasp } });
   });
-  if (models.length !== 3 || new Set(models.map((model) => model.id)).size !== 3) {
-    throw new Error("The viewer needs exactly three finished designs.");
+  if (models.length !== designIds.length || new Set(models.map((model) => model.id)).size !== designIds.length) {
+    throw new Error("The viewer needs exactly four finished designs.");
   }
   models.sort((a, b) => designIds.indexOf(a.id) - designIds.indexOf(b.id));
   let printedMeshCount = 0;
@@ -251,7 +252,7 @@ async function main(): Promise<void> {
       }
     }
   });
-  if (printedMeshCount !== 10) throw new Error("The ten revised color parts were not retained.");
+  if (printedMeshCount !== 13) throw new Error("The thirteen printable color parts were not retained.");
 
   let selection: Selection = "all";
   let hardwareKind: HardwareKind = "ball";
@@ -379,10 +380,11 @@ async function main(): Promise<void> {
     selection = value;
     models.forEach((model, index) => {
       model.root.visible = value === "all" || value === model.id;
-      model.root.position.x = value === "all" ? (index - 1) * 0.036 : 0;
+      model.root.position.x = value === "all" ? (index - (models.length - 1) / 2) * 0.036 : 0;
     });
-    greenChip.hidden = value === "octocat";
+    greenChip.hidden = value === "octocat" || value === "chun";
     element("#light-green-chip", HTMLSpanElement).hidden = value !== "all" && value !== "hatsu";
+    element("#red-chip", HTMLSpanElement).hidden = value !== "all" && value !== "chun";
     viewport.dataset.selection = value;
     updateHardware();
     frame("angle");

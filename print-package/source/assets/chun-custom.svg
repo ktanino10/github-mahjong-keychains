@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="172" viewBox="0 0 100 172">
+  <title>Custom Chun: red dragon above an open-bottom cat-head outline</title>
+  <desc>Manually outlined from the user-supplied reference. Not a new official GitHub logo. Artwork rights are separate from the code license; see ASSET-LICENSES.md. No reference photograph or font program is embedded.</desc>
+  <g fill="#B33220">
+    <path transform="translate(5 0)" fill-rule="evenodd" d="M45 1 C48 0 53 2 54 5 L53 22 L69 20 L76 26 L73 39 L66 46 L53 45 L53 68 C52 71 50 73 48 73 L44 68 L43 45 L31 46 L27 49 L22 47 L13 26 L17 23 L23 27 L43 24 L43 7 L40 3 C40 1 42 0 45 1 Z M26 31 L43 29 L43 39 L30 40 Z M53 29 L64 28 L64 37 L53 38 Z"/>
+    <path d="M10 86 C13 83 20 86 29 90 C41 87 59 87 71 90 C81 86 88 83 91 86 C93 91 92 98 92 104 C99 114 101 124 100 135 C99 153 87 168 66 171 L65 163 C78 161 85 153 85 141 C85 134 83 127 79 123 C74 118 68 120 60 122 C54 123 46 123 40 122 C31 120 25 118 20 124 C15 130 14 139 17 147 C20 156 26 161 35 163 L34 171 C17 168 5 159 1 143 C-2 130 1 114 9 104 C8 96 7 89 10 86 Z"/>
+  </g>
+</svg>

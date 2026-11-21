@@ -308,6 +308,78 @@
         "Single-nozzle compatibility mapping initialized from the embedded filament map",
         "Support-constructor default; support generation is disabled in this project"
       ]
+    },
+    {
+      "project": "print-package/projects/chun-P1S-0.2-AMS-PLA.3mf",
+      "sha256": "650454dce3efb2afa32a11c9690ab87cfec7eb968af1f094bd9e6812bb305ca7",
+      "reopened_without_external_presets_or_setting_overrides": true,
+      "slicer_return_code": 0,
+      "plate_warning_message": "",
+      "objects": 1,
+      "parts": [
+        {
+          "part": "chun/black_back",
+          "slot": 2,
+          "triangles": 1740,
+          "max_vertex_distance_mm": 1.0004533546149764e-06,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "chun/white_body",
+          "slot": 1,
+          "triangles": 8004,
+          "max_vertex_distance_mm": 5.157993439097885e-08,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "chun/inlay",
+          "slot": 3,
+          "triangles": 7408,
+          "max_vertex_distance_mm": 6.802340296249604e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        }
+      ],
+      "layers": 165,
+      "black_layers_1_based": [
+        1,
+        55
+      ],
+      "white_layers_1_based": [
+        56,
+        157
+      ],
+      "surface_inlay_layers_1_based": [
+        158,
+        165
+      ],
+      "used_project_slots": [
+        1,
+        2,
+        3
+      ],
+      "filament_changes": 9,
+      "estimated_print_seconds": 15130.6806640625,
+      "estimated_filament_grams_including_flush_and_tower": 20.37909960746765,
+      "local_toolpath_sha256": "f121b6c494f888d947c24c5693aac7b42787ea782c49a0cb398a81a64fec375f",
+      "toolpath_checks": {
+        "object_layers_verified": 165,
+        "actual_object_extrusion_matches_layer_colors": true,
+        "actual_ams_project_slots": [
+          1,
+          2,
+          3
+        ],
+        "prime_tower_and_custom_purge_excluded": true
+      },
+      "gcode_published": false,
+      "printer_transmission_performed": false,
+      "cli_diagnostics": [
+        "CLI version banner logged at warning level",
+        "Desktop bundle lacks optional machine_full/process_full lookup copies; embedded project settings were used",
+        "Known CLI branch message when an existing flush matrix needs no recalculation; project colors and actual toolpaths verified separately",
+        "Single-nozzle compatibility mapping initialized from the embedded filament map",
+        "Support-constructor default; support generation is disabled in this project"
+      ]
     }
   ]
 }

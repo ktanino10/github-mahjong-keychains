@@ -1,15 +1,19 @@
 {
   "docs/downloads/github-mahjong-keychains-P1S-0.2-AMS-PLA.zip": {
-    "bytes": 10244577,
-    "sha256": "cfff7dc19fc608bebb47b0691a67859ab2ec8ec5c5a6bf146533503f7d97114c"
+    "bytes": 11031413,
+    "sha256": "c0dd4ef81ad213346a035a1c4b0212168b5ac9615c39a0a127966b79bb9f9e6b"
   },
   "docs/index.html": {
-    "bytes": 7254438,
-    "sha256": "b4c002e15eecce840ef36ab2b42967ea534cdd20bdd8d555c685fd496d00eb34"
+    "bytes": 9080344,
+    "sha256": "63d08894a1dc2654c296a3d6f62896c2f6a48365ca1b6c0a6c227cbd329a5526"
   },
   "print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf": {
     "bytes": 782167,
     "sha256": "acac64efad8f06b0d9e5695348dbfe919964e66c16d84381da9f63131a3c760e"
+  },
+  "print-package/projects/chun-P1S-0.2-AMS-PLA.3mf": {
+    "bytes": 250802,
+    "sha256": "650454dce3efb2afa32a11c9690ab87cfec7eb968af1f094bd9e6812bb305ca7"
   },
   "print-package/projects/git-branch-P1S-0.2-AMS-PLA.3mf": {
     "bytes": 113778,

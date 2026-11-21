@@ -34,17 +34,33 @@ PALETTE = [
     ("Green", "#238636"),
     ("Light green", "#9DD96C"),
 ]
+CHUN_PALETTE = PALETTE[:2] + [("Red", "#B33220")]
 VARIANTS = {
     "git-branch": ("git_branch", "01-git-branch", "Git branch"),
     "invertocat": ("octocat", "02-octocat", "Invertocat"),
     "hatsu": ("hatsu", "03-hatsu", "Hatsu contribution"),
+    "chun": ("chun", "04-chun", "Chun custom red dragon"),
 }
+PROJECTS = {"all-three": ["git-branch", "invertocat", "hatsu"], **{key: [key] for key in VARIANTS}}
 FLUSH_MATRIX = [
     0, 250, 300, 250,
     800, 0, 600, 750,
     600, 250, 0, 500,
     400, 250, 300, 0,
 ]
+CHUN_FLUSH_MATRIX = [
+    0, 250, 300,
+    800, 0, 600,
+    650, 250, 0,
+]
+
+
+def project_materials(selected):
+    if "chun" in selected:
+        if selected != ["chun"]:
+            raise ValueError("Chun must be a separate three-color project; all four designs need five colors.")
+        return CHUN_PALETTE, CHUN_FLUSH_MATRIX
+    return PALETTE, FLUSH_MATRIX
 
 
 def write_json(path, value):
@@ -67,7 +83,7 @@ def resolve_profile(directory, name, sources, visiting=()):
     return profile
 
 
-def configured_profiles(resources, work):
+def configured_profiles(resources, work, palette):
     sources = {}
     machine = resolve_profile(resources / "machine", MACHINE, sources)
     process = resolve_profile(resources / "process", STOCK_PROCESS, sources)
@@ -108,7 +124,7 @@ def configured_profiles(resources, work):
     write_json(process_path, process)
     filament_paths = []
     filaments = []
-    for slot, (name, color) in enumerate(PALETTE, 1):
+    for slot, (name, color) in enumerate(palette, 1):
         current = copy.deepcopy(filament)
         current.update({
             "name": f"Generic PLA {name} @P1S 0.2", "from": "user",
@@ -144,6 +160,8 @@ def meta(parent, key, value):
 
 
 def make_seed(path, selected, machine, process, filaments):
+    palette, flush_matrix = project_materials(selected)
+    count = len(palette)
     model = ET.Element(f"{{{CORE}}}model", {"unit": "millimeter"})
     child(model, "metadata", {"name": "Application"}, f"BambuStudio-{VERSION}")
     child(model, "metadata", {"name": "BambuStudio:3mfVersion"}, "1")
@@ -212,16 +230,16 @@ def make_seed(path, selected, machine, process, filaments):
         "printer_settings_id": MACHINE, "printer_model": "Bambu Lab P1S",
         "printer_variant": "0.2", "nozzle_diameter": ["0.2"],
         "print_settings_id": PROCESS,
-        "filament_colour": [color for _, color in PALETTE],
+        "filament_colour": [color for _, color in palette],
         "filament_settings_id": [item["name"] for item in filaments],
-        "filament_type": ["PLA"] * 4, "filament_diameter": ["1.75"] * 4,
-        "filament_map": ["1"] * 4,
-        "inherits_group": [STOCK_PROCESS, *([STOCK_FILAMENT] * 4), ""],
-        "different_settings_to_system": [""] * 6,
+        "filament_type": ["PLA"] * count, "filament_diameter": ["1.75"] * count,
+        "filament_map": ["1"] * count,
+        "inherits_group": [STOCK_PROCESS, *([STOCK_FILAMENT] * count), ""],
+        "different_settings_to_system": [""] * (count + 2),
         "print_compatible_printers": [MACHINE],
         "curr_bed_type": "Textured PEI Plate",
-        "flush_volumes_matrix": [str(value) for value in FLUSH_MATRIX],
-        "flush_volumes_vector": ["140"] * 8,
+        "flush_volumes_matrix": [str(value) for value in flush_matrix],
+        "flush_volumes_vector": ["140"] * (count * 2),
         "flush_multiplier": "1",
         "wipe_tower_x": ["175"], "wipe_tower_y": ["160"],
     })
@@ -250,7 +268,7 @@ def main():
     parser.add_argument("--bambu", required=True, type=Path, help="Official Bambu Studio executable.")
     parser.add_argument("--profiles", required=True, type=Path, help="The application's Resources/profiles/BBL directory, never user profiles.")
     parser.add_argument("--work-dir", type=Path, default=ROOT / ".work" / "slicer")
-    parser.add_argument("--only", choices=["all-three", *VARIANTS], help="Build one project instead of all four.")
+    parser.add_argument("--only", choices=PROJECTS, help="Build one project, preserving all other project files.")
     args = parser.parse_args()
     work = args.work_dir.resolve()
     work.mkdir(parents=True, exist_ok=True)
@@ -266,14 +284,15 @@ def main():
     for name, expected in accepted["parts"].items():
         path = ROOT / "print-package/STL" / name
         assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, f"Accepted mesh changed: {name}"
-    machine, process, filaments, machine_path, process_path, filament_paths, sources = configured_profiles(args.profiles.resolve(), work)
     destination = ROOT / "print-package" / "projects"
     destination.mkdir(parents=True, exist_ok=True)
-    projects = {"all-three": list(VARIANTS), **{key: [key] for key in VARIANTS}}
-    all_assignments = []
-    for name, selected in projects.items():
+    for name, selected in PROJECTS.items():
         if args.only and args.only != name:
             continue
+        palette, _ = project_materials(selected)
+        machine, process, filaments, machine_path, process_path, filament_paths, sources = configured_profiles(
+            args.profiles.resolve(), work / name, palette,
+        )
         seed = work / f"{name}-seed.3mf"
         assignments = make_seed(seed, selected, machine, process, filaments)
         target = destination / f"{name}-P1S-0.2-AMS-PLA.3mf"
@@ -295,18 +314,23 @@ def main():
             config = json.loads(archive.read("Metadata/project_settings.config"))
             assert config["printer_settings_id"] == MACHINE, config.get("printer_settings_id")
             assert config["nozzle_diameter"] == ["0.2"], config.get("nozzle_diameter")
-            assert config["filament_colour"] == [color for _, color in PALETTE], config.get("filament_colour")
+            assert config["filament_colour"] == [color for _, color in palette], config.get("filament_colour")
         shutil.copyfile(candidate, target)
         print(f"Exported with Bambu Studio: {target.name} ({len(assignments)} aligned parts)")
-        if name == "all-three":
-            all_assignments = assignments
-    if all_assignments:
-        with (ROOT / "print-package/parts-and-colors.csv").open("w", newline="", encoding="utf-8") as output:
-            writer = csv.writer(output, lineterminator="\n")
-            writer.writerow(["Part", "Project filament slot", "Color", "Display RGB", "Source STL"])
-            for item in all_assignments:
-                color, rgb = PALETTE[item["slot"] - 1]
-                writer.writerow([item["name"], item["slot"], color, rgb, item["source"].removeprefix("print-package/")])
+    with (ROOT / "print-package/parts-and-colors.csv").open("w", newline="", encoding="utf-8") as output:
+        writer = csv.writer(output, lineterminator="\n")
+        writer.writerow(["Part", "Project filament slot", "Color", "Display RGB", "Source STL", "Print project"])
+        for key, (variant, _, _) in VARIANTS.items():
+            palette, _ = project_materials([key])
+            report = json.loads((ROOT / "validation" / f"validation-{variant}.json").read_text())
+            for part, info in report["parts"].items():
+                if part == "blank":
+                    continue
+                slot = slot_for(variant, part)
+                color, rgb = palette[slot - 1]
+                project = "chun" if key == "chun" else "all-three"
+                writer.writerow([f"{variant}/{part}", slot, color, rgb, info["file"].removeprefix("print-package/"),
+                                 f"projects/{project}-P1S-0.2-AMS-PLA.3mf"])
     write_json(ROOT / "validation/profile-provenance.json", {
         "bambu_studio_version": VERSION,
         "release": f"https://github.com/bambulab/BambuStudio/releases/tag/v{VERSION}",
@@ -323,6 +347,12 @@ def main():
         "palette": [{"slot": slot, "color": name, "rgb": color} for slot, (name, color) in enumerate(PALETTE, 1)],
         "bed": "Textured PEI Plate; select your actual bed surface before printing.",
         "flush_volumes_mm3_from_row_to_column": FLUSH_MATRIX,
+        "separate_chun_project": {
+            "project": "print-package/projects/chun-P1S-0.2-AMS-PLA.3mf",
+            "palette": [{"slot": slot, "color": name, "rgb": color} for slot, (name, color) in enumerate(CHUN_PALETTE, 1)],
+            "flush_volumes_mm3_from_row_to_column": CHUN_FLUSH_MATRIX,
+            "note": "Separate white/black/red project. The original three-design set retains white/black/green/light green. Map or change the physical red spool; five simultaneous colors do not fit one four-slot AMS.",
+        },
         "flush_note": "Conservative starting volumes; actual pigment transitions still need a physical first print.",
     })
 

@@ -16,6 +16,15 @@
       "source": "Pre-existing single-glyph outline supplied with the accepted design.",
       "font_files_distributed": false,
       "note": "Not covered by the source-code license. No system font is needed by this build."
+    },
+    {
+      "file": "chun-custom.svg",
+      "source": "User-supplied image: a red Chun glyph above an open-bottom cat-head outline.",
+      "modifications": "Manual flat outline, preserving the composition and a restrained red; not the circular Invertocat or a full character.",
+      "official_logo_claim": false,
+      "reference_photo_distributed": false,
+      "font_files_distributed": false,
+      "note": "Image-derived custom artwork; original rights remain with their holders. Not covered by the source-code license."
     }
   ],
   "size_reference": {
@@ -54,6 +63,7 @@
     }
   ],
   "source_asset_sha256": {
+    "chun-custom.svg": "d8885eec7ebc252a2160277a3202d3d16ab3bbb8b466f0949e125e80ff194d54",
     "git-branch-24.svg": "76b97dde63b49eaa91978209f31f09c829cd690959fbcd7bbafdf96fa0a81474",
     "github-invertocat.svg": "693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1",
     "hatsu.svg": "ad2515b54377e374b218dfdbc5046dc93931092029e343ec0506d233374b35f5",

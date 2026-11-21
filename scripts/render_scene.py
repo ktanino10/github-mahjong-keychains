@@ -218,18 +218,21 @@ white = material("Printed white", 0xF5F4ED, 0.32)
 black = material("Printed black", 0x181818, 0.32)
 green = material("Printed green", 0x238636, 0.32)
 light_green = material("Printed light green", 0x9DD96C, 0.32)
+red = material("Printed red", 0xB33220, 0.32)
 metal = material("Purchased metal / illustrative finish", 0xBAC0C1, 0.23, metallic=1)
 ground = material("Warm studio ground", 0xEEEFE8, 0.8)
 
-for index, variant in enumerate(["git_branch", "octocat", "hatsu"]):
+for index, variant in enumerate(["git_branch", "octocat", "hatsu", "chun"]):
     report = json.loads((OUT / "validation" / f"validation-{variant}.json").read_text())
     parent = bpy.data.objects.new(f"Keychain {index + 1} - {variant}", None)
     bpy.context.collection.objects.link(parent)
-    parent.location = ((index - 1) * 36 * MM, 0, 0)
-    parent.rotation_euler.z = math.radians([4, 0, -4][index])
+    parent.location = ((index - 1.5) * 36 * MM, 0, 0)
+    parent.rotation_euler.z = math.radians([4, 0, -4, -5][index])
     parts = ["black_back", "white_body", "inlay"] + (["light_inlay"] if variant == "hatsu" else [])
     for part in parts:
         mat = white if part == "white_body" else light_green if part == "light_inlay" else (green if part == "inlay" and variant != "octocat" else black)
+        if variant == "chun" and part == "inlay":
+            mat = red
         mesh_from_stl(OUT / report["parts"][part]["file"], f"{variant}/{part}", mat, parent)
     hardware(parent, metal)
 
@@ -243,7 +246,7 @@ bpy.context.collection.objects.link(camera)
 camera.location = (0, -48 * MM, 210 * MM)
 aim(camera, (0, 22 * MM, 5 * MM))
 camera.data.type = "ORTHO"
-camera.data.ortho_scale = 143 * MM
+camera.data.ortho_scale = 180 * MM
 camera.data.lens = 60
 camera.data.clip_start = 0.001
 camera.data.clip_end = 10
@@ -276,6 +279,8 @@ scene.view_settings.view_transform = "AgX"
 scene.view_settings.look = "AgX - Medium High Contrast"
 scene.view_settings.exposure = 0.65
 scene.render.image_settings.color_depth = "8"
+scene.render.use_stamp_filename = False
+scene.render.use_stamp_hostname = False
 (OUT / ".work").mkdir(exist_ok=True)
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT / ".work" / "keychain-studio.blend"))
 bpy.ops.render.render(write_still=True)
