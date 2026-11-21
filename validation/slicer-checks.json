@@ -311,7 +311,7 @@
     },
     {
       "project": "print-package/projects/chun-P1S-0.2-AMS-PLA.3mf",
-      "sha256": "650454dce3efb2afa32a11c9690ab87cfec7eb968af1f094bd9e6812bb305ca7",
+      "sha256": "8f5c6b41c18b1e7dcedf79d0520c12245ef24facc328539cf94a2bb42c6b1504",
       "reopened_without_external_presets_or_setting_overrides": true,
       "slicer_return_code": 0,
       "plate_warning_message": "",
@@ -327,15 +327,15 @@
         {
           "part": "chun/white_body",
           "slot": 1,
-          "triangles": 8004,
+          "triangles": 11844,
           "max_vertex_distance_mm": 5.157993439097885e-08,
           "triangle_connectivity_and_winding_unchanged": true
         },
         {
           "part": "chun/inlay",
           "slot": 3,
-          "triangles": 7408,
-          "max_vertex_distance_mm": 6.802340296249604e-07,
+          "triangles": 11248,
+          "max_vertex_distance_mm": 7.132468921874702e-07,
           "triangle_connectivity_and_winding_unchanged": true
         }
       ],
@@ -358,9 +358,9 @@
         3
       ],
       "filament_changes": 9,
-      "estimated_print_seconds": 15130.6806640625,
-      "estimated_filament_grams_including_flush_and_tower": 20.37909960746765,
-      "local_toolpath_sha256": "f121b6c494f888d947c24c5693aac7b42787ea782c49a0cb398a81a64fec375f",
+      "estimated_print_seconds": 15150.826171875,
+      "estimated_filament_grams_including_flush_and_tower": 20.382293820381165,
+      "local_toolpath_sha256": "83a1ea22bcadf0ff34c317e41cfd2028cac3933c3ce91e27e44548f389aa119b",
       "toolpath_checks": {
         "object_layers_verified": 165,
         "actual_object_extrusion_matches_layer_colors": true,

@@ -34,8 +34,8 @@
           16.5
         ]
       ],
-      "volume_mm3": 6330.964032411612,
-      "faces": 8004,
+      "volume_mm3": 6341.878824282881,
+      "faces": 11844,
       "watertight": true,
       "components": 1
     },
@@ -43,18 +43,18 @@
       "file": "print-package/STL/04-chun/inlay-red.stl",
       "bounds_mm": [
         [
-          -6.185797691345215,
-          -10.237500190734863,
+          -5.5,
+          -10.154953956604004,
           15.699999809265137
         ],
         [
-          6.185797691345215,
-          10.762499809265137,
+          5.5,
+          10.76249885559082,
           16.5
         ]
       ],
-      "volume_mm3": 72.77379280130909,
-      "faces": 7408,
+      "volume_mm3": 61.85900093003937,
+      "faces": 11248,
       "watertight": true,
       "components": 2
     }
@@ -62,12 +62,34 @@
   "volume_sum_error_mm3": 0.0,
   "accepted_blank_partition_matches_within_stl_precision": true,
   "pairwise_part_intersections_have_no_volume": true,
-  "boolean_residual_boundary_facets": 1730,
+  "boolean_residual_boundary_facets": 3068,
   "max_boolean_residual_inlay_surface_distance_mm": 0.0,
-  "boolean_residual_volume_mm3": -1.4210854715202004e-14,
+  "boolean_residual_volume_mm3": 4.6629367034256575e-15,
   "geometry_tolerance_mm": 2e-05,
   "common_black_back_byte_identical": true,
   "reference_blank_sha256": "7289f85126e5ef6747b7638d32ffb2b064eedc43df16c653bd758239f2365632",
   "source_asset": "print-package/source/assets/chun-custom.svg",
-  "physical_print_and_fit_tested": false
+  "physical_print_and_fit_tested": false,
+  "artwork_checks": {
+    "compared_with_release": "a89410130cd4c122566f4eebabe2721def0ff2da",
+    "inlay_sha256": "2cf040c7ed6a036ba16c1bc7e4a08905be15b5fd1130eeb40057742c0ae08ecf",
+    "top_glyph_source_path_unchanged": true,
+    "top_glyph_triangles_and_winding_unchanged": true,
+    "top_glyph_max_vertex_difference_mm": 1.066240299940009e-06,
+    "lower_logo_source": "print-package/source/assets/github-invertocat.svg",
+    "lower_logo_svg_path_exact_copy": true,
+    "lower_logo_uniform_xy_scale_from_original_tile": 0.6686929781050301,
+    "lower_logo_translation_mm": [
+      0.0,
+      -4.827477008104324
+    ],
+    "lower_logo_max_vertex_difference_mm": 1.043787401181206e-06,
+    "lower_logo_contour_walls_and_winding_unchanged": true,
+    "lower_logo_planar_caps_retriangulated": true,
+    "lower_logo_volume_difference_mm3": 4.3547681300992735e-06,
+    "lower_logo_triangles": 9988,
+    "lower_logo_color": "#B33220",
+    "former_head_removed": true,
+    "only_two_connected_red_components": true
+  }
 }

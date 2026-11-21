@@ -96,7 +96,7 @@ if variant == "chun":
     blank = trimesh.load_mesh(reference, process=True)
     volume_error = sum(info["volume_mm3"] for info in report["parts"].values()) - blank.volume
     assert abs(volume_error) < 0.001, volume_error
-    assert report["parts"]["inlay"]["components"] == 2, "The glyph and open-bottom head must remain separate."
+    assert report["parts"]["inlay"]["components"] == 2, "The Chun glyph and circular Invertocat must remain separate."
     check = logs / "chun-partition.scad"
     imports = [f'import("{(OUT / info["file"]).as_posix()}");' for info in report["parts"].values()]
     assembled = "union() {" + "".join(imports) + "}"

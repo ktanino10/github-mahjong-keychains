@@ -39,7 +39,7 @@ VARIANTS = {
     "git-branch": ("git_branch", "01-git-branch", "Git branch"),
     "invertocat": ("octocat", "02-octocat", "Invertocat"),
     "hatsu": ("hatsu", "03-hatsu", "Hatsu contribution"),
-    "chun": ("chun", "04-chun", "Chun custom red dragon"),
+    "chun": ("chun", "04-chun", "Chun with red circular Invertocat"),
 }
 PROJECTS = {"all-three": ["git-branch", "invertocat", "hatsu"], **{key: [key] for key in VARIANTS}}
 FLUSH_MATRIX = [

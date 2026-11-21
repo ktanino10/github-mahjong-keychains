@@ -2,7 +2,7 @@
 
 **[日本語](README.md) | English**
 
-Four designs: Git branch, the GitHub Invertocat, Hatsu (發) above a 4-column × 3-row contribution grid, and **Chun (中) above an open-bottom cat-head outline**. Chun is custom artwork manually outlined from the supplied image, not a new official GitHub logo. It uses a restrained, flat red inlay. Includes **configured Bambu Lab P1S · 0.2 mm nozzle · AMS · PLA project 3MFs**; no part repainting is needed.
+Four designs: Git branch, the GitHub Invertocat, Hatsu (發) above a 4-column × 3-row contribution grid, and **red Chun (中) above a red circular Invertocat**. The upper Chun glyph is retained; the lower artwork now uses the same official SVG outline as the existing logo tile, uniformly scaled without distortion or redrawing. Both use a restrained, flat red inlay. This is not an official or endorsed GitHub product. Includes **configured Bambu Lab P1S · 0.2 mm nozzle · AMS · PLA project 3MFs**; no part repainting is needed.
 
 [Open the 360° viewer in English](https://ktanino10.github.io/github-mahjong-keychains/#en) · [日本語で表示](https://ktanino10.github.io/github-mahjong-keychains/#ja) · [Download standalone offline HTML](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/docs/index.html)
 
@@ -51,9 +51,9 @@ The repository's build and verification scripts do not connect to a printer, tra
 | ---: | --- | --- | --- |
 | 1 | White | `#F6F5EE` | White body |
 | 2 | Black | `#161616` | Shared rear and entire ear |
-| 3 | Red | `#B33220` | Chun glyph and open-bottom cat-head outline |
+| 3 | Red | `#B33220` | Chun glyph and circular Invertocat from the official SVG |
 
-The red STL keeps the disconnected glyph and outline as two closed solids in one color part. They share coordinates with the recesses in the white body; do not auto-arrange them separately. No gradient printing is required.
+The red STL keeps the disconnected Chun glyph and circular logo as two closed solids in one color part. They share coordinates with the recesses in the white body; do not auto-arrange them separately. No gradient printing is required. Red is a project-specific choice, not a standard official logo color or a general grant of modification or merchandise permission.
 
 RGB values are visual references, not a guarantee of any manufacturer's PLA shade. See the [per-part color table](print-package/parts-and-colors.csv).
 
@@ -63,7 +63,7 @@ RGB values are visual references, not a guarantee of any manufacturer's PLA shad
 
 The machine is the official **P1S 0.2 mm** preset. Its process inherits `0.10mm Standard @BBL X1C 0.2 nozzle`: this is the **shared process explicitly designated as the default by the official P1S 0.2 mm profile**, not a switch to an X1 printer. Every material inherits `Generic PLA @0.2 nozzle`. [Settings and provenance](validation/profile-provenance.json)
 
-Flushing volumes are conservative starting values, with more flushing from dark to light. Actual pigment transitions still need a physical test. The original combined project is estimated at approximately **11 h 12 min and 54 g**; Chun alone is approximately **4 h 12 min and 20.4 g**. Both include flushing and the tower and are slicer estimates, not measured print results.
+Flushing volumes are conservative starting values, with more flushing from dark to light. Actual pigment transitions still need a physical test. The original combined project is estimated at approximately **11 h 12 min and 54 g**; Chun alone is approximately **4 h 13 min and 20.4 g**. Both include flushing and the tower and are slicer estimates, not measured print results.
 
 ## Dimensions and hardware
 
@@ -97,6 +97,8 @@ Drag, use one finger or arrow keys to rotate. Scroll, pinch or press `+` / `-` t
 The finished Chun project was **reopened and sliced with the official Bambu Studio 02.09.01.70 CLI without external presets or setting overrides**. It has 165 layers, an empty plate-warning field and actual white/black/red usage: black at layers 1–55, white at 56–157, then white and red at 158–165. Configuration was isolated from personal settings, printers and accounts. The four original files are unchanged; their existing reopen/slice evidence from the same official release is retained after SHA-256 verification.
 
 All three Chun parts and both red connected components are closed, positive-volume meshes. Their summed volume matches the accepted common blank; Boolean checks find no volumetric overlap or missing material at a 0.00002 mm STL precision tolerance. Vertex correspondence, triangle connectivity/winding, dimensions and alignment are also checked against the 3MF and GLB. [Chun geometry checks](validation/validation-chun.json)
+
+The upper Chun retains the previous SVG path, placement and triangle connectivity. After uniform scaling, the lower circular Invertocat matches the existing logo tile's vertices and contour walls. The red part contains only the glyph and logo; the former custom head is absent. Flat caps are retriangulated by scaling, without changing the logo outline. `prepare_assets.py` recomposes the lower logo from the existing official SVG while retaining the upper glyph.
 
 [Slicer results](validation/slicer-checks.json) · [Accepted STL SHA-256 hashes](validation/accepted-meshes.json) · [Browser results](validation/browser-checks.json) · [Download SHA-256 hashes](https://github.com/ktanino10/github-mahjong-keychains/blob/main/validation/deliverables.json)
 

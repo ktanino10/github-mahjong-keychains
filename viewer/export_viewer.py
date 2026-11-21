@@ -90,7 +90,7 @@ bpy.ops.export_scene.gltf(
 )
 assert target.is_file() and target.stat().st_size > 0
 metadata = {
-    "source": "28 x 21 x 16.5 mm tile bodies and 5 mm ears unchanged. All black/white material boundaries share z=5.5 mm, making the entire ear black. Thirteen exact STL-derived color parts: the original ten plus three custom Chun parts using the same blank.",
+    "source": "28 x 21 x 16.5 mm tile bodies and 5 mm ears unchanged. All black/white material boundaries share z=5.5 mm, making the entire ear black. Thirteen exact STL-derived color parts: the original ten plus three Chun parts with the retained upper glyph and red circular Invertocat on the same blank.",
     "coordinate_system": "X right, Y along keychain, Z toward front; stored in meters.",
     "printed_geometry_modified": False,
     "metal_hardware": "Default: 2.4 mm balls on an approximately 120 mm loop through the unchanged ear. Alternate: purchased round wire-gate swivel-clasp shape. Pitch, connector and clasp internal dimensions are approximate; physical fit and strength untested. No metal in print files.",

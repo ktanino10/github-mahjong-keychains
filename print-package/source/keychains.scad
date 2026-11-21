@@ -104,9 +104,10 @@ module artwork_original(layer = "all") {
                         import("assets/hatsu.svg", center = true, $fn = 24);
         hatsu_grid(layer == "all" ? -1 : layer == "light" ? 1 : 0);
     } else if (variant == "chun") {
-        translate([0, 0.3])
-            resize([0, 24], auto = true)
-                import("assets/chun-custom.svg", center = true);
+        // Retain the accepted glyph's source-frame transform when the lower logo changes.
+        translate([-7.049664427392641, -11.84085168182418])
+            scale(0.39926399049251327)
+                import("assets/chun-custom.svg", center = false, dpi = 72);
     } else {
         assert(false, str("Unknown variant: ", variant));
     }

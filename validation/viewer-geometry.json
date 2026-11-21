@@ -67,14 +67,14 @@
   },
   {
     "part": "chun/white_body",
-    "triangles": 8004,
+    "triangles": 11844,
     "max_bound_difference_mm": 4.3213367462158203e-07,
-    "volume_difference_mm3": 2.4869998924259562e-05
+    "volume_difference_mm3": 2.7903299269382842e-05
   },
   {
     "part": "chun/inlay",
-    "triangles": 7408,
+    "triangles": 11248,
     "max_bound_difference_mm": 4.023313522338867e-07,
-    "volume_difference_mm3": 2.7989997505528663e-05
+    "volume_difference_mm3": 2.495669716751081e-05
   }
 ]

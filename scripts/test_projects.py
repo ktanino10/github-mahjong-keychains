@@ -1,13 +1,41 @@
 import unittest
 
-from package_models import project_materials
-from validate_projects import check_toolpaths
+import numpy as np
+import trimesh
+
+from package_models import ROOT, project_materials
+from validate_projects import canonical_faces, check_toolpaths
 
 
 class ProjectTests(unittest.TestCase):
     def test_chun_cannot_enter_a_combined_five_color_project(self):
         with self.assertRaisesRegex(ValueError, "separate"):
             project_materials(["git-branch", "invertocat", "hatsu", "chun"])
+
+    def test_chun_lower_logo_is_the_same_uniformly_scaled_invertocat(self):
+        inlay = trimesh.load_mesh(ROOT / "print-package/STL/04-chun/inlay-red.stl", process=True)
+        components = sorted(inlay.split(), key=lambda mesh: mesh.bounds[0, 1])
+        self.assertEqual(len(components), 2, "Only the glyph and circular logo may remain.")
+        logo, glyph = components
+        self.assertGreater(glyph.bounds[0, 1], logo.bounds[1, 1])
+        original = trimesh.load_mesh(ROOT / "print-package/STL/02-octocat/inlay-black.stl", process=True)
+        scale = logo.extents[0] / original.extents[0]
+        original.vertices[:, :2] *= scale
+        original.vertices[:, :2] += logo.bounds.mean(axis=0)[:2] - original.bounds.mean(axis=0)[:2]
+        self.assertEqual(len(logo.vertices), len(original.vertices))
+        self.assertEqual(len(logo.faces), len(original.faces))
+        distances, indices = original.kdtree.query(logo.vertices)
+        self.assertLess(float(distances.max()), 2e-5)
+        self.assertEqual(len(np.unique(indices)), len(original.vertices))
+        # Planar caps may retriangulate after scaling; every contour wall must match.
+        side_faces = np.ptp(logo.triangles[:, :, 2], axis=1) > 2e-5
+        original_sides = np.ptp(original.triangles[:, :, 2], axis=1) > 2e-5
+        np.testing.assert_array_equal(
+            canonical_faces(indices[logo.faces[side_faces]]), canonical_faces(original.faces[original_sides]),
+        )
+        self.assertTrue(logo.is_watertight and logo.is_winding_consistent)
+        self.assertLess(abs(logo.volume - original.volume), 1e-4)
+        np.testing.assert_allclose(logo.bounds, original.bounds, atol=2e-5)
 
     def test_model_extrusion_and_ams_must_both_use_red(self):
         gcode = b"""M620 S1A

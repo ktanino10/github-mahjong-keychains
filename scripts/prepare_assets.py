@@ -1,6 +1,7 @@
-"""Validate the supplied outlines without accessing or exporting system fonts."""
+"""Compose Chun with the official Invertocat and validate the supplied outlines."""
 
 from pathlib import Path
+import copy
 import hashlib
 import json
 import xml.etree.ElementTree as ET
@@ -8,6 +9,37 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "print-package" / "source" / "assets"
+SVG = "http://www.w3.org/2000/svg"
+ET.register_namespace("", SVG)
+chun_path = ASSETS / "chun-custom.svg"
+chun = ET.parse(chun_path)
+old_logo = chun.getroot().find(f"{{{SVG}}}g[@id='chun-invertocat']")
+if old_logo is not None:
+    chun.getroot().remove(old_logo)
+glyph = chun.getroot().find(f".//{{{SVG}}}path[@id='chun-glyph']")
+assert glyph is not None, "The accepted top Chun glyph must be retained."
+assert len(chun.getroot().findall(f".//{{{SVG}}}path")) == 1, "Unexpected lower artwork remains."
+official = ET.parse(ASSETS / "github-invertocat.svg").getroot()
+logo = ET.SubElement(chun.getroot(), f"{{{SVG}}}g", {
+    "id": "chun-invertocat",
+    "transform": "translate(5.423799822247 83.876810071173) scale(0.910745833695684)",
+})
+for node in official:
+    copied = copy.deepcopy(node)
+    for descendant in copied.iter():
+        if descendant.get("id"):
+            descendant.set("id", descendant.get("id") + "-chun")
+        if descendant.get("clip-path"):
+            descendant.set("clip-path", descendant.get("clip-path").replace(")", "-chun)"))
+        if descendant.tag == f"{{{SVG}}}path":
+            descendant.set("fill", "#B33220")
+    logo.append(copied)
+assert [node.get("d") for node in logo.iter(f"{{{SVG}}}path")] == [
+    node.get("d") for node in official.iter(f"{{{SVG}}}path")
+], "The Invertocat path must not be redrawn or distorted."
+ET.indent(chun, space="  ")
+chun.write(chun_path, encoding="unicode")
+
 expected = {"git-branch-24.svg", "github-invertocat.svg", "hatsu.svg", "chun-custom.svg"}
 assert {path.name for path in ASSETS.glob("*.svg")} == expected
 for path in ASSETS.glob("*.svg"):
@@ -36,12 +68,14 @@ provenance = {
         },
         {
             "file": "chun-custom.svg",
-            "source": "User-supplied image: a red Chun glyph above an open-bottom cat-head outline.",
-            "modifications": "Manual flat outline, preserving the composition and a restrained red; not the circular Invertocat or a full character.",
-            "official_logo_claim": False,
+            "source": "Retained hand-outlined Chun glyph plus the existing official github-invertocat.svg.",
+            "modifications": "Top glyph retained. Lower logo uses the original official path, uniform scaling and red recoloring only; the former custom head is removed.",
+            "logo_source_file": "github-invertocat.svg",
+            "logo_color": "#B33220",
+            "product_official_or_endorsed": False,
             "reference_photo_distributed": False,
             "font_files_distributed": False,
-            "note": "Image-derived custom artwork; original rights remain with their holders. Not covered by the source-code license.",
+            "note": "Glyph and official logo artwork rights remain with their holders. Red is a project-specific recoloring, not a blanket permission or new official logo color. Not covered by the source-code license.",
         },
     ],
     "size_reference": {
