@@ -25,11 +25,13 @@ report = {"variant": variant, "parts": {}}
 parts = ["black_back", "white_body", "inlay"]
 if variant == "hatsu":
     parts.append("light_inlay")
+if variant == "chun":
+    parts.append("logo_inlay")
 if variant == "git_branch":
     parts.append("blank")
 
 for part in parts:
-    color = "black" if part == "black_back" or (part == "inlay" and variant == "octocat") else "green"
+    color = "black" if part in {"black_back", "logo_inlay"} or (part == "inlay" and variant == "octocat") else "green"
     if part == "white_body":
         color = "white"
     if part == "light_inlay":
@@ -75,10 +77,11 @@ for part in parts:
         "white_body": [5.5, 16.5],
         "inlay": [15.7, 16.5],
         "light_inlay": [15.7, 16.5],
+        "logo_inlay": [15.7, 16.5],
         "blank": [0.0, 16.5],
     }[part]
     assert np.allclose(mesh.bounds[:, 2], expected_z, atol=2e-5), (destination, mesh.bounds)
-    if part in {"inlay", "light_inlay"}:
+    if part in {"inlay", "light_inlay", "logo_inlay"}:
         assert np.all(mesh.bounds[0, :2] >= [-8.925, -11.55]), mesh.bounds
         assert np.all(mesh.bounds[1, :2] <= [8.925, 11.55]), mesh.bounds
     report["parts"][part] = {
@@ -96,7 +99,8 @@ if variant == "chun":
     blank = trimesh.load_mesh(reference, process=True)
     volume_error = sum(info["volume_mm3"] for info in report["parts"].values()) - blank.volume
     assert abs(volume_error) < 0.001, volume_error
-    assert report["parts"]["inlay"]["components"] == 2, "The Chun glyph and circular Invertocat must remain separate."
+    assert report["parts"]["inlay"]["components"] == 1, "The red part must contain only the Chun glyph."
+    assert report["parts"]["logo_inlay"]["components"] == 1, "The black face part must contain only the circular Invertocat."
     check = logs / "chun-partition.scad"
     imports = [f'import("{(OUT / info["file"]).as_posix()}");' for info in report["parts"].values()]
     assembled = "union() {" + "".join(imports) + "}"
@@ -126,7 +130,10 @@ if variant == "chun":
     boundary_error = 0.0
     if len(boundary_facets):
         # Float32 roundtrips leave coincident facets on the inlay's top and walls.
-        inlay_mesh = trimesh.load_mesh(OUT / report["parts"]["inlay"]["file"], process=True)
+        inlay_mesh = trimesh.util.concatenate([
+            trimesh.load_mesh(OUT / report["parts"][name]["file"], process=True)
+            for name in ("inlay", "logo_inlay")
+        ])
         points = np.unique(boundary_facets.reshape(-1, 3), axis=0)
         for start in range(0, len(points), 32):
             _, distances, _ = trimesh.proximity.closest_point_naive(inlay_mesh, points[start:start + 32])

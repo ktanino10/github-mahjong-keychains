@@ -20,13 +20,13 @@
     {
       "file": "chun-custom.svg",
       "source": "Retained hand-outlined Chun glyph plus the existing official github-invertocat.svg.",
-      "modifications": "Top glyph retained. Lower logo uses the original official path, uniform scaling and red recoloring only; the former custom head is removed.",
+      "modifications": "Red top glyph retained. Lower logo uses the original official path, uniformly scaled in black; the former custom head is removed.",
       "logo_source_file": "github-invertocat.svg",
-      "logo_color": "#B33220",
+      "logo_color": "black",
       "product_official_or_endorsed": false,
       "reference_photo_distributed": false,
       "font_files_distributed": false,
-      "note": "Glyph and official logo artwork rights remain with their holders. Red is a project-specific recoloring, not a blanket permission or new official logo color. Not covered by the source-code license."
+      "note": "Glyph and official logo artwork rights remain with their holders. Black does not itself grant permission for merchandise, combined artwork or redistribution. Not covered by the source-code license."
     }
   ],
   "size_reference": {
@@ -65,7 +65,7 @@
     }
   ],
   "source_asset_sha256": {
-    "chun-custom.svg": "a32771d3ebb4852a41450e48692538f7cb37fb7124b7ee269168201dc6b3672e",
+    "chun-custom.svg": "2bc4dfd922bc466fdaffd5563ade3229b49add15dd90f8b8ac0ac78b1b2ce219",
     "git-branch-24.svg": "76b97dde63b49eaa91978209f31f09c829cd690959fbcd7bbafdf96fa0a81474",
     "github-invertocat.svg": "693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1",
     "hatsu.svg": "ad2515b54377e374b218dfdbc5046dc93931092029e343ec0506d233374b35f5",

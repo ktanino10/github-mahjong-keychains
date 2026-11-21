@@ -1,6 +1,6 @@
 // Dimensions are millimeters. The metal chain and rings are not printed.
 variant = "git_branch"; // git_branch, octocat, hatsu, chun
-part = "assembled";    // assembled, white_body, black_back, inlay, light_inlay, blank
+part = "assembled";    // assembled, white_body, black_back, inlay, light_inlay, logo_inlay, blank
 
 body_width = 21;
 body_height = 28;
@@ -114,7 +114,16 @@ module artwork_original(layer = "all") {
 }
 
 module artwork(layer = "all") {
-    scale(body_width / 24) artwork_original(layer);
+    if (variant == "chun" && layer != "all") {
+        // Split in the empty gap, preserving both outlines and their exact placement.
+        intersection() {
+            scale(body_width / 24) artwork_original();
+            translate([-50, layer == "logo" ? -50 : 1])
+                square([100, layer == "logo" ? 51 : 50]);
+        }
+    } else {
+        scale(body_width / 24) artwork_original(layer);
+    }
 }
 
 module black_back() {
@@ -135,12 +144,12 @@ module white_body() {
     }
 }
 
-module inlay(light = false) {
+module inlay(light = false, logo = false) {
     intersection() {
         blank();
         translate([0, 0, body_thickness - inlay_depth])
             linear_extrude(inlay_depth)
-                artwork(light ? "light" : "dark");
+                artwork(logo ? "logo" : light ? "light" : "dark");
     }
 }
 
@@ -153,6 +162,9 @@ if (part == "black_back") {
 } else if (part == "light_inlay") {
     assert(variant == "hatsu", "Light green is used only in the hatsu design");
     inlay(true);
+} else if (part == "logo_inlay") {
+    assert(variant == "chun", "The separate black logo inlay is used only in Chun");
+    inlay(logo = true);
 } else if (part == "blank") {
     blank();
 } else if (part == "assembled") {
@@ -160,6 +172,7 @@ if (part == "black_back") {
     color("#F6F5EE") white_body();
     color(variant == "octocat" ? "#191C1A" : variant == "chun" ? "#B33220" : "#238636") inlay();
     if (variant == "hatsu") color("#9DD96C") inlay(true);
+    if (variant == "chun") color("#191C1A") inlay(logo = true);
 } else {
     assert(false, str("Unknown part: ", part));
 }

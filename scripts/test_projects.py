@@ -13,10 +13,10 @@ class ProjectTests(unittest.TestCase):
             project_materials(["git-branch", "invertocat", "hatsu", "chun"])
 
     def test_chun_lower_logo_is_the_same_uniformly_scaled_invertocat(self):
-        inlay = trimesh.load_mesh(ROOT / "print-package/STL/04-chun/inlay-red.stl", process=True)
-        components = sorted(inlay.split(), key=lambda mesh: mesh.bounds[0, 1])
-        self.assertEqual(len(components), 2, "Only the glyph and circular logo may remain.")
-        logo, glyph = components
+        glyph = trimesh.load_mesh(ROOT / "print-package/STL/04-chun/inlay-red.stl", process=True)
+        logo = trimesh.load_mesh(ROOT / "print-package/STL/04-chun/logo_inlay-black.stl", process=True)
+        self.assertEqual(len(glyph.split()), 1, "The red part must contain only the glyph.")
+        self.assertEqual(len(logo.split()), 1, "The black face part must contain only the circular logo.")
         self.assertGreater(glyph.bounds[0, 1], logo.bounds[1, 1])
         original = trimesh.load_mesh(ROOT / "print-package/STL/02-octocat/inlay-black.stl", process=True)
         scale = logo.extents[0] / original.extents[0]
@@ -52,6 +52,10 @@ T0
 G1 X120 Y100 E.02
 ; layer num/total_layer_count: 3/3
 G1 X120 Y100 E.02
+M620 S1A
+T1
+; FEATURE: Top surface
+G1 X121 Y98 E.02
 M620 S2A
 T2
 ; FEATURE: Custom
@@ -61,7 +65,7 @@ G1 X180 Y170 E.02
 ; FEATURE: Top surface
 G1 X125 Y102 E.02
 """
-        layers = {0: {2}, 1: {1}, 2: {1, 3}}
+        layers = {0: {2}, 1: {1}, 2: {1, 2, 3}}
         result = check_toolpaths(gcode, layers)
         self.assertTrue(result["actual_object_extrusion_matches_layer_colors"])
         with self.assertRaisesRegex(AssertionError, "object extrusion tools"):

@@ -65,7 +65,9 @@ def inspect_project(path, selected):
     for key in selected:
         variant = VARIANTS[key][0]
         expected_names.update(f"{variant}/{part}" for part in
-                              ["black_back", "white_body", "inlay"] + (["light_inlay"] if variant == "hatsu" else []))
+                              ["black_back", "white_body", "inlay"] + (
+                                  ["light_inlay"] if variant == "hatsu" else ["logo_inlay"] if variant == "chun" else []
+                              ))
     results = []
     with zipfile.ZipFile(path) as archive:
         assert archive.testzip() is None

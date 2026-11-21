@@ -1,5 +1,5 @@
 {
-  "source": "28 x 21 x 16.5 mm tile bodies and 5 mm ears unchanged. All black/white material boundaries share z=5.5 mm, making the entire ear black. Thirteen exact STL-derived color parts: the original ten plus three Chun parts with the retained upper glyph and red circular Invertocat on the same blank.",
+  "source": "28 x 21 x 16.5 mm tile bodies and 5 mm ears unchanged. All black/white material boundaries share z=5.5 mm, making the entire ear black. Fourteen exact STL-derived color parts: the original ten plus four Chun parts with the retained red upper glyph and separate black circular Invertocat on the same blank.",
   "coordinate_system": "X right, Y along keychain, Z toward front; stored in meters.",
   "printed_geometry_modified": false,
   "metal_hardware": "Default: 2.4 mm balls on an approximately 120 mm loop through the unchanged ear. Alternate: purchased round wire-gate swivel-clasp shape. Pitch, connector and clasp internal dimensions are approximate; physical fit and strength untested. No metal in print files.",
@@ -22,8 +22,9 @@
     "hatsu/white_body",
     "chun/black_back",
     "chun/inlay",
+    "chun/logo_inlay",
     "chun/white_body"
   ],
-  "glb_bytes": 6500292,
-  "glb_sha256": "a8bd8fa6fcda0b572835a724c2b473c1360d2bc13805c0325beb653f773a145c"
+  "glb_bytes": 6495540,
+  "glb_sha256": "d9df869912dfd9a078fff9053ba4a7d6af6948cb1990244bf40b9d39d7b99414"
 }

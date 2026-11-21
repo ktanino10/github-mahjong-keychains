@@ -2,7 +2,7 @@
 
 **日本語 | [English](README.en.md)**
 
-Git branch、GitHub Invertocat、發＋4列×3行のコントリビューショングリッド、**赤い中＋赤い円形Invertocat**の4種類です。中の字形はそのままに、下の絵柄を既存ロゴ牌と同じ公式SVGの輪郭へ差し替えました。ロゴの変形や描き直しは行わず、等比縮小して落ち着いた赤の平面インレイにしています。GitHub公式・公認商品ではありません。**Bambu Lab P1S・0.2 mmノズル・AMS・PLA用の設定済みプロジェクト3MF**を収録し、パーツの塗り直しは不要です。
+Git branch、GitHub Invertocat、發＋4列×3行のコントリビューショングリッド、**赤い中＋黒い円形Invertocat**の4種類です。中の字形はそのままに、下の絵柄を既存ロゴ牌と同じ公式SVGの輪郭へ差し替えました。ロゴの変形や描き直しは行わず、等比縮小した黒い平面インレイにしています。GitHub公式・公認商品ではありません。**Bambu Lab P1S・0.2 mmノズル・AMS・PLA用の設定済みプロジェクト3MF**を収録し、パーツの塗り直しは不要です。
 
 [日本語で360°ビューを開く](https://ktanino10.github.io/github-mahjong-keychains/#ja) · [Open viewer in English](https://ktanino10.github.io/github-mahjong-keychains/#en) · [オフラインHTMLをダウンロード](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/docs/index.html)
 
@@ -13,12 +13,12 @@ Git branch、GitHub Invertocat、發＋4列×3行のコントリビューショ�
 | プロジェクト | 印刷パーツ数 | 使用する色 |
 | --- | ---: | --- |
 | [既存3種類セット（変更なし）](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf) | 10 | 白・黒・緑・薄緑 |
-| [中（独立した新プロジェクト）](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/chun-P1S-0.2-AMS-PLA.3mf) | 3 | 白・黒・赤 |
+| [中（独立したプロジェクト）](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/chun-P1S-0.2-AMS-PLA.3mf) | 4 | 白・黒・赤 |
 | [Git branch](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/git-branch-P1S-0.2-AMS-PLA.3mf) | 3 | 白・黒・緑 |
 | [Invertocat](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf) | 3 | 白・黒 |
 | [發](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/hatsu-P1S-0.2-AMS-PLA.3mf) | 4 | 白・黒・緑・薄緑 |
 
-[印刷用一式ZIP（5プロジェクト・13 STL・日英説明・オフラインHTML）](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/docs/downloads/github-mahjong-keychains-P1S-0.2-AMS-PLA.zip)
+[印刷用一式ZIP（5プロジェクト・14 STL・日英説明・オフラインHTML）](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/docs/downloads/github-mahjong-keychains-P1S-0.2-AMS-PLA.zip)
 
 **既存3種の4色セットと、中の3色は別の印刷プロジェクトです。** 全4種では白・黒・緑・薄緑・赤の計5色になるため、1台の4スロットAMSで同時には扱えません。全4種をまとめた5色の印刷プロジェクトは配布していません。中の印刷時は、必要に応じて緑系スプールを赤へ差し替え、プロジェクトの赤を実際のAMSスプールへ対応付けてください。既存4ファイルの色割当とURLは維持しています。
 
@@ -50,10 +50,12 @@ Git branch、GitHub Invertocat、發＋4列×3行のコントリビューショ�
 | プロジェクト番号 | 色 | 表示用RGB | 割当 |
 | ---: | --- | --- | --- |
 | 1 | 白 | `#F6F5EE` | 白い本体 |
-| 2 | 黒 | `#161616` | 共通の背面・耳全体 |
-| 3 | 赤 | `#B33220` | 中と公式SVG由来の円形Invertocat |
+| 2 | 黒 | `#161616` | 共通の背面・耳全体、表面の円形Invertocat |
+| 3 | 赤 | `#B33220` | 上の中の字形のみ |
 
-赤のSTLは、離れた中の字形と円形ロゴの2つの閉じた立体を1つの色パーツとして保持します。白い本体のくぼみに同じ座標で収まり、別々に自動配置する必要はありません。グラデーション印刷は使いません。赤は本作品の指定色であり、公式ロゴの標準色や一般的な改変・商品化許可を示すものではありません。
+中は白い本体・共通の黒背面・赤い中・黒い円形ロゴの**4パーツ・3色**です。黒背面のSTLを変えないため、表面の黒ロゴは `logo_inlay-black.stl` として独立させ、同じ黒の番号2へ割り当てています。両インレイは白い本体のくぼみに同じ座標で収まるため、別々に自動配置しないでください。グラデーション印刷は使いません。
+
+**ロゴを黒にしても、文字との組み合わせ・キーホルダー製作・公開や配布の許可を意味しません。** [公式ガイドライン](https://brand.github.com/foundations/logo)に従い、今回の用途に対応したGitHubの書面許可を別途確認してください。
 
 RGBは画面表示の目安で、特定メーカーのPLA色を保証するものではありません。[パーツ別対応表](print-package/parts-and-colors.csv)も収録しています。
 
@@ -63,7 +65,7 @@ RGBは画面表示の目安で、特定メーカーのPLA色を保証するも�
 
 機種の親設定は公式のP1S 0.2 mmです。工程の親名は `0.10mm Standard @BBL X1C 0.2 nozzle` ですが、これは**公式P1S 0.2 mmプロファイル自身が既定として指定する共通工程**で、X1への機種変更ではありません。全フィラメントとも公式 `Generic PLA @0.2 nozzle` が親設定です。[設定と出典](validation/profile-provenance.json)
 
-パージ量は濃色から淡色を多めにした初期値です。実際の顔料による色移りは試作で確認してください。既存3種類同時のスライサー推定は約11時間12分・約54 g、中単品は約4時間13分・20.4 g（いずれもパージ・タワー込み）です。実測値ではありません。
+パージ量は濃色から淡色を多めにした初期値です。実際の顔料による色移りは試作で確認してください。既存3種類同時のスライサー推定は約11時間12分・約54 g、中単品は約5時間13分・25.9 g（いずれもパージ・タワー込み）です。実測値ではありません。
 
 ## 寸法と取付金具
 
@@ -76,7 +78,7 @@ RGBは画面表示の目安で、特定メーカーのPLA色を保証するも�
 | 黒白の共通境界 | z = 5.5 mm |
 | 表面のインレイ | z = 15.7〜16.5 mm |
 
-既存10個の印刷用STLと4つのプロジェクト3MFはバイト単位で変更していません。新しい中は同じ共通本体に3パーツを追加し、黒い背面・耳のSTLは既存品とバイト単位で同一です。耳の輪郭、本体サイズ、表裏の比率、既存ロゴ、發、グリッドは変更せず、本体を横断する穴も追加していません。AMOS SMARTとの一致は[掲載外寸](https://www.alban.co.jp/products/detail/682)のみで、材質・重量・強度の同等性を意味しません。
+既存10個の印刷用STLと4つのプロジェクト3MFはバイト単位で変更していません。中は同じ共通本体を使う4パーツで、黒い背面・耳のSTLは既存品とバイト単位で同一です。耳の輪郭、本体サイズ、表裏の比率、既存ロゴ、發、グリッドは変更せず、本体を横断する穴も追加していません。AMOS SMARTとの一致は[掲載外寸](https://www.alban.co.jp/products/detail/682)のみで、材質・重量・強度の同等性を意味しません。
 
 **標準表示：購入品を参考にしたボールチェーン。** [商品表記](https://www.amazon.co.jp/dp/B0DN6JW6LK)の球径2.4 mm・長さ120 mmを使用し、既存の耳を通るループを表示します。ピッチ、球数、コネクター寸法、垂れ方は概略です。銀色は表示例で、購入色を推定していません。コネクターを外し、球の付いた自由端を穴へ通して再接続する想定です。コネクター自体を穴に押し込まないでください。
 
@@ -94,11 +96,11 @@ RGBは画面表示の目安で、特定メーカーのPLA色を保証するも�
 
 ## 検証と再生成
 
-中の完成3MFを**追加の設定ファイルを渡さず、公式Bambu Studio 02.09.01.70のCLIで再読込・スライス**しました。165層でプレートの警告欄は空、白・黒・赤の3色が実際に使われています。1〜55層は黒、56〜157層は白、158〜165層は白と赤です。個人設定・プリンター・アカウントを使わない隔離設定で実施しました。既存4ファイルは変更せず、同じ公式版で行った再読込・スライスの検証結果をSHA-256照合のうえ保持しています。
+中の完成3MFを**追加の設定ファイルを渡さず、公式Bambu Studio 02.09.01.70のCLIで再読込・スライス**しました。165層でプレートの警告欄は空、白・黒・赤の3色が実際に使われています。1〜55層は黒、56〜157層は白、158〜165層は白・黒・赤です。個人設定・プリンター・アカウントを使わない隔離設定で実施しました。既存4ファイルは変更せず、同じ公式版で行った再読込・スライスの検証結果をSHA-256照合のうえ保持しています。
 
-中の3パーツと2つの赤い連結成分は閉じた正体積のメッシュです。合計体積は共通の確定ブランクと一致し、ブール演算でも体積のある重複・欠落はありません（STL精度の照合許容差0.00002 mm）。頂点対応、全三角形の接続と向き、寸法、配置も3MF・GLBと照合しました。[中の形状検証](validation/validation-chun.json)
+中の4パーツはそれぞれ1つの閉じた正体積のメッシュです。合計体積は共通の確定ブランクと一致し、ブール演算でも体積のある重複・欠落はありません（STL精度の照合許容差0.00002 mm）。頂点対応、全三角形の接続と向き、寸法、配置も3MF・GLBと照合しました。[中の形状検証](validation/validation-chun.json)
 
-上の中は前版と同じSVGパス・位置・三角形接続を保持しています。下の円形Invertocatは既存ロゴ牌の輪郭と等比縮小後の頂点・側壁が一致し、赤い成分は中とロゴの2つだけです。旧猫頭の輪郭は残っていません。等比縮小時に平坦面の三角形分割は変わりますが、ロゴ輪郭は変更していません。`prepare_assets.py` は既存の公式SVGから下のロゴを再構成し、上の字形を保持します。
+上の中と下の円形ロゴは赤ロゴ版の形状・位置を保持し、色パーツだけを分割しました。赤いパーツは中のみ、黒い表面パーツは円形Invertocatのみで、旧猫頭は残っていません。ロゴは既存ロゴ牌と等比縮小後の頂点・側壁が一致します。等比縮小時に平坦面の三角形分割は変わりますが、輪郭は変更していません。`prepare_assets.py` は既存の公式SVGから黒いロゴを再構成し、上の字形を保持します。
 
 [スライサー検証](validation/slicer-checks.json) · [元STLのSHA-256](validation/accepted-meshes.json) · [ブラウザ検証](validation/browser-checks.json) · [配布ファイルのSHA-256](https://github.com/ktanino10/github-mahjong-keychains/blob/main/validation/deliverables.json)
 

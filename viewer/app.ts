@@ -252,7 +252,7 @@ async function main(): Promise<void> {
       }
     }
   });
-  if (printedMeshCount !== 13) throw new Error("The thirteen printable color parts were not retained.");
+  if (printedMeshCount !== 14) throw new Error("The fourteen printable color parts were not retained.");
 
   let selection: Selection = "all";
   let hardwareKind: HardwareKind = "ball";

@@ -32,7 +32,7 @@ for node in official:
         if descendant.get("clip-path"):
             descendant.set("clip-path", descendant.get("clip-path").replace(")", "-chun)"))
         if descendant.tag == f"{{{SVG}}}path":
-            descendant.set("fill", "#B33220")
+            descendant.set("fill", "black")
     logo.append(copied)
 assert [node.get("d") for node in logo.iter(f"{{{SVG}}}path")] == [
     node.get("d") for node in official.iter(f"{{{SVG}}}path")
@@ -69,13 +69,13 @@ provenance = {
         {
             "file": "chun-custom.svg",
             "source": "Retained hand-outlined Chun glyph plus the existing official github-invertocat.svg.",
-            "modifications": "Top glyph retained. Lower logo uses the original official path, uniform scaling and red recoloring only; the former custom head is removed.",
+            "modifications": "Red top glyph retained. Lower logo uses the original official path, uniformly scaled in black; the former custom head is removed.",
             "logo_source_file": "github-invertocat.svg",
-            "logo_color": "#B33220",
+            "logo_color": "black",
             "product_official_or_endorsed": False,
             "reference_photo_distributed": False,
             "font_files_distributed": False,
-            "note": "Glyph and official logo artwork rights remain with their holders. Red is a project-specific recoloring, not a blanket permission or new official logo color. Not covered by the source-code license.",
+            "note": "Glyph and official logo artwork rights remain with their holders. Black does not itself grant permission for merchandise, combined artwork or redistribution. Not covered by the source-code license.",
         },
     ],
     "size_reference": {

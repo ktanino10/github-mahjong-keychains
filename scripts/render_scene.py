@@ -228,7 +228,9 @@ for index, variant in enumerate(["git_branch", "octocat", "hatsu", "chun"]):
     bpy.context.collection.objects.link(parent)
     parent.location = ((index - 1.5) * 36 * MM, 0, 0)
     parent.rotation_euler.z = math.radians([4, 0, -4, -5][index])
-    parts = ["black_back", "white_body", "inlay"] + (["light_inlay"] if variant == "hatsu" else [])
+    parts = ["black_back", "white_body", "inlay"] + (
+        ["light_inlay"] if variant == "hatsu" else ["logo_inlay"] if variant == "chun" else []
+    )
     for part in parts:
         mat = white if part == "white_body" else light_green if part == "light_inlay" else (green if part == "inlay" and variant != "octocat" else black)
         if variant == "chun" and part == "inlay":

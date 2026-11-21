@@ -49,7 +49,7 @@ with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED) as archive:
 with zipfile.ZipFile(target) as archive:
     assert archive.testzip() is None
     names = archive.namelist()
-    assert sum(name.endswith(".stl") for name in names) == 13
+    assert sum(name.endswith(".stl") for name in names) == 14
     assert sum(name.endswith(".3mf") for name in names) == 5
     assert not any(name.endswith((".gcode", ".log", ".ttc", ".blend")) for name in names)
     assert not any(name.startswith("/") or ".." in Path(name).parts for name in names)
@@ -63,4 +63,4 @@ manifest = {
     for path in sorted(deliverables)
 }
 (ROOT / "validation/deliverables.json").write_text(json.dumps(manifest, indent=2) + "\n")
-print("Packaged five projects and thirteen STLs: original three-design set + separate Chun, bilingual instructions and offline viewer.")
+print("Packaged five projects and fourteen STLs: original three-design set + separate Chun, bilingual instructions and offline viewer.")
