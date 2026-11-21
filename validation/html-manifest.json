@@ -1,0 +1,13 @@
+{
+  "file": "docs/index.html",
+  "bytes": 7254438,
+  "sha256": "b4c002e15eecce840ef36ab2b42967ea534cdd20bdd8d555c685fd496d00eb34",
+  "modelSha256": "03d65145f61d043feef39db060b64cd736ced767056618b9de6c48ecf22e3b38",
+  "offline": true,
+  "externalAssets": false,
+  "languages": [
+    "ja",
+    "en"
+  ],
+  "runtime": "Three.js, GLTFLoader and OrbitControls, bundled with their MIT license"
+}

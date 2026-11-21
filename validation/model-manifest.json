@@ -1,0 +1,25 @@
+{
+  "source": "28 x 21 x 16.5 mm tile bodies and 5 mm ears unchanged. All black/white material boundaries share the z=5.5 mm plane, making the entire ear black. Ten exact STL-derived color parts.",
+  "coordinate_system": "X right, Y along keychain, Z toward front; stored in meters.",
+  "printed_geometry_modified": false,
+  "metal_hardware": "Default: 2.4 mm balls on an approximately 120 mm loop through the unchanged ear. Alternate: purchased round wire-gate swivel-clasp shape. Pitch, connector and clasp internal dimensions are approximate; physical fit and strength untested. No metal in print files.",
+  "designs": [
+    "git_branch",
+    "octocat",
+    "hatsu"
+  ],
+  "printed_parts": [
+    "git_branch/black_back",
+    "git_branch/inlay",
+    "git_branch/white_body",
+    "octocat/black_back",
+    "octocat/inlay",
+    "octocat/white_body",
+    "hatsu/black_back",
+    "hatsu/inlay",
+    "hatsu/light_inlay",
+    "hatsu/white_body"
+  ],
+  "glb_bytes": 4716392,
+  "glb_sha256": "03d65145f61d043feef39db060b64cd736ced767056618b9de6c48ecf22e3b38"
+}

@@ -1,0 +1,18 @@
+{
+  "results": [
+    "Offline first load: three models, ten exact printed parts, named controls, no external assets.",
+    "Front/back/side presets and a complete keyboard-controlled 360-degree revolution.",
+    "Native pointer dragging, wheel zoom and accessible zoom buttons.",
+    "All design selectors, chain removal/re-fit, color count and black back close-up.",
+    "Auto rotation starts and really stops.",
+    "Full English translation, accessible names, dynamic color/rotation/selection states, purchased hardware switching and preserved view state.",
+    "Downloaded HTML reopens offline in the chosen language and switches back to Japanese.",
+    "390 px mobile layout, reduced motion, native touch rotation and pinch zoom.",
+    "WebGL-unavailable state: explicit error, labeled static preview, disabled 3D controls."
+  ],
+  "applicationConsoleErrorsOrWarnings": [],
+  "screenshotDriverReadbackDiagnostics": 0,
+  "externalRequests": [],
+  "testedFromLocalFile": true,
+  "offline": true
+}

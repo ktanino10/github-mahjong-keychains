@@ -1,0 +1,62 @@
+[
+  {
+    "part": "git_branch/black_back",
+    "triangles": 1740,
+    "max_bound_difference_mm": 4.3213367462158203e-07,
+    "volume_difference_mm3": -1.688634256424848e-05
+  },
+  {
+    "part": "git_branch/white_body",
+    "triangles": 3212,
+    "max_bound_difference_mm": 4.3213367462158203e-07,
+    "volume_difference_mm3": 3.062554242205806e-05
+  },
+  {
+    "part": "git_branch/inlay",
+    "triangles": 2624,
+    "max_bound_difference_mm": 4.023313522338867e-07,
+    "volume_difference_mm3": 2.223445414983871e-05
+  },
+  {
+    "part": "octocat/black_back",
+    "triangles": 1740,
+    "max_bound_difference_mm": 4.3213367462158203e-07,
+    "volume_difference_mm3": -1.688634256424848e-05
+  },
+  {
+    "part": "octocat/white_body",
+    "triangles": 10588,
+    "max_bound_difference_mm": 4.3213367462158203e-07,
+    "volume_difference_mm3": 1.475525368732633e-05
+  },
+  {
+    "part": "octocat/inlay",
+    "triangles": 9988,
+    "max_bound_difference_mm": 4.023313522338867e-07,
+    "volume_difference_mm3": 3.810474197507574e-05
+  },
+  {
+    "part": "hatsu/black_back",
+    "triangles": 1740,
+    "max_bound_difference_mm": 4.3213367462158203e-07,
+    "volume_difference_mm3": -1.688634256424848e-05
+  },
+  {
+    "part": "hatsu/white_body",
+    "triangles": 15472,
+    "max_bound_difference_mm": 4.3213367462158203e-07,
+    "volume_difference_mm3": -8.759805496083573e-06
+  },
+  {
+    "part": "hatsu/inlay",
+    "triangles": 12476,
+    "max_bound_difference_mm": 4.023313522338867e-07,
+    "volume_difference_mm3": 3.7308723250362164e-05
+  },
+  {
+    "part": "hatsu/light_inlay",
+    "triangles": 2376,
+    "max_bound_difference_mm": 4.023313522338867e-07,
+    "volume_difference_mm3": 2.431107844813596e-05
+  }
+]

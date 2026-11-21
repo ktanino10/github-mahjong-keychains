@@ -1,0 +1,19 @@
+{
+  "name": "mahjong-keychain-viewer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit && node build.mjs",
+    "test": "node test.mjs"
+  },
+  "dependencies": {
+    "three": "0.180.0"
+  },
+  "devDependencies": {
+    "@types/three": "0.180.0",
+    "esbuild": "0.25.10",
+    "playwright": "1.56.1",
+    "typescript": "5.9.3"
+  }
+}

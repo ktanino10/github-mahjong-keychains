@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>麻雀牌キーホルダー — 360°ビュー</title>
+  <link rel="icon" href="data:,">
+  <style>/*__STYLES__*/</style>
+</head>
+<body data-state="loading">
+  <header class="page-header">
+    <div class="heading">
+      <p class="eyebrow" data-i18n="eyebrow">GitHubモチーフ / 立体ビュー</p>
+      <h1 data-i18n="heading">麻雀牌キーホルダー</h1>
+    </div>
+    <div class="header-actions">
+    <div class="language-controls" role="group" aria-label="表示言語" data-i18n-aria="language">
+      <button type="button" data-set-language="ja" lang="ja" aria-pressed="true">日本語</button>
+      <button type="button" data-set-language="en" lang="en" aria-pressed="false">English</button>
+    </div>
+    <button id="save-html" class="save-button" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M5 16v5h14v-5"/></svg>
+      <span data-i18n="save">HTMLを保存</span>
+    </button>
+    </div>
+  </header>
+
+  <main class="studio">
+    <section class="view-column" aria-label="完成イメージの3Dビュー" data-i18n-aria="viewRegion">
+      <figure id="viewport" class="viewport" aria-label="3Dモデル表示領域" data-i18n-aria="viewport">
+        <div class="stage-heading">
+          <div>
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="selection-name" aria-live="polite">3種類を並べて表示</span>
+          </div>
+          <span class="model-label" data-i18n="cg">完成イメージ / CG</span>
+        </div>
+        <img id="poster" class="poster" src="data:image/jpeg;base64,__POSTER__" alt="Git branch、Invertocat、發の3種類とボールチェーンの参考CG。本体厚16.5 mm、耳厚5 mm。" data-i18n-alt="poster">
+        <div id="loader" class="message-overlay" role="status">
+          <span class="loading-ring" aria-hidden="true"></span>
+          <p data-i18n="loading">3Dモデルを読み込んでいます</p>
+        </div>
+        <div id="error" class="message-overlay error-overlay" role="alert" hidden>
+          <strong id="error-title" data-i18n="errorTitle">3D表示を開始できませんでした</strong>
+          <p id="error-message"></p>
+          <button id="reload" type="button" data-i18n="reload">ページを再読み込み</button>
+        </div>
+        <div class="orbit-instrument" aria-hidden="true">
+          <svg class="orbit-dial" viewBox="0 0 64 64">
+            <circle class="dial-rail" cx="32" cy="32" r="26"/>
+            <path class="dial-ticks" d="M32 2v6m0 48v6M2 32h6m48 0h6"/>
+            <g id="dial-pointer"><path d="M32 32V11"/><circle cx="32" cy="11" r="3.5"/></g>
+            <circle cx="32" cy="32" r="2.5"/>
+          </svg>
+          <div class="angle-block"><span class="angle-label" data-i18n="rotation">回転角度</span><span id="angle">000<span>°</span></span></div>
+        </div>
+        <figcaption class="gesture-hint">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 13V6a2 2 0 0 1 4 0v5-1a2 2 0 0 1 4 0v1a2 2 0 0 1 4 0v4c0 4-2 6-5 6h-3c-2 0-3-1-4-3l-3-5a1.7 1.7 0 0 1 2.5-2L8 13Z"/></svg>
+          <span class="pointer-hint" data-i18n="pointerHint">ドラッグで回転 · スクロールで拡大</span>
+          <span class="touch-hint" data-i18n="touchHint">1本指で回転 · ピンチで拡大</span>
+        </figcaption>
+      </figure>
+
+      <fieldset id="view-controls" class="view-controls" disabled>
+        <legend class="sr-only" data-i18n="viewControls">見る向きと拡大率</legend>
+        <div class="presets" aria-label="見る向き" data-i18n-aria="viewDirection">
+          <button type="button" data-view="front" data-i18n="front" aria-pressed="false">表</button>
+          <button type="button" data-view="back" data-i18n="back" aria-pressed="false">裏</button>
+          <button type="button" data-view="side" data-i18n="side" aria-pressed="false">側面</button>
+          <button type="button" data-view="angle" data-i18n="angle" aria-pressed="true">斜め</button>
+        </div>
+        <div class="zoom-controls">
+          <button id="zoom-out" type="button" aria-label="縮小する" data-i18n-aria="zoomOut">−</button>
+          <button id="fit" type="button" data-i18n="fit">全体を見る</button>
+          <button id="zoom-in" type="button" aria-label="拡大する" data-i18n-aria="zoomIn">+</button>
+        </div>
+      </fieldset>
+    </section>
+
+    <aside class="sidebar" aria-label="絵柄と表示設定" data-i18n-aria="sidebar">
+      <fieldset id="design-controls" class="design-section" disabled>
+        <legend data-i18n="chooseDesign">絵柄を選ぶ</legend>
+        <div class="design-list">
+          <label class="design-choice all-choice">
+            <input type="radio" name="design" value="all" checked>
+            <span class="miniature all-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="choice-copy"><strong data-i18n="all">3種類</strong><small data-i18n="together">並べて見る</small></span>
+            <span class="selected-mark" aria-hidden="true"></span>
+          </label>
+          <label class="design-choice">
+            <input type="radio" name="design" value="git_branch">
+            <span class="miniature branch-mini" aria-hidden="true">__BRANCH_ICON__</span>
+            <span class="choice-copy"><strong>Git branch</strong><small data-i18n="branchDetail">公式の緑の枝マーク</small></span>
+            <span class="selected-mark" aria-hidden="true"></span>
+          </label>
+          <label class="design-choice">
+            <input type="radio" name="design" value="octocat">
+            <span class="miniature octocat-mini" aria-hidden="true">__OCTOCAT_ICON__</span>
+            <span class="choice-copy"><strong>Invertocat</strong><small data-i18n="octocatDetail">GitHub公式ロゴ</small></span>
+            <span class="selected-mark" aria-hidden="true"></span>
+          </label>
+          <label class="design-choice">
+            <input type="radio" name="design" value="hatsu">
+            <span class="miniature hatsu-mini" aria-hidden="true">發</span>
+            <span class="choice-copy"><strong data-i18n="hatsuName">發</strong><small data-i18n="hatsuDetail">濃淡グリーンの4列×3行グリッド</small></span>
+            <span class="selected-mark" aria-hidden="true"></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset id="display-controls" class="settings-section" disabled>
+        <legend data-i18n="display">表示</legend>
+        <label class="hardware-control">
+          <span><span data-i18n="showHardware">金具を表示</span><small data-i18n="hardwareSub">購入品の形状を参考にしたCG</small></span>
+          <input id="show-hardware" type="checkbox" checked>
+          <span class="switch" aria-hidden="true"></span>
+        </label>
+        <label class="hardware-select" for="hardware-type" data-i18n="hardwareType">金具の種類</label>
+        <select id="hardware-type" aria-describedby="hardware-note">
+          <option value="ball" data-i18n="ball">ボールチェーン（標準）</option>
+          <option value="clasp" data-i18n="clasp">回転カン付きフック（参考）</option>
+        </select>
+        <p id="hardware-note" class="hardware-note" aria-live="polite"></p>
+        <button id="auto-rotate" class="rotate-button" type="button" aria-pressed="false">
+          <svg class="rotate-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 8a8.5 8.5 0 1 0 .5 7M20 3v5h-5"/></svg>
+          <span id="rotation-label" data-i18n="autoRotate">自動回転</span>
+          <span id="rotation-state" class="toggle-state">オフ</span>
+        </button>
+      </fieldset>
+
+      <section class="spec-section" aria-labelledby="spec-title">
+        <div class="spec-heading"><h2 id="spec-title" data-i18n="dimensions">このモデルの寸法</h2><span>mm</span></div>
+        <dl class="specs">
+          <div><dt data-i18n="widthHeight">牌の幅 × 高さ</dt><dd>21 <span>×</span> 28</dd></div>
+          <div><dt data-i18n="thickness">本体の厚み</dt><dd>16.5</dd></div>
+          <div><dt data-i18n="blackLayer">黒い背面層</dt><dd>5.5</dd></div>
+          <div><dt data-i18n="earThickness">耳の厚み</dt><dd>5.0</dd></div>
+          <div><dt data-i18n="hole">金具の穴径</dt><dd>Ø 4.6</dd></div>
+          <div><dt data-i18n="totalHeight">耳を含む高さ</dt><dd>36</dd></div>
+        </dl>
+        <div class="color-key" aria-label="フィラメントの色" data-i18n-aria="filamentColors">
+          <span><i class="white-chip" aria-hidden="true"></i><span data-i18n="white">白</span></span>
+          <span><i class="black-chip" aria-hidden="true"></i><span data-i18n="black">黒</span></span>
+          <span id="green-chip"><i class="green-chip" aria-hidden="true"></i><span data-i18n="green">緑</span></span>
+          <span id="light-green-chip"><i class="light-green-chip" aria-hidden="true"></i><span data-i18n="lightGreen">薄緑</span></span>
+          <small id="color-count">2〜4色</small>
+        </div>
+        <p class="spec-note" data-i18n="specNote">本体は黒5.5 mm＋白側11 mm。境目はz=5.5 mmで統一し、耳全体は黒です。表面インレイはz=15.7〜16.5 mm。</p>
+      </section>
+    </aside>
+  </main>
+
+  <section class="print-section" aria-labelledby="print-title">
+    <h2 id="print-title" data-i18n="printTitle">設定済み印刷プロジェクト</h2>
+    <p data-i18n="printInfo">P1S · 0.2 mmノズル · AMS · PLA。パーツの塗り分け済み。実際のAMSスプールとの対応は印刷時に確認してください。</p>
+    <div class="print-links">
+      <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadAll">3種類まとめて（3MF）</a>
+      <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/git-branch-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadBranch">Git branch（3MF）</a>
+      <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadOctocat">Invertocat（3MF）</a>
+      <a href="https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/hatsu-P1S-0.2-AMS-PLA.3mf" data-i18n="downloadHatsu">發（3MF）</a>
+    </div>
+    <p class="download-note" data-i18n="onlineDownloads">3MFのダウンロードにはインターネット接続が必要です。HTMLの表示・保存はオフラインで使えます。</p>
+  </section>
+  <footer class="page-footer">
+    <p data-i18n="footer">牌・耳・絵柄の形状は元の印刷用10パーツと同一です。金具はCGのみで印刷データに含みません。実機印刷・現物金具との適合・強度試験は未実施です。</p>
+    <span class="offline-note" data-i18n="offline">オフライン対応</span>
+    <details class="credits">
+      <summary data-i18n="credits">素材・ライセンス</summary>
+      <div class="credit-content">
+        <p data-i18n="rights">GitHub公式商品ではありません。GitHubロゴと商標の権利は各権利者に帰属します。コードのライセンスはロゴ・字形・派生モデルの再利用許諾ではありません。</p>
+        <p><a href="https://brand.github.com/foundations/logo" target="_blank" rel="noreferrer noopener" data-i18n="githubLogo">GitHubロゴのガイドライン</a> · <a href="https://github.com/primer/octicons" target="_blank" rel="noreferrer noopener">Octicons</a></p>
+        <p data-i18n="licenseNote">以下は同梱ライブラリ・フォント・Octiconsの原文ライセンスです。</p>
+        <pre>__LICENSES__</pre>
+      </div>
+    </details>
+  </footer>
+  <noscript><p class="noscript"><span lang="ja">360度ビューと言語切替にはJavaScriptが必要です。</span><br><span lang="en">JavaScript is required for the 360-degree view and language switching.</span></p></noscript>
+  <script id="model-data" type="application/octet-stream">__MODEL_DATA__</script>
+  <script>/*__APP__*/</script>
+</body>
+</html>
