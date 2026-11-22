@@ -2,7 +2,7 @@
 
 **[日本語](README.md) | English**
 
-Four designs: Git branch, the GitHub Invertocat, Hatsu (發) above a 4-column × 3-row contribution grid, and **red Chun (中) above a black circular Invertocat**. The upper Chun glyph is retained; the lower artwork uses the same official SVG outline as the existing logo tile, uniformly scaled without distortion or redrawing and printed in black. This is not an official or endorsed GitHub product. Includes **configured Bambu Lab P1S · 0.2 mm nozzle · AMS · PLA project 3MFs**; no part repainting is needed.
+Four designs: Git branch, the GitHub Invertocat, Hatsu (發) above a 4-column × 3-row contribution grid, and **red Chun (中) above a red cat without the circle**. The upper Chun is retained. The lower artwork extracts only the white head, body and tail from the Invertocat and colors them red; the black circle is removed. This is modified artwork, not a new official logo or endorsed GitHub product. Includes **configured Bambu Lab P1S · 0.2 mm nozzle · AMS · PLA project 3MFs**; no part repainting is needed.
 
 [Open the 360° viewer in English](https://ktanino10.github.io/github-mahjong-keychains/#en) · [日本語で表示](https://ktanino10.github.io/github-mahjong-keychains/#ja) · [Download standalone offline HTML](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/docs/index.html)
 
@@ -13,12 +13,12 @@ Four designs: Git branch, the GitHub Invertocat, Hatsu (發) above a 4-column ×
 | Project | Printable parts | Colors used |
 | --- | ---: | --- |
 | [Original three-design set, unchanged](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf) | 10 | White, black, green, light green |
-| [Chun, separate project](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/chun-P1S-0.2-AMS-PLA.3mf) | 4 | White, black, red |
+| [Chun, separate project](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/chun-P1S-0.2-AMS-PLA.3mf) | 3 | White, black, red |
 | [Git branch](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/git-branch-P1S-0.2-AMS-PLA.3mf) | 3 | White, black, green |
 | [Invertocat](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf) | 3 | White, black |
 | [Hatsu](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/hatsu-P1S-0.2-AMS-PLA.3mf) | 4 | White, black, green, light green |
 
-[Print bundle ZIP: five projects, fourteen STLs, bilingual instructions and offline HTML](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/docs/downloads/github-mahjong-keychains-P1S-0.2-AMS-PLA.zip)
+[Print bundle ZIP: five projects, thirteen STLs, bilingual instructions and offline HTML](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/docs/downloads/github-mahjong-keychains-P1S-0.2-AMS-PLA.zip)
 
 **The original three-design four-color set and the three-color Chun are separate print projects.** All four designs require five colors: white, black, green, light green and red. One four-slot AMS cannot hold all five at once; no all-four five-color print project is supplied. Change a green spool to red when necessary and map the Chun project's red filament to the actual AMS spool. The four original project files, assignments and URLs are retained.
 
@@ -50,12 +50,12 @@ The repository's build and verification scripts do not connect to a printer, tra
 | Project slot | Color | Display RGB | Assignment |
 | ---: | --- | --- | --- |
 | 1 | White | `#F6F5EE` | White body |
-| 2 | Black | `#161616` | Shared rear, entire ear and circular Invertocat on the face |
-| 3 | Red | `#B33220` | Upper Chun glyph only |
+| 2 | Black | `#161616` | Shared rear and entire ear |
+| 3 | Red | `#B33220` | Upper Chun glyph and standalone cat: head, body and tail |
 
-Chun has **four parts and three colors**: white body, shared black rear, red glyph and black circular logo. The logo is a separate `logo_inlay-black.stl` assigned to the same black slot 2, so the common rear STL stays unchanged. Both inlays share coordinates with the recesses in the white body; do not auto-arrange them separately. No gradient printing is required.
+Chun has **three parts and three colors**: white body, shared black rear and red inlay. The red STL contains two disconnected closed solids, the glyph and cat, aligned with the white body's recesses. Do not arrange them separately. The obsolete black-circle face part is removed. No gradient printing is required.
 
-**Using black does not itself permit combining the logo with text, making keychains, publishing or distributing them.** Check GitHub's written permission for the intended use separately under the [official guidelines](https://brand.github.com/foundations/logo).
+**Removing the circle and coloring the cat red does not automatically permit modification, combining it with text, making keychains, publishing or distributing them.** Check GitHub's written permission covering this modification and use separately under the [official guidelines](https://brand.github.com/foundations/logo).
 
 RGB values are visual references, not a guarantee of any manufacturer's PLA shade. See the [per-part color table](print-package/parts-and-colors.csv).
 
@@ -65,7 +65,7 @@ RGB values are visual references, not a guarantee of any manufacturer's PLA shad
 
 The machine is the official **P1S 0.2 mm** preset. Its process inherits `0.10mm Standard @BBL X1C 0.2 nozzle`: this is the **shared process explicitly designated as the default by the official P1S 0.2 mm profile**, not a switch to an X1 printer. Every material inherits `Generic PLA @0.2 nozzle`. [Settings and provenance](validation/profile-provenance.json)
 
-Flushing volumes are conservative starting values, with more flushing from dark to light. Actual pigment transitions still need a physical test. The original combined project is estimated at approximately **11 h 12 min and 54 g**; Chun alone is approximately **5 h 13 min and 25.9 g**. Both include flushing and the tower and are slicer estimates, not measured print results.
+Flushing volumes are conservative starting values, with more flushing from dark to light. Actual pigment transitions still need a physical test. The original combined project is estimated at approximately **11 h 12 min and 54 g**; Chun alone is approximately **4 h 12 min and 20.4 g**. Both include flushing and the tower and are slicer estimates, not measured print results.
 
 ## Dimensions and hardware
 
@@ -78,7 +78,7 @@ Flushing volumes are conservative starting values, with more flushing from dark 
 | Shared black/white boundary | z = 5.5 mm |
 | Surface inlays | z = 15.7–16.5 mm |
 
-The ten original printable STLs and four original project 3MFs are byte-identical to the accepted release. Chun has four parts using the same common body; its black rear/ear STL is byte-identical to the existing part. The ear outline, body size, front/back proportions, original logos, glyph and grid are unchanged. No transverse body hole was added. The AMOS SMART reference matches only its [listed external dimensions](https://www.alban.co.jp/products/detail/682), not its material, weight or strength.
+The ten original printable STLs and four original project 3MFs are byte-identical to the accepted release. Chun has three parts using the same common body; its black rear/ear STL is byte-identical to the existing part. The ear outline, body size, front/back proportions, original logos, glyph and grid are unchanged. No transverse body hole was added. The AMOS SMART reference matches only its [listed external dimensions](https://www.alban.co.jp/products/detail/682), not its material, weight or strength.
 
 **Default: purchased-style ball chain.** The [product listing](https://www.amazon.co.jp/dp/B0DN6JW6LK) specifies 2.4 mm balls and 120 mm chain length. The viewer shows a loop through the existing ear. Pitch, bead count, connector dimensions and drape are approximate. Silver is an illustrative finish, not an inference about the purchased color. Detach the connector, pass the free beaded end through the hole and reconnect; do not force the connector itself through the ear.
 
@@ -96,17 +96,17 @@ Drag, use one finger or arrow keys to rotate. Scroll, pinch or press `+` / `-` t
 
 ## Verification and rebuilding
 
-The finished Chun project was **reopened and sliced with the official Bambu Studio 02.09.01.70 CLI without external presets or setting overrides**. It has 165 layers, an empty plate-warning field and actual white/black/red usage: black at layers 1–55, white at 56–157, then white, black and red at 158–165. Configuration was isolated from personal settings, printers and accounts. The four original files are unchanged; their existing reopen/slice evidence from the same official release is retained after SHA-256 verification.
+The finished Chun project was **reopened and sliced with the official Bambu Studio 02.09.01.70 CLI without external presets or setting overrides**. It has 165 layers, an empty plate-warning field and actual white/black/red usage: black at layers 1–55, white at 56–157, then white and red at 158–165. Configuration was isolated from personal settings, printers and accounts. The four original files are unchanged; their existing reopen/slice evidence from the same official release is retained after SHA-256 verification.
 
-Each of the four Chun parts is a single closed, positive-volume mesh. Their summed volume matches the accepted common blank; Boolean checks find no volumetric overlap or missing material at a 0.00002 mm STL precision tolerance. Vertex correspondence, triangle connectivity/winding, dimensions and alignment are also checked against the 3MF and GLB. [Chun geometry checks](validation/validation-chun.json)
+All three Chun parts and both red connected components are closed, positive-volume meshes. Their summed volume matches the accepted common blank; Boolean checks find no volumetric overlap or missing material at a 0.00002 mm STL precision tolerance. Vertex correspondence, triangle connectivity/winding, dimensions and alignment are also checked against the 3MF and GLB. [Chun geometry checks](validation/validation-chun.json)
 
-The glyph and circular logo retain their shapes and placement from the red-logo revision; only the color parts are separated. Red contains only Chun, and the black face part contains only the circular Invertocat, with no former custom head. The logo matches the existing logo tile's vertices and contour walls after uniform scaling. Scaling retriangulates flat caps without changing the outline. `prepare_assets.py` recomposes the black logo from the existing official SVG while retaining the upper glyph.
+The upper Chun retains its shape, placement and triangle connectivity. Cross-section checks confirm the cat's head, body and tail, and reject red material where the old circle stood. `prepare_assets.py` uses OpenSCAD to subtract the black logo from its convex hull, then keeps only the white connected region containing the head. A disconnected tiny hull-edge fragment is excluded.
 
 [Slicer results](validation/slicer-checks.json) · [Accepted STL SHA-256 hashes](validation/accepted-meshes.json) · [Browser results](validation/browser-checks.json) · [Download SHA-256 hashes](https://github.com/ktanino10/github-mahjong-keychains/blob/main/validation/deliverables.json)
 
 The desktop CLI emits some misleading diagnostics about optional expanded-profile lookups and an already-present flushing matrix. These are classified, not hidden, in the verification JSON. Saved colors, actual used filaments, every layer and the empty plate-warning field are independently checked. This does not claim that every diagnostic log line is warning-free.
 
-Development uses Python 3.13, Node.js, Blender and the Bambu Studio release above. **Rebuilding is unnecessary for printing.**
+Development uses Python 3.13, Node.js, OpenSCAD with the Manifold backend, Blender and the Bambu Studio release above. **Rebuilding is unnecessary for printing.**
 
 ```sh
 python3.13 -m pip install -r requirements.txt

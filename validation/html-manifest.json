@@ -1,8 +1,8 @@
 {
   "file": "docs/index.html",
-  "bytes": 9633666,
-  "sha256": "f6e07d2296062fd536c0a8f9776d6c5b3bf6e37d96fa6c1b7f5df4fd97fd5a2a",
-  "modelSha256": "d9df869912dfd9a078fff9053ba4a7d6af6948cb1990244bf40b9d39d7b99414",
+  "bytes": 9504072,
+  "sha256": "0452fd68a650e049d205170ddc4b45e0132fa477019c2e145c02455001f920a2",
+  "modelSha256": "d9047c9fc6eff887c9e3cca9421e6926094958ef125f71eb0a1c32c6d6ae7bef",
   "offline": true,
   "externalAssets": false,
   "languages": [

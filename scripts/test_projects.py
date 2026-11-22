@@ -1,10 +1,9 @@
 import unittest
 
-import numpy as np
 import trimesh
 
 from package_models import ROOT, project_materials
-from validate_projects import canonical_faces, check_toolpaths
+from validate_projects import check_toolpaths
 
 
 class ProjectTests(unittest.TestCase):
@@ -12,30 +11,28 @@ class ProjectTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "separate"):
             project_materials(["git-branch", "invertocat", "hatsu", "chun"])
 
-    def test_chun_lower_logo_is_the_same_uniformly_scaled_invertocat(self):
-        glyph = trimesh.load_mesh(ROOT / "print-package/STL/04-chun/inlay-red.stl", process=True)
-        logo = trimesh.load_mesh(ROOT / "print-package/STL/04-chun/logo_inlay-black.stl", process=True)
-        self.assertEqual(len(glyph.split()), 1, "The red part must contain only the glyph.")
-        self.assertEqual(len(logo.split()), 1, "The black face part must contain only the circular logo.")
-        self.assertGreater(glyph.bounds[0, 1], logo.bounds[1, 1])
-        original = trimesh.load_mesh(ROOT / "print-package/STL/02-octocat/inlay-black.stl", process=True)
-        scale = logo.extents[0] / original.extents[0]
-        original.vertices[:, :2] *= scale
-        original.vertices[:, :2] += logo.bounds.mean(axis=0)[:2] - original.bounds.mean(axis=0)[:2]
-        self.assertEqual(len(logo.vertices), len(original.vertices))
-        self.assertEqual(len(logo.faces), len(original.faces))
-        distances, indices = original.kdtree.query(logo.vertices)
-        self.assertLess(float(distances.max()), 2e-5)
-        self.assertEqual(len(np.unique(indices)), len(original.vertices))
-        # Planar caps may retriangulate after scaling; every contour wall must match.
-        side_faces = np.ptp(logo.triangles[:, :, 2], axis=1) > 2e-5
-        original_sides = np.ptp(original.triangles[:, :, 2], axis=1) > 2e-5
-        np.testing.assert_array_equal(
-            canonical_faces(indices[logo.faces[side_faces]]), canonical_faces(original.faces[original_sides]),
-        )
-        self.assertTrue(logo.is_watertight and logo.is_winding_consistent)
-        self.assertLess(abs(logo.volume - original.volume), 1e-4)
-        np.testing.assert_allclose(logo.bounds, original.bounds, atol=2e-5)
+    def test_chun_white_cat_has_head_body_and_tail_but_no_circle(self):
+        inlay = trimesh.load_mesh(ROOT / "print-package/STL/04-chun/inlay-red.stl", process=True)
+        components = sorted(inlay.split(), key=lambda mesh: mesh.bounds[0, 1])
+        self.assertEqual(len(components), 2, "Only the upper glyph and standalone cat may remain.")
+        cat, glyph = components
+        self.assertGreater(glyph.bounds[0, 1], cat.bounds[1, 1])
+        self.assertTrue(cat.is_watertight and cat.is_winding_consistent)
+        segments = trimesh.intersections.mesh_plane(cat, [0, 0, 1], [0, 0, 16.1])[:, :, :2]
+
+        def contains_source_point(px, py):
+            x, y = (px - 49) * 11 / 98, 0.5 - py * 11 / 98
+            crossings = 0
+            for (ax, ay), (bx, by) in segments:
+                if (ay > y) != (by > y) and x < ax + (y - ay) * (bx - ax) / (by - ay):
+                    crossings += 1
+            return crossings % 2 == 1
+
+        for point in [(49, 47), (49, 88), (17, 69)]:
+            self.assertTrue(contains_source_point(*point), f"Missing head, body or tail at {point}")
+        for point in [(4, 49), (94, 49), (49, 5)]:
+            self.assertFalse(contains_source_point(*point), f"The former circle remains at {point}")
+        self.assertFalse((ROOT / "print-package/STL/04-chun/logo_inlay-black.stl").exists())
 
     def test_model_extrusion_and_ams_must_both_use_red(self):
         gcode = b"""M620 S1A

@@ -34,15 +34,13 @@ for variant in ["git_branch", "octocat", "hatsu", "chun"]:
             assert bounds[1, 1] <= 14.0001, variant
         elif variant == "chun" and part == "inlay":
             assert mesh.visual.material.name == "Printed red", variant
-        elif variant == "chun" and part == "logo_inlay":
-            assert mesh.visual.material.name == "Printed black", variant
         results.append({
             "part": f"{variant}/{part}",
             "triangles": len(mesh.faces),
             "max_bound_difference_mm": float(np.max(np.abs(bounds - original["bounds_mm"]))),
             "volume_difference_mm3": volume - original["volume_mm3"],
         })
-assert len(results) == 14
+assert len(results) == 13
 (ROOT / "validation" / "viewer-geometry.json").write_text(json.dumps(results, indent=2) + "\n")
-print("All 14 browser meshes preserve printable triangle counts, dimensions and volumes.")
-print("All four ears are black; white starts at z=5.5 mm. Chun's glyph is red and its circular logo is black.")
+print("All 13 browser meshes preserve printable triangle counts, dimensions and volumes.")
+print("All four ears are black; white starts at z=5.5 mm. Chun's glyph and cat silhouette are red, without the circle.")

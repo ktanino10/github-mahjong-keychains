@@ -39,7 +39,7 @@ VARIANTS = {
     "git-branch": ("git_branch", "01-git-branch", "Git branch"),
     "invertocat": ("octocat", "02-octocat", "Invertocat"),
     "hatsu": ("hatsu", "03-hatsu", "Hatsu contribution"),
-    "chun": ("chun", "04-chun", "Red Chun with black circular Invertocat"),
+    "chun": ("chun", "04-chun", "Red Chun and red cat without circle"),
 }
 PROJECTS = {"all-three": ["git-branch", "invertocat", "hatsu"], **{key: [key] for key in VARIANTS}}
 FLUSH_MATRIX = [
@@ -178,9 +178,7 @@ def make_seed(path, selected, machine, process, filaments):
     for index, key in enumerate(selected):
         variant, slug, title = VARIANTS[key]
         report = json.loads((ROOT / "validation" / f"validation-{variant}.json").read_text())
-        parts = ["black_back", "white_body", "inlay"] + (
-            ["light_inlay"] if variant == "hatsu" else ["logo_inlay"] if variant == "chun" else []
-        )
+        parts = ["black_back", "white_body", "inlay"] + (["light_inlay"] if variant == "hatsu" else [])
         object_id = 100 + index
         object_settings = ET.SubElement(settings, "object", {"id": str(object_id)})
         meta(object_settings, "name", title)

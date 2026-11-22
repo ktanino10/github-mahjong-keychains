@@ -34,8 +34,8 @@
           16.5
         ]
       ],
-      "volume_mm3": 6341.878824282881,
-      "faces": 11844,
+      "volume_mm3": 6353.917087980386,
+      "faces": 10140,
       "watertight": true,
       "components": 1
     },
@@ -43,8 +43,8 @@
       "file": "print-package/STL/04-chun/inlay-red.stl",
       "bounds_mm": [
         [
-          -3.9500458240509033,
-          1.840512752532959,
+          -3.9853556156158447,
+          -10.154953956604004,
           15.699999809265137
         ],
         [
@@ -53,64 +53,34 @@
           16.5
         ]
       ],
-      "volume_mm3": 18.180999680980992,
-      "faces": 1260,
+      "volume_mm3": 49.820737232534675,
+      "faces": 9544,
       "watertight": true,
-      "components": 1
-    },
-    "logo_inlay": {
-      "file": "print-package/STL/04-chun/logo_inlay-black.stl",
-      "bounds_mm": [
-        [
-          -5.5,
-          -10.154953956604004,
-          15.699999809265137
-        ],
-        [
-          5.5,
-          0.4999999403953552,
-          16.5
-        ]
-      ],
-      "volume_mm3": 43.67800126174927,
-      "faces": 9988,
-      "watertight": true,
-      "components": 1
+      "components": 2
     }
   },
-  "volume_sum_error_mm3": 1.2689270079135895e-08,
+  "volume_sum_error_mm3": 0.0,
   "accepted_blank_partition_matches_within_stl_precision": true,
   "pairwise_part_intersections_have_no_volume": true,
-  "boolean_residual_boundary_facets": 4748,
-  "max_boolean_residual_inlay_surface_distance_mm": 9.492508075052747e-07,
-  "boolean_residual_volume_mm3": 2.3292916995210078e-07,
+  "boolean_residual_boundary_facets": 1696,
+  "max_boolean_residual_inlay_surface_distance_mm": 0.0,
+  "boolean_residual_volume_mm3": 3.552713678800501e-15,
   "geometry_tolerance_mm": 2e-05,
   "common_black_back_byte_identical": true,
   "reference_blank_sha256": "7289f85126e5ef6747b7638d32ffb2b064eedc43df16c653bd758239f2365632",
   "source_asset": "print-package/source/assets/chun-custom.svg",
   "physical_print_and_fit_tested": false,
   "artwork_checks": {
-    "inlay": {
-      "sha256": "30929559203cc7f409616fe8bccf481f5b8a7519d85c00cb06c33d6f178cc5ec",
-      "max_vertex_difference_mm": 1.3328003749250113e-07,
-      "triangle_connectivity_and_winding_unchanged": true,
-      "watertight": true,
-      "components": 1,
-      "filament_slot": 3
-    },
-    "logo_inlay": {
-      "sha256": "906dae6ab18bf7feae2d2db66354e7cb55dc976ea06cbfc929cd2eb73ceade04",
-      "max_vertex_difference_mm": 9.5367431640625e-07,
-      "triangle_connectivity_and_winding_unchanged": true,
-      "watertight": true,
-      "components": 1,
-      "filament_slot": 2
-    },
-    "compared_with_release": "fc4256f5e14040c18ab88e088dff23fc05fc4ca8",
-    "white_body_byte_identical": true,
-    "color_change_only": true,
-    "former_head_removed": true,
-    "red_contains_only_glyph": true,
-    "black_face_contains_only_circular_invertocat": true
+    "compared_with_release": "8e9161c931885eb69fc8417d99eddfeba343096f",
+    "inlay_sha256": "965789e11578883ada8c257a059a63c1c44712ad00b8370ec944459b69824af2",
+    "upper_glyph_max_vertex_difference_mm": 1.3328003749250113e-07,
+    "upper_glyph_triangle_connectivity_and_winding_unchanged": true,
+    "cat_source": "White head/body/tail region inside the convex hull of the existing Invertocat, with black artwork subtracted.",
+    "selected_head_containing_component_only": true,
+    "cat_single_watertight_component": true,
+    "cat_head_body_tail_cross_section_checks_passed": true,
+    "former_circle_cross_section_checks_absent": true,
+    "black_face_part_removed": true,
+    "red_components": 2
   }
 }

@@ -125,10 +125,10 @@ projects = json.loads((ROOT / "validation/slicer-checks.json").read_text())["pro
 for project in projects:
     assert hashlib.sha256((ROOT / project["project"]).read_bytes()).hexdigest() == project["sha256"]
 assert len(projects) == 5
-assert len(list((ROOT / "print-package/STL").rglob("*.stl"))) == 14
+assert len(list((ROOT / "print-package/STL").rglob("*.stl"))) == 13
 assert len(list((ROOT / "print-package/projects").glob("*.3mf"))) == 5
 
 if failures:
     raise SystemExit("Public artifact audit failed:\n" + "\n".join(failures))
 print(f"PASS: {len(files)} publishable files, {scanned} files/archive members; no private paths or credentials detected.")
-print("PASS: five project hashes, ten unchanged + four Chun STLs, documentation links and embedded viewer assets.")
+print("PASS: five project hashes, ten unchanged + three Chun STLs, documentation links and embedded viewer assets.")

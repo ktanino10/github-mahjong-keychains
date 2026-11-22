@@ -19,14 +19,17 @@
     },
     {
       "file": "chun-custom.svg",
-      "source": "Retained hand-outlined Chun glyph plus the existing official github-invertocat.svg.",
-      "modifications": "Red top glyph retained. Lower logo uses the original official path, uniformly scaled in black; the former custom head is removed.",
+      "source": "Retained hand-outlined Chun glyph plus the white cat silhouette extracted from github-invertocat.svg.",
+      "modifications": "Keep the head/body/tail region from convex hull minus the original black logo. Select only the connected region containing the head, excluding the circle and a disconnected hull-edge sliver. Fill the cat red, without moving the upper Chun glyph.",
       "logo_source_file": "github-invertocat.svg",
-      "logo_color": "black",
+      "cat_color": "#B33220",
+      "black_circle_retained": false,
+      "extracted_contours": 2,
+      "selected_cat_contours": 1,
       "product_official_or_endorsed": false,
       "reference_photo_distributed": false,
       "font_files_distributed": false,
-      "note": "Glyph and official logo artwork rights remain with their holders. Black does not itself grant permission for merchandise, combined artwork or redistribution. Not covered by the source-code license."
+      "note": "This is modified source artwork, not a new official logo. Removing the circle or recoloring does not grant permission for merchandise, combined artwork or redistribution. Not covered by the source-code license."
     }
   ],
   "size_reference": {
@@ -65,7 +68,7 @@
     }
   ],
   "source_asset_sha256": {
-    "chun-custom.svg": "2bc4dfd922bc466fdaffd5563ade3229b49add15dd90f8b8ac0ac78b1b2ce219",
+    "chun-custom.svg": "d4c3ad3307f66765c12f653258992fb751c29f76aa89f00a11054f91eeeb71b5",
     "git-branch-24.svg": "76b97dde63b49eaa91978209f31f09c829cd690959fbcd7bbafdf96fa0a81474",
     "github-invertocat.svg": "693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1",
     "hatsu.svg": "ad2515b54377e374b218dfdbc5046dc93931092029e343ec0506d233374b35f5",

@@ -56,7 +56,7 @@ try {
   track(page);
   await page.goto(url);
   await ready(page);
-  assert.equal(await number(page, "meshes"), 14);
+  assert.equal(await number(page, "meshes"), 13);
   assert.equal(await number(page, "designs"), 4);
   assert.equal(await page.locator("#viewport").getAttribute("data-selection"), "all");
   assert.equal(await page.locator("#show-hardware").isChecked(), true);
@@ -77,7 +77,7 @@ try {
   assert.equal(structural.headings.length, 1);
   assert.equal(structural.invalidControls, 0);
   assert.equal(structural.externalSources, 0);
-  results.push("Offline first load: four models, fourteen exact printed parts, named controls, no external assets.");
+  results.push("Offline first load: four models, thirteen exact printed parts, named controls, no external assets.");
   await snapshot(page, "viewer-ja-ball-chain.png");
 
   await page.getByRole("button", { name: "表", exact: true }).click();
@@ -140,23 +140,23 @@ try {
   assert.match(await page.locator('[data-i18n="downloadChun"]').getAttribute("href"), /\/chun-P1S-0\.2-AMS-PLA\.3mf$/);
   assert.match(await page.locator('[data-i18n="downloadAll"]').getAttribute("href"), /\/all-three-P1S-0\.2-AMS-PLA\.3mf$/);
   assert.match(await page.locator('[data-i18n="downloadBundle"]').getAttribute("href"), /github-mahjong-keychains-P1S-0\.2-AMS-PLA\.zip$/);
-  assert.ok((await canvas.getAttribute("aria-label")).includes("黒い円形Invertocat"));
-  assert.equal(await page.locator('[data-i18n="chunDetail"]').textContent(), "赤い中＋黒い円形Invertocat");
+  assert.ok((await canvas.getAttribute("aria-label")).includes("赤い猫・円なし"));
+  assert.equal(await page.locator('[data-i18n="chunDetail"]').textContent(), "赤い中＋赤い猫（頭・胴体・しっぽ）");
   await page.getByRole("checkbox", { name: /金具を表示/ }).check();
   await page.getByRole("button", { name: "表", exact: true }).click();
   await snapshot(page, "viewer-ja-chun.png");
   await page.getByRole("button", { name: "English", exact: true }).click();
-  assert.equal(await page.locator("#selection-name").textContent(), "Red Chun / Black circular Invertocat");
+  assert.equal(await page.locator("#selection-name").textContent(), "Red Chun / Red cat, no circle");
   assert.equal(await page.locator("#color-count").textContent(), "3 colors");
   assert.ok((await page.locator(".print-split").textContent()).includes("5 colors"));
   assert.ok((await page.locator(".print-split").textContent()).includes("physical red spool"));
   assert.ok((await page.locator('[data-i18n="downloadChun"]').textContent()).includes("separate"));
-  assert.ok((await canvas.getAttribute("aria-label")).includes("Black circular Invertocat"));
-  assert.equal(await page.locator('[data-i18n="chunDetail"]').textContent(), "Red Chun + black circular Invertocat");
+  assert.ok((await canvas.getAttribute("aria-label")).includes("Red cat, no circle"));
+  assert.equal(await page.locator('[data-i18n="chunDetail"]').textContent(), "Red Chun + red head, body and tail");
   await snapshot(page, "viewer-en-chun.png");
   await page.getByRole("button", { name: "日本語", exact: true }).click();
   await page.getByRole("checkbox", { name: /金具を表示/ }).uncheck();
-  results.push("Chun names the red glyph and black circular Invertocat in both languages, has white/black/red only, a separate three-color download, unchanged all-three URL and an explicit five-color/four-slot AMS warning.");
+  results.push("Chun names the red glyph and standalone red cat in both languages, has white/black/red only, a separate three-color download, unchanged all-three URL and an explicit five-color/four-slot AMS warning.");
   await select(page, "octocat");
   assert.equal(await page.locator("#green-chip").isVisible(), false);
   assert.equal(await page.locator("#light-green-chip").isVisible(), false);
