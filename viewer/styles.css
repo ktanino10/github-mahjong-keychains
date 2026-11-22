@@ -56,7 +56,7 @@ h1 { margin: 0; font-size: clamp(22px, 2.25vw, 32px); letter-spacing: .035em; fo
 .save-button svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
 .studio { display: grid; grid-template-columns: minmax(0, 1fr) 278px; gap: 30px; margin-top: 25px; align-items: stretch; }
-.view-column { min-width: 0; display: flex; flex-direction: column; }
+.view-column { min-width: 0; display: flex; flex-direction: column; align-self: start; position: sticky; top: 18px; width: 100%; }
 .viewport { position: relative; flex: 1; min-height: 580px; height: min(72svh, 820px); width: 100%; margin: 0; overflow: hidden; border-radius: 18px; background: radial-gradient(ellipse at 48% 39%, #f4f8f3 0%, #e5eee6 55%, var(--felt) 100%); isolation: isolate; }
 .three-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 2; touch-action: none; cursor: grab; }
 .three-canvas.is-dragging { cursor: grabbing; }
@@ -107,6 +107,9 @@ legend, .spec-heading h2 { padding: 0; margin: 0 0 13px; font-size: 12px; font-w
 .octocat-mini svg { width: 22px; height: 22px; }
 .hatsu-mini { font-size: 22px; font-weight: 800; }
 .chun-mini svg { width: 18px; height: 30px; }
+.haku-mini { align-items: flex-end; padding-bottom: 4px; }
+.haku-mini svg { width: 23px; height: 20px; }
+.iisou-mini svg { width: 22px; height: 28px; transform: scaleX(-1); }
 .all-mini { background: transparent; box-shadow: none; border: 0; width: 32px; position: relative; }
 .all-mini i { width: 13px; height: 24px; border-radius: 3px; background: #fff; border: 1px solid #aec1b2; position: absolute; top: 9px; box-shadow: 0 2px 0 #234e35; }
 .all-mini i:nth-child(1) { left: -3px; transform: rotate(-15deg); }
@@ -198,7 +201,7 @@ legend, .spec-heading h2 { padding: 0; margin: 0 0 13px; font-size: 12px; font-w
   .selected-mark { display: none; }
   .choice-copy small { display: none; }
   .choice-copy strong { font-size: 12px; }
-  .view-column { order: 0; }
+  .view-column { order: 0; position: static; }
   .viewport { min-height: 0; flex: auto; height: min(68svh, 600px); }
   .settings-section { order: 1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 25px; padding: 4px 0 19px; }
   .hardware-control { grid-column: 1; grid-row: 1; }

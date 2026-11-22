@@ -14,6 +14,7 @@ import numpy as np
 import trimesh
 
 from package_models import CORE, MACHINE, PROCESS, PROJECTS, ROOT, VARIANTS, VERSION, project_materials, slot_for, write_json
+from designs import parts_for
 
 
 PRODUCTION = "http://schemas.microsoft.com/3dmanufacturing/production/2015/06"
@@ -64,8 +65,7 @@ def inspect_project(path, selected):
     expected_names = set()
     for key in selected:
         variant = VARIANTS[key][0]
-        expected_names.update(f"{variant}/{part}" for part in
-                              ["black_back", "white_body", "inlay"] + (["light_inlay"] if variant == "hatsu" else []))
+        expected_names.update(f"{variant}/{part}" for part in parts_for(variant))
     results = []
     with zipfile.ZipFile(path) as archive:
         assert archive.testzip() is None
@@ -274,7 +274,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--bambu", required=True, type=Path)
     parser.add_argument("--work-dir", type=Path, default=ROOT / ".work" / "verification")
-    parser.add_argument("--only", choices=EXPECTED, help="Re-slice one project and retain hash-matching evidence for the others.")
+    parser.add_argument("--only", choices=EXPECTED, nargs="+", help="Re-slice selected projects and retain hash-matching evidence for all others.")
     args = parser.parse_args()
     previous = {}
     if args.only:
@@ -285,7 +285,7 @@ def main():
     for name, selected in EXPECTED.items():
         path = ROOT / "print-package/projects" / f"{name}-P1S-0.2-AMS-PLA.3mf"
         parts = inspect_project(path, selected)
-        if args.only and name != args.only:
+        if args.only and name not in args.only:
             item = previous.get(str(path.relative_to(ROOT)))
             if item is None or item["sha256"] != hashlib.sha256(path.read_bytes()).hexdigest():
                 raise RuntimeError(f"No matching prior slice evidence for {path.name}; run without --only.")

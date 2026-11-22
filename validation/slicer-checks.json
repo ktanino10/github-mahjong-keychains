@@ -380,6 +380,148 @@
         "Single-nozzle compatibility mapping initialized from the embedded filament map",
         "Support-constructor default; support generation is disabled in this project"
       ]
+    },
+    {
+      "project": "print-package/projects/haku-P1S-0.2-AMS-PLA.3mf",
+      "sha256": "349db11757b336f5831b51c578bb1cc6faac57bfa96a8fcd3144f236713be5c1",
+      "reopened_without_external_presets_or_setting_overrides": true,
+      "slicer_return_code": 0,
+      "plate_warning_message": "",
+      "objects": 1,
+      "parts": [
+        {
+          "part": "haku/black_back",
+          "slot": 2,
+          "triangles": 1740,
+          "max_vertex_distance_mm": 1.0004533546149764e-06,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "haku/white_body",
+          "slot": 1,
+          "triangles": 1496,
+          "max_vertex_distance_mm": 5.157993439097885e-08,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "haku/inlay",
+          "slot": 2,
+          "triangles": 900,
+          "max_vertex_distance_mm": 5.969726707537419e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        }
+      ],
+      "layers": 165,
+      "black_layers_1_based": [
+        1,
+        55
+      ],
+      "white_layers_1_based": [
+        56,
+        157
+      ],
+      "surface_inlay_layers_1_based": [
+        158,
+        165
+      ],
+      "used_project_slots": [
+        1,
+        2
+      ],
+      "filament_changes": 9,
+      "estimated_print_seconds": 15389.2265625,
+      "estimated_filament_grams_including_flush_and_tower": 20.877660274505615,
+      "local_toolpath_sha256": "cd7bb2cb0242217701497fa0368032fca1ee231e629da8be40667f62af9b7c18",
+      "toolpath_checks": {
+        "object_layers_verified": 165,
+        "actual_object_extrusion_matches_layer_colors": true,
+        "actual_ams_project_slots": [
+          1,
+          2
+        ],
+        "prime_tower_and_custom_purge_excluded": true
+      },
+      "gcode_published": false,
+      "printer_transmission_performed": false,
+      "cli_diagnostics": [
+        "CLI version banner logged at warning level",
+        "Desktop bundle lacks optional machine_full/process_full lookup copies; embedded project settings were used",
+        "Known CLI branch message when an existing flush matrix needs no recalculation; project colors and actual toolpaths verified separately",
+        "Single-nozzle compatibility mapping initialized from the embedded filament map",
+        "Support-constructor default; support generation is disabled in this project"
+      ]
+    },
+    {
+      "project": "print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf",
+      "sha256": "ddbb3e50e6fdde318387fad1e019b24e78a884b25318149e64dbce1a8f699022",
+      "reopened_without_external_presets_or_setting_overrides": true,
+      "slicer_return_code": 0,
+      "plate_warning_message": "",
+      "objects": 1,
+      "parts": [
+        {
+          "part": "iisou/black_back",
+          "slot": 2,
+          "triangles": 1740,
+          "max_vertex_distance_mm": 1.0004533546149764e-06,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "iisou/white_body",
+          "slot": 1,
+          "triangles": 11644,
+          "max_vertex_distance_mm": 5.157993439097885e-08,
+          "triangle_connectivity_and_winding_unchanged": true
+        },
+        {
+          "part": "iisou/inlay",
+          "slot": 3,
+          "triangles": 11060,
+          "max_vertex_distance_mm": 6.800117624787702e-07,
+          "triangle_connectivity_and_winding_unchanged": true
+        }
+      ],
+      "layers": 165,
+      "black_layers_1_based": [
+        1,
+        55
+      ],
+      "white_layers_1_based": [
+        56,
+        157
+      ],
+      "surface_inlay_layers_1_based": [
+        158,
+        165
+      ],
+      "used_project_slots": [
+        1,
+        2,
+        3
+      ],
+      "filament_changes": 9,
+      "estimated_print_seconds": 15324.5078125,
+      "estimated_filament_grams_including_flush_and_tower": 20.126837134361267,
+      "local_toolpath_sha256": "454c2021540188c14658d3efccc2ee0679a670e527ad5a1c8ea256f3a2671d84",
+      "toolpath_checks": {
+        "object_layers_verified": 165,
+        "actual_object_extrusion_matches_layer_colors": true,
+        "actual_ams_project_slots": [
+          1,
+          2,
+          3
+        ],
+        "prime_tower_and_custom_purge_excluded": true
+      },
+      "gcode_published": false,
+      "printer_transmission_performed": false,
+      "cli_diagnostics": [
+        "CLI version banner logged at warning level",
+        "Desktop bundle lacks optional machine_full/process_full lookup copies; embedded project settings were used",
+        "Known CLI branch message when an existing flush matrix needs no recalculation; project colors and actual toolpaths verified separately",
+        "Single-nozzle compatibility mapping initialized from the embedded filament map",
+        "Support-constructor default; support generation is disabled in this project"
+      ]
     }
   ]
 }

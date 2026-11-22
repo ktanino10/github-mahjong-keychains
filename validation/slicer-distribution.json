@@ -1,0 +1,11 @@
+{
+  "application": "Bambu Studio",
+  "version": "02.09.01.70",
+  "source": "https://github.com/bambulab/BambuStudio/releases/download/v02.09.01.70/Bambu_Studio_mac-v02.09.01.70-20261103183404.dmg",
+  "release_sha256": "e4f42ac1542cb107cb21cbf98717de7b17e735bdb46fd2a18249e30929e3310d",
+  "download_sha256_verified": true,
+  "application_profiles_only": true,
+  "isolated_home_and_data_directory": true,
+  "application_or_gcode_distributed": false,
+  "printer_connection_or_transmission": false
+}

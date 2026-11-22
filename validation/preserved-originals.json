@@ -1,0 +1,25 @@
+{
+  "base_commit": "d6cb1dc09b8420093fc3c88a7a26d088cd5e040f",
+  "original_stl_count": 13,
+  "original_project_count": 5,
+  "files": {
+    "print-package/STL/01-git-branch/black_back-black.stl": "5bdca957b3435ad955c64f8f479cd36853d867b77de892b97a44a46ed468d4f8",
+    "print-package/STL/01-git-branch/inlay-green.stl": "5095aa52f00f97774e1797cbddfcebf5aad1c6b851605ebcd42573ca8f847162",
+    "print-package/STL/01-git-branch/white_body-white.stl": "0e959146cbd183f20e2d6ad95995ea51d10ae63855b293501f4ca07918b490c9",
+    "print-package/STL/02-octocat/black_back-black.stl": "5bdca957b3435ad955c64f8f479cd36853d867b77de892b97a44a46ed468d4f8",
+    "print-package/STL/02-octocat/inlay-black.stl": "cc8de22fac5ebc599345da33adc5d009e96295942c8561b8c88774adb4532f4a",
+    "print-package/STL/02-octocat/white_body-white.stl": "1cc0c71cebd3073bc2b50e5e977ba74a7f7120ce223f3a29de9ef8befd6ca227",
+    "print-package/STL/03-hatsu/black_back-black.stl": "5bdca957b3435ad955c64f8f479cd36853d867b77de892b97a44a46ed468d4f8",
+    "print-package/STL/03-hatsu/inlay-green.stl": "82ee184f8ff9a3f938aaeb6302afbf61c1ace8636ba169ef587b635db8270244",
+    "print-package/STL/03-hatsu/light_inlay-light-green.stl": "afa74f2db3eaf1fe802e3ac548562cf992c075782d9b489d71dc4cf927e81943",
+    "print-package/STL/03-hatsu/white_body-white.stl": "ffd98e9280dbe786c991e24f9f7f595be49b7ae4261a239bdd33d500a6aeb11f",
+    "print-package/STL/04-chun/black_back-black.stl": "5bdca957b3435ad955c64f8f479cd36853d867b77de892b97a44a46ed468d4f8",
+    "print-package/STL/04-chun/inlay-red.stl": "965789e11578883ada8c257a059a63c1c44712ad00b8370ec944459b69824af2",
+    "print-package/STL/04-chun/white_body-white.stl": "f1fd5c8709fd8fd6a9845ef685d0787b75df5a76c13043d031a0b5b29a2f0428",
+    "print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf": "acac64efad8f06b0d9e5695348dbfe919964e66c16d84381da9f63131a3c760e",
+    "print-package/projects/chun-P1S-0.2-AMS-PLA.3mf": "ab1547c2e80b3d61ffb4de8239ea6e1a33fc11217b5bddc5120cc8cf7fb61549",
+    "print-package/projects/git-branch-P1S-0.2-AMS-PLA.3mf": "f8772a364387e7c86eef79ba22749a6504fb5892acf68e5ec39cc76de933ea49",
+    "print-package/projects/hatsu-P1S-0.2-AMS-PLA.3mf": "7ccf191915cceefc5c0ef562ebdeca65a9448661612e605c6b879abb6f7afefb",
+    "print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf": "2957fecf5a3507497c6115a40fc169512c8995b175f8d4518938ec0a8843e211"
+  }
+}

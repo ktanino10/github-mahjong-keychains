@@ -8,7 +8,8 @@ import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { isTranslationKey, translations, type Language, type TranslationKey } from "./i18n";
 
-type Design = "git_branch" | "octocat" | "hatsu" | "chun";
+const designIds = ["git_branch", "octocat", "hatsu", "chun", "haku", "iisou"] as const;
+type Design = typeof designIds[number];
 type Selection = Design | "all";
 type View = "front" | "back" | "side" | "angle";
 type HardwareKind = "ball" | "clasp";
@@ -21,13 +22,14 @@ interface DesignModel {
   hardwareOptions: Record<HardwareKind, Object3D>;
 }
 
-const designIds: Design[] = ["git_branch", "octocat", "hatsu", "chun"];
 const labels: Record<Selection, TranslationKey> = {
   all: "allSelection",
   git_branch: "branchSelection",
   octocat: "octocatSelection",
   hatsu: "hatsuSelection",
   chun: "chunSelection",
+  haku: "hakuSelection",
+  iisou: "iisouSelection",
 };
 const presets: Record<View, { theta: number; phi: number }> = {
   front: { theta: 0, phi: Math.PI / 2 },
@@ -150,7 +152,11 @@ function showError(kind: ViewerError, error?: unknown): void {
 }
 
 function isSelection(value: string): value is Selection {
-  return value === "all" || designIds.some((id) => id === value);
+  return value === "all" || isDesign(value);
+}
+
+function isDesign(value: unknown): value is Design {
+  return typeof value === "string" && designIds.some((id) => id === value);
 }
 
 function isView(value: string | undefined): value is View {
@@ -225,7 +231,7 @@ async function main(): Promise<void> {
   gltf.scene.traverse((object) => {
     if (object.userData.role !== "design") return;
     const id: unknown = object.userData.design;
-    if (id !== "git_branch" && id !== "octocat" && id !== "hatsu" && id !== "chun") {
+    if (!isDesign(id)) {
       throw new Error("The model contains an unknown design.");
     }
     const body = object.children.find((child) => child.userData.role === "body");
@@ -237,7 +243,7 @@ async function main(): Promise<void> {
     models.push({ id, root: object, body, hardware, hardwareOptions: { ball, clasp } });
   });
   if (models.length !== designIds.length || new Set(models.map((model) => model.id)).size !== designIds.length) {
-    throw new Error("The viewer needs exactly four finished designs.");
+    throw new Error("The viewer needs exactly six finished designs.");
   }
   models.sort((a, b) => designIds.indexOf(a.id) - designIds.indexOf(b.id));
   let printedMeshCount = 0;
@@ -252,7 +258,7 @@ async function main(): Promise<void> {
       }
     }
   });
-  if (printedMeshCount !== 13) throw new Error("The thirteen printable color parts were not retained.");
+  if (printedMeshCount !== 19) throw new Error("The nineteen printable color parts were not retained.");
 
   let selection: Selection = "all";
   let hardwareKind: HardwareKind = "ball";
@@ -269,10 +275,24 @@ async function main(): Promise<void> {
     nameLabel.textContent = text(labels[selection]);
     canvas.setAttribute("aria-label", `${text(labels[selection])}. ${text("keyboard")}`);
     rotationState.textContent = text(spinning ? "on" : "off");
-    colorCount.textContent = text(selection === "octocat" ? "colorsTwo"
-      : selection === "all" ? "colorsAll" : selection === "hatsu" ? "colorsFour" : "colorsThree");
+    colorCount.textContent = text(selection === "octocat" || selection === "haku" ? "colorsTwo"
+      : selection === "all" ? "colorsAll"
+        : selection === "hatsu" ? "colorsFour" : "colorsThree");
     hardwareNote.textContent = text(hardwareKind === "ball" ? "ballNote" : "claspNote");
   };
+
+  function layoutModels(): void {
+    const visible = models.filter((model) => model.root.visible);
+    const columns = Math.min(visible.length, window.innerWidth <= 800 ? 3 : 6);
+    const rows = Math.ceil(visible.length / columns);
+    const rowHeight = hardwareInput.checked ? hardwareKind === "ball" ? 0.09 : 0.078 : 0.044;
+    visible.forEach((model, index) => {
+      const row = Math.floor(index / columns);
+      const rowCount = Math.min(columns, visible.length - row * columns);
+      model.root.position.x = (index % columns - (rowCount - 1) / 2) * 0.036;
+      model.root.position.y = ((rows - 1) / 2 - row) * rowHeight;
+    });
+  }
 
   function updateHardware(): void {
     models.forEach((model) => {
@@ -282,6 +302,7 @@ async function main(): Promise<void> {
     });
     viewport.dataset.hardware = String(hardwareInput.checked);
     viewport.dataset.hardwareType = hardwareKind;
+    layoutModels();
     refreshDynamic();
   }
 
@@ -378,14 +399,14 @@ async function main(): Promise<void> {
   function changeSelection(value: Selection): void {
     setSpinning(false);
     selection = value;
-    models.forEach((model, index) => {
+    models.forEach((model) => {
       model.root.visible = value === "all" || value === model.id;
-      model.root.position.x = value === "all" ? (index - (models.length - 1) / 2) * 0.036 : 0;
     });
-    greenChip.hidden = value === "octocat" || value === "chun";
+    greenChip.hidden = value === "octocat" || value === "chun" || value === "haku";
     element("#light-green-chip", HTMLSpanElement).hidden = value !== "all" && value !== "hatsu";
     element("#red-chip", HTMLSpanElement).hidden = value !== "all" && value !== "chun";
     viewport.dataset.selection = value;
+    viewport.dataset.visibleDesigns = String(models.filter((model) => model.root.visible).length);
     updateHardware();
     frame("angle");
   }
@@ -405,7 +426,10 @@ async function main(): Promise<void> {
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    if (ready) frame(null, true);
+    if (ready) {
+      layoutModels();
+      frame(null, true);
+    }
     schedule();
   }
 

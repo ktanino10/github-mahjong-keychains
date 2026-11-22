@@ -56,8 +56,9 @@ try {
   track(page);
   await page.goto(url);
   await ready(page);
-  assert.equal(await number(page, "meshes"), 13);
-  assert.equal(await number(page, "designs"), 4);
+  assert.equal(await number(page, "meshes"), 19);
+  assert.equal(await number(page, "designs"), 6);
+  assert.equal(await number(page, "visible-designs"), 6);
   assert.equal(await page.locator("#viewport").getAttribute("data-selection"), "all");
   assert.equal(await page.locator("#show-hardware").isChecked(), true);
   assert.equal(await page.locator("#auto-rotate").getAttribute("aria-pressed"), "false");
@@ -77,7 +78,7 @@ try {
   assert.equal(structural.headings.length, 1);
   assert.equal(structural.invalidControls, 0);
   assert.equal(structural.externalSources, 0);
-  results.push("Offline first load: four models, thirteen exact printed parts, named controls, no external assets.");
+  results.push("Offline first load: six models, nineteen exact printed parts, named controls, no external assets.");
   await snapshot(page, "viewer-ja-ball-chain.png");
 
   await page.getByRole("button", { name: "表", exact: true }).click();
@@ -149,7 +150,7 @@ try {
   assert.equal(await page.locator("#selection-name").textContent(), "Red Chun / Red cat, no circle");
   assert.equal(await page.locator("#color-count").textContent(), "3 colors");
   assert.ok((await page.locator(".print-split").textContent()).includes("5 colors"));
-  assert.ok((await page.locator(".print-split").textContent()).includes("physical red spool"));
+  assert.ok((await page.locator(".print-split").textContent()).includes("white/black/red"));
   assert.ok((await page.locator('[data-i18n="downloadChun"]').textContent()).includes("separate"));
   assert.ok((await canvas.getAttribute("aria-label")).includes("Red cat, no circle"));
   assert.equal(await page.locator('[data-i18n="chunDetail"]').textContent(), "Red Chun + red head, body and tail");
@@ -157,6 +158,29 @@ try {
   await page.getByRole("button", { name: "日本語", exact: true }).click();
   await page.getByRole("checkbox", { name: /金具を表示/ }).uncheck();
   results.push("Chun names the red glyph and standalone red cat in both languages, has white/black/red only, a separate three-color download, unchanged all-three URL and an explicit five-color/four-slot AMS warning.");
+  assert.equal(await page.locator(".print-links a").count(), 7);
+  for (const [id, colorCount, label] of [
+    ["haku", 2, "Haku / White dragon, no text"],
+    ["iisou", 3, "Iisou / Mirrored three-quarter Ducky"],
+  ]) {
+    await select(page, id);
+    assert.equal(await number(page, "visible-designs"), 1);
+    assert.equal(await page.locator("#color-count").textContent(), `${colorCount}色`);
+    assert.equal(await page.locator("#green-chip").isVisible(), id === "iisou");
+    assert.equal(await page.locator("#light-green-chip").isVisible(), false);
+    assert.equal(await page.locator("#red-chip").isVisible(), false);
+    const downloadKey = id === "haku" ? "downloadHaku" : "downloadIisou";
+    assert.ok((await page.locator(`[data-i18n="${downloadKey}"]`).getAttribute("href")).endsWith(`/${id}-P1S-0.2-AMS-PLA.3mf`));
+    await page.locator('[data-view="front"]').click();
+    await snapshot(page, `viewer-ja-${id}.png`);
+    await page.getByRole("button", { name: "English", exact: true }).click();
+    assert.equal(await page.locator("#selection-name").textContent(), label);
+    assert.equal(await page.locator("#color-count").textContent(), `${colorCount} colors`);
+    assert.ok((await canvas.getAttribute("aria-label")).includes(label));
+    await snapshot(page, `viewer-en-${id}.png`);
+    await page.getByRole("button", { name: "日本語", exact: true }).click();
+  }
+  results.push("Haku and mirrored three-quarter peacock Ducky: independent 2/3-color palettes and downloads, no red/light green, named accessible states and Japanese/English front screenshots.");
   await select(page, "octocat");
   assert.equal(await page.locator("#green-chip").isVisible(), false);
   assert.equal(await page.locator("#light-green-chip").isVisible(), false);
@@ -216,7 +240,7 @@ try {
   await page.locator('[data-view="angle"]').click();
   await snapshot(page, "viewer-en-ball-chain.png");
   assert.ok((await page.locator("body").ariaSnapshot()).includes("Show hardware"));
-  for (const [id, colors] of [["octocat", "2 colors"], ["hatsu", "4 colors"], ["chun", "3 colors"], ["all", "5 total colors"]]) {
+  for (const [id, colors] of [["octocat", "2 colors"], ["hatsu", "4 colors"], ["chun", "3 colors"], ["haku", "2 colors"], ["iisou", "3 colors"], ["all", "5 total colors"]]) {
     await select(page, id);
     assert.equal(await page.locator("#color-count").textContent(), colors);
   }
@@ -239,7 +263,7 @@ try {
   assert.equal(await page.locator("html").getAttribute("lang"), "en");
   await page.getByRole("button", { name: "日本語", exact: true }).click();
   assert.equal(await page.locator("#color-count").textContent(), "計5色");
-  assert.equal(await page.locator("#selection-name").textContent(), "4種類を並べて表示");
+  assert.equal(await page.locator("#selection-name").textContent(), "6種類を並べて表示");
   assert.ok((await page.locator("#hardware-note").textContent()).includes("球径2.4 mm"));
   await unlink(saved);
   results.push("Downloaded HTML reopens offline in the chosen language and switches back to Japanese.");
@@ -266,7 +290,7 @@ try {
   const stable = await number(mobile, "angle");
   await mobile.waitForTimeout(500);
   assert.ok(angularDistance(await number(mobile, "angle"), stable) < 0.05);
-  await snapshot(mobile, "mobile-all-four.png");
+  await snapshot(mobile, "mobile-all-six.png");
   await select(mobile, "chun");
   assert.equal(await mobile.locator("#red-chip").isVisible(), true);
   assert.equal(await mobile.locator("#green-chip").isVisible(), false);
@@ -310,7 +334,7 @@ try {
   for (const width of [320, 600, 800]) {
     await mobile.setViewportSize({ width, height: 844 });
     assert.ok(await mobile.evaluate(() => document.documentElement.scrollWidth - innerWidth <= 1), `Horizontal overflow at ${width}px`);
-    assert.equal(await mobile.locator('input[name="design"]').count(), 5);
+    assert.equal(await mobile.locator('input[name="design"]').count(), 7);
   }
   results.push("390 px mobile layout, reduced motion, native touch rotation and pinch zoom.");
   await mobileContext.close();

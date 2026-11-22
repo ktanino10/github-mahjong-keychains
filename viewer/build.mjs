@@ -20,7 +20,7 @@ const result = await build({
   legalComments: "inline",
 });
 const escapeHtml = (text) => text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
-const [template, rawCss, model, poster, displayFont, monoFont, branch, octocat, chun, ...licenses] = await Promise.all([
+const [template, rawCss, model, poster, displayFont, monoFont, branch, octocat, chun, haku, iisou, ...licenses] = await Promise.all([
   readFile(join(root, "index.html"), "utf8"),
   readFile(join(root, "styles.css"), "utf8"),
   readFile(join(root, "assets/keychains.glb")),
@@ -30,6 +30,8 @@ const [template, rawCss, model, poster, displayFont, monoFont, branch, octocat, 
   readFile(join(assets, "git-branch-24.svg"), "utf8"),
   readFile(join(assets, "github-invertocat.svg"), "utf8"),
   readFile(join(assets, "chun-custom.svg"), "utf8"),
+  readFile(join(assets, "haku-supplied-icon.svg"), "utf8"),
+  readFile(join(assets, "iisou-ducky-silhouette.svg"), "utf8"),
   readFile(join(root, "node_modules/three/LICENSE"), "utf8"),
   readFile(join(fonts, "BigShoulders-OFL.txt"), "utf8"),
   readFile(join(fonts, "DMMono-OFL.txt"), "utf8"),
@@ -47,6 +49,8 @@ const replacements = {
   "__BRANCH_ICON__": branch,
   "__OCTOCAT_ICON__": octocat,
   "__CHUN_ICON__": chun,
+  "__HAKU_ICON__": haku,
+  "__IISOU_ICON__": iisou,
   "__LICENSES__": escapeHtml(licenses.join("\n\n-------------------------------\n\n")),
 };
 let html = template;

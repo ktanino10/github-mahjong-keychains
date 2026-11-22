@@ -1,0 +1,80 @@
+{
+  "variant": "haku",
+  "parts": {
+    "black_back": {
+      "file": "print-package/STL/05-haku/black_back-black.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          0.0
+        ],
+        [
+          10.5,
+          22.0,
+          5.5
+        ]
+      ],
+      "volume_mm3": 3478.601532827492,
+      "faces": 1740,
+      "watertight": true,
+      "components": 1
+    },
+    "white_body": {
+      "file": "print-package/STL/05-haku/white_body-white.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          5.5
+        ],
+        [
+          10.5,
+          14.0,
+          16.5
+        ]
+      ],
+      "volume_mm3": 6360.053666752542,
+      "faces": 1496,
+      "watertight": true,
+      "components": 1
+    },
+    "inlay": {
+      "file": "print-package/STL/05-haku/inlay-black.stl",
+      "bounds_mm": [
+        [
+          -6.599999904632568,
+          -11.13371753692627,
+          15.699999809265137
+        ],
+        [
+          6.599999904632568,
+          -0.10628253221511841,
+          16.5
+        ]
+      ],
+      "volume_mm3": 43.68415846037857,
+      "faces": 900,
+      "watertight": true,
+      "components": 3
+    }
+  },
+  "volume_sum_error_mm3": 0.0,
+  "accepted_blank_partition_matches_within_stl_precision": true,
+  "pairwise_part_intersections_have_no_volume": true,
+  "boolean_residual_boundary_facets": 420,
+  "max_boolean_residual_inlay_surface_distance_mm": 0.0,
+  "boolean_residual_volume_mm3": -9.43689570931383e-15,
+  "geometry_tolerance_mm": 2e-05,
+  "common_black_back_byte_identical": true,
+  "reference_blank_sha256": "7289f85126e5ef6747b7638d32ffb2b064eedc43df16c653bd758239f2365632",
+  "source": "print-package/source/keychains.scad",
+  "physical_print_and_fit_tested": false,
+  "layout": {
+    "no_text_or_upper_graphic": true,
+    "icon_width_mm": 13.199999809265137,
+    "bottom_margin_mm": 2.8662824630737305,
+    "top_of_black_graphic_y_mm": -0.10628253221511841,
+    "source_asset": "print-package/source/assets/haku-supplied-icon.svg"
+  }
+}

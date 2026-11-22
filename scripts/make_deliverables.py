@@ -7,6 +7,7 @@ import json
 import zipfile
 
 from PIL import Image
+from designs import PRINTED_PART_COUNT, PROJECTS
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,7 +26,7 @@ if args.poster_only:
     raise SystemExit(0)
 
 checks = json.loads((ROOT / "validation/slicer-checks.json").read_text())
-assert len(checks["projects"]) == 5
+assert len(checks["projects"]) == len(PROJECTS)
 for item in checks["projects"]:
     path = ROOT / item["project"]
     assert hashlib.sha256(path.read_bytes()).hexdigest() == item["sha256"], path
@@ -38,19 +39,19 @@ paths += [ROOT / name for name in [
     "viewer/assets/fonts/BigShoulders-OFL.txt", "viewer/assets/fonts/DMMono-OFL.txt",
 ]]
 paths += [path for path in (ROOT / "licenses").rglob("*") if path.is_file()]
-paths += [ROOT / "docs/images/viewer-ja-chun.png", ROOT / "docs/images/viewer-en-chun.png"]
+paths += list((ROOT / "docs/images").glob("*.png"))
 paths += [path for path in (ROOT / "validation").glob("*.json") if path.name != "deliverables.json"]
 target = ROOT / "docs/downloads/github-mahjong-keychains-P1S-0.2-AMS-PLA.zip"
 target.parent.mkdir(exist_ok=True)
 with zipfile.ZipFile(target, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-    for path in sorted(paths):
+    for path in sorted(set(paths)):
         assert path.is_file(), path
         archive.write(path, "github-mahjong-keychains/" + path.relative_to(ROOT).as_posix())
 with zipfile.ZipFile(target) as archive:
     assert archive.testzip() is None
     names = archive.namelist()
-    assert sum(name.endswith(".stl") for name in names) == 13
-    assert sum(name.endswith(".3mf") for name in names) == 5
+    assert sum(name.endswith(".stl") for name in names) == PRINTED_PART_COUNT
+    assert sum(name.endswith(".3mf") for name in names) == len(PROJECTS)
     assert not any(name.endswith((".gcode", ".log", ".ttc", ".blend")) for name in names)
     assert not any(name.startswith("/") or ".." in Path(name).parts for name in names)
 
@@ -63,4 +64,4 @@ manifest = {
     for path in sorted(deliverables)
 }
 (ROOT / "validation/deliverables.json").write_text(json.dumps(manifest, indent=2) + "\n")
-print("Packaged five projects and thirteen STLs: original three-design set + separate Chun, bilingual instructions and offline viewer.")
+print(f"Packaged {len(names)} files: {len(PROJECTS)} projects and {PRINTED_PART_COUNT} STLs, bilingual instructions and offline viewer.")

@@ -11,6 +11,7 @@ import subprocess
 import zipfile
 
 from PIL import Image
+from designs import PRINTED_PART_COUNT, PROJECTS
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -124,11 +125,19 @@ for name, expected in manifest.items():
 projects = json.loads((ROOT / "validation/slicer-checks.json").read_text())["projects"]
 for project in projects:
     assert hashlib.sha256((ROOT / project["project"]).read_bytes()).hexdigest() == project["sha256"]
-assert len(projects) == 5
-assert len(list((ROOT / "print-package/STL").rglob("*.stl"))) == 13
-assert len(list((ROOT / "print-package/projects").glob("*.3mf"))) == 5
+assert len(projects) == len(PROJECTS)
+assert len(list((ROOT / "print-package/STL").rglob("*.stl"))) == PRINTED_PART_COUNT
+assert len(list((ROOT / "print-package/projects").glob("*.3mf"))) == len(PROJECTS)
+preserved = json.loads((ROOT / "validation/preserved-originals.json").read_text())
+for name, expected in preserved["files"].items():
+    assert hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == expected, name
+top_layers = json.loads((ROOT / "validation/top-layer-checks.json").read_text())
+assert {item["variant"] for item in top_layers} == {"haku", "iisou"}
+for item in top_layers:
+    path = ROOT / "print-package/projects" / f"{item['variant']}-P1S-0.2-AMS-PLA.3mf"
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == item["project_sha256"]
 
 if failures:
     raise SystemExit("Public artifact audit failed:\n" + "\n".join(failures))
 print(f"PASS: {len(files)} publishable files, {scanned} files/archive members; no private paths or credentials detected.")
-print("PASS: five project hashes, ten unchanged + three Chun STLs, documentation links and embedded viewer assets.")
+print(f"PASS: {len(PROJECTS)} project hashes, {PRINTED_PART_COUNT} STLs, 18 byte-identical original files, top-layer evidence, documentation links and embedded viewer assets.")

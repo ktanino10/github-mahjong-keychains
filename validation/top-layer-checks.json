@@ -1,0 +1,68 @@
+[
+  {
+    "variant": "haku",
+    "layer": 165,
+    "project_sha256": "349db11757b336f5831b51c578bb1cc6faac57bfa96a8fcd3144f236713be5c1",
+    "local_gcode_sha256": "cd7bb2cb0242217701497fa0368032fca1ee231e629da8be40667f62af9b7c18",
+    "actual_extrusion_paths": 895,
+    "saved_stock_nozzle_xy_offset_mm": [
+      0.0,
+      2.0
+    ],
+    "inlay_components_checked": 3,
+    "component_interior_coverage_ratios": [
+      0.9992137677994234,
+      1.0,
+      0.9661885245901639
+    ],
+    "component_uncovered_core_area_mm2": [
+      0.03375,
+      0.0,
+      0.04125
+    ],
+    "colored_footprint_in_eroded_white_area_mm2": 0.0,
+    "method": "Rasterized actual G1/G2/G3 object extrusions with saved LINE_WIDTH; purge/tower/custom excluded. Compare 0.10 mm-eroded inlay cores and 0.15 mm-eroded white spaces at 40 pixels/mm.",
+    "scope": "Slicer footprint estimate, not physical bead width or strength validation."
+  },
+  {
+    "variant": "iisou",
+    "layer": 165,
+    "project_sha256": "ddbb3e50e6fdde318387fad1e019b24e78a884b25318149e64dbce1a8f699022",
+    "local_gcode_sha256": "454c2021540188c14658d3efccc2ee0679a670e527ad5a1c8ea256f3a2671d84",
+    "actual_extrusion_paths": 3346,
+    "saved_stock_nozzle_xy_offset_mm": [
+      0.0,
+      2.0
+    ],
+    "inlay_components_checked": 11,
+    "component_interior_coverage_ratios": [
+      0.9971964072478064,
+      0.9785079561892953,
+      0.9979809104258444,
+      1.0,
+      0.9764468371467026,
+      0.9971920224638203,
+      0.9972100201828327,
+      0.9938867246029368,
+      0.9957014458772958,
+      0.9969029593943565,
+      0.9980622658571244
+    ],
+    "component_uncovered_core_area_mm2": [
+      0.03375,
+      0.065,
+      0.01375,
+      0.0,
+      0.021875,
+      0.024375,
+      0.029375,
+      0.06375,
+      0.034375,
+      0.03375,
+      0.01875
+    ],
+    "colored_footprint_in_eroded_white_area_mm2": 0.0,
+    "method": "Rasterized actual G1/G2/G3 object extrusions with saved LINE_WIDTH; purge/tower/custom excluded. Compare 0.10 mm-eroded inlay cores and 0.15 mm-eroded white spaces at 40 pixels/mm.",
+    "scope": "Slicer footprint estimate, not physical bead width or strength validation."
+  }
+]

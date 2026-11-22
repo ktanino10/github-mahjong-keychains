@@ -19,6 +19,7 @@ import zipfile
 import numpy as np
 import trimesh
 
+from designs import ADDITIONS, PROJECTS, VARIANTS, parts_for
 
 ROOT = Path(__file__).resolve().parents[1]
 CORE = "http://schemas.microsoft.com/3dmanufacturing/core/2015/02"
@@ -35,13 +36,7 @@ PALETTE = [
     ("Light green", "#9DD96C"),
 ]
 CHUN_PALETTE = PALETTE[:2] + [("Red", "#B33220")]
-VARIANTS = {
-    "git-branch": ("git_branch", "01-git-branch", "Git branch"),
-    "invertocat": ("octocat", "02-octocat", "Invertocat"),
-    "hatsu": ("hatsu", "03-hatsu", "Hatsu contribution"),
-    "chun": ("chun", "04-chun", "Red Chun and red cat without circle"),
-}
-PROJECTS = {"all-three": ["git-branch", "invertocat", "hatsu"], **{key: [key] for key in VARIANTS}}
+IISOU_PALETTE = PALETTE[:3]
 FLUSH_MATRIX = [
     0, 250, 300, 250,
     800, 0, 600, 750,
@@ -56,10 +51,20 @@ CHUN_FLUSH_MATRIX = [
 
 
 def project_materials(selected):
+    if not selected or any(key not in VARIANTS for key in selected):
+        raise ValueError("Select known designs.")
     if "chun" in selected:
         if selected != ["chun"]:
-            raise ValueError("Chun must be a separate three-color project; all four designs need five colors.")
+            raise ValueError("Chun must remain a separate three-color project.")
         return CHUN_PALETTE, CHUN_FLUSH_MATRIX
+    if "haku" in selected:
+        if selected != ["haku"]:
+            raise ValueError("Haku is supplied as a separate two-color project.")
+        return PALETTE[:2], [0, 250, 800, 0]
+    if "iisou" in selected:
+        if selected != ["iisou"]:
+            raise ValueError("Iisou is supplied as a separate three-color project.")
+        return IISOU_PALETTE, [FLUSH_MATRIX[row * 4 + column] for row in range(3) for column in range(3)]
     return PALETTE, FLUSH_MATRIX
 
 
@@ -144,7 +149,7 @@ def slot_for(variant, part):
         return 1
     if part == "light_inlay":
         return 4
-    if part == "inlay" and variant != "octocat":
+    if part == "inlay" and variant not in {"octocat", "haku"}:
         return 3
     return 2
 
@@ -178,7 +183,7 @@ def make_seed(path, selected, machine, process, filaments):
     for index, key in enumerate(selected):
         variant, slug, title = VARIANTS[key]
         report = json.loads((ROOT / "validation" / f"validation-{variant}.json").read_text())
-        parts = ["black_back", "white_body", "inlay"] + (["light_inlay"] if variant == "hatsu" else [])
+        parts = parts_for(variant)
         object_id = 100 + index
         object_settings = ET.SubElement(settings, "object", {"id": str(object_id)})
         meta(object_settings, "name", title)
@@ -268,7 +273,7 @@ def main():
     parser.add_argument("--bambu", required=True, type=Path, help="Official Bambu Studio executable.")
     parser.add_argument("--profiles", required=True, type=Path, help="The application's Resources/profiles/BBL directory, never user profiles.")
     parser.add_argument("--work-dir", type=Path, default=ROOT / ".work" / "slicer")
-    parser.add_argument("--only", choices=PROJECTS, help="Build one project, preserving all other project files.")
+    parser.add_argument("--only", choices=PROJECTS, nargs="+", help="Build selected projects, preserving every other file.")
     args = parser.parse_args()
     work = args.work_dir.resolve()
     work.mkdir(parents=True, exist_ok=True)
@@ -287,7 +292,7 @@ def main():
     destination = ROOT / "print-package" / "projects"
     destination.mkdir(parents=True, exist_ok=True)
     for name, selected in PROJECTS.items():
-        if args.only and args.only != name:
+        if args.only and name not in args.only:
             continue
         palette, _ = project_materials(selected)
         machine, process, filaments, machine_path, process_path, filament_paths, sources = configured_profiles(
@@ -328,7 +333,7 @@ def main():
                     continue
                 slot = slot_for(variant, part)
                 color, rgb = palette[slot - 1]
-                project = "chun" if key == "chun" else "all-three"
+                project = key if key in ("chun", *ADDITIONS) else "all-three"
                 writer.writerow([f"{variant}/{part}", slot, color, rgb, info["file"].removeprefix("print-package/"),
                                  f"projects/{project}-P1S-0.2-AMS-PLA.3mf"])
     write_json(ROOT / "validation/profile-provenance.json", {
@@ -352,6 +357,15 @@ def main():
             "palette": [{"slot": slot, "color": name, "rgb": color} for slot, (name, color) in enumerate(CHUN_PALETTE, 1)],
             "flush_volumes_mm3_from_row_to_column": CHUN_FLUSH_MATRIX,
             "note": "Separate white/black/red project. The original three-design set retains white/black/green/light green. Map or change the physical red spool; five simultaneous colors do not fit one four-slot AMS.",
+        },
+        "separate_haku_project": {
+            "project": "print-package/projects/haku-P1S-0.2-AMS-PLA.3mf",
+            "palette": [{"slot": slot, "color": name, "rgb": color} for slot, (name, color) in enumerate(PALETTE[:2], 1)],
+        },
+        "separate_iisou_project": {
+            "project": "print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf",
+            "palette": [{"slot": slot, "color": name, "rgb": color} for slot, (name, color) in enumerate(IISOU_PALETTE, 1)],
+            "note": "Iisou uses white/black/green in slots 1/2/3. Mirrored three-quarter Ducky and its peacock tail are green line art; no yellow or orange filament is needed.",
         },
         "flush_note": "Conservative starting volumes; actual pigment transitions still need a physical first print.",
     })

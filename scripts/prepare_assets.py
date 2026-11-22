@@ -67,7 +67,8 @@ ET.SubElement(cat, f"{{{SVG}}}path", {
 ET.indent(chun, space="  ")
 chun.write(chun_path, encoding="unicode")
 
-expected = {"git-branch-24.svg", "github-invertocat.svg", "hatsu.svg", "chun-custom.svg"}
+expected = {"git-branch-24.svg", "github-invertocat.svg", "hatsu.svg", "chun-custom.svg",
+            "haku-supplied-icon.svg", "iisou-ducky-silhouette.svg", "iisou-ducky-details.svg"}
 assert {path.name for path in ASSETS.glob("*.svg")} == expected
 for path in ASSETS.glob("*.svg"):
     root = ET.parse(path).getroot()
@@ -92,6 +93,20 @@ provenance = {
             "source": "Pre-existing single-glyph outline supplied with the accepted design.",
             "font_files_distributed": False,
             "note": "Not covered by the source-code license. No system font is needed by this build.",
+        },
+        {
+            "file": "haku-supplied-icon.svg",
+            "source": "User-supplied 135 x 110 image of a legacy Copilot-style face.",
+            "modifications": "Faithful traced dark outline, all goggle/face negative spaces and two mouth details retained; uniformly scaled and placed below the center of the white tile. No text or background rectangle.",
+            "trace_verification": "validation/haku-trace.json",
+            "original_upload_and_metadata_distributed": False,
+            "note": "Not represented as a current approved Copilot logo. The upload does not establish merchandise, modification or redistribution permission. Excluded from the code-only MIT license.",
+        },
+        {
+            "files": ["iisou-ducky-silhouette.svg", "iisou-ducky-details.svg"],
+            "source": "https://brand.github.com/graphic-elements/mascots",
+            "trace_verification": "validation/ducky-source.json",
+            "note": "Official central three-quarter Ducky is traced, horizontally mirrored and adapted to green line art with an original symmetrical peacock-inspired fan. The smaller eye is minimally moved inward/upward for printable separation. Not a new official mascot or colorway. Upstream requires Brand & Marketing Design approval for public uses; no downstream permission or code-only MIT coverage is granted.",
         },
         {
             "file": "chun-custom.svg",
@@ -138,4 +153,4 @@ provenance = {
 (ROOT / "validation" / "provenance.json").write_text(
     json.dumps(provenance, indent=2) + "\n", encoding="utf-8"
 )
-print("Validated four SVG outlines; existing artwork is retained and no photo or system font is distributed.")
+print("Validated seven SVG outlines; original upload/metadata and system fonts are not distributed.")

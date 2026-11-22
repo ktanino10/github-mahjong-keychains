@@ -1,5 +1,5 @@
 {
-  "source": "28 x 21 x 16.5 mm tile bodies and 5 mm ears unchanged. All black/white material boundaries share z=5.5 mm, making the entire ear black. Thirteen exact STL-derived color parts: the original ten plus three Chun parts with the retained red glyph and red head/body/tail silhouette, without the black circle.",
+  "source": "28 x 21 x 16.5 mm tile bodies and 5 mm ears unchanged. All black/white boundaries share z=5.5 mm; the entire ear is black. Nineteen exact STL-derived parts: thirteen originals, three no-text Haku and three mirrored three-quarter green official-Ducky Iisou with a peacock-inspired tail.",
   "coordinate_system": "X right, Y along keychain, Z toward front; stored in meters.",
   "printed_geometry_modified": false,
   "metal_hardware": "Default: 2.4 mm balls on an approximately 120 mm loop through the unchanged ear. Alternate: purchased round wire-gate swivel-clasp shape. Pitch, connector and clasp internal dimensions are approximate; physical fit and strength untested. No metal in print files.",
@@ -7,7 +7,9 @@
     "git_branch",
     "octocat",
     "hatsu",
-    "chun"
+    "chun",
+    "haku",
+    "iisou"
   ],
   "printed_parts": [
     "git_branch/black_back",
@@ -22,8 +24,14 @@
     "hatsu/white_body",
     "chun/black_back",
     "chun/inlay",
-    "chun/white_body"
+    "chun/white_body",
+    "haku/black_back",
+    "haku/inlay",
+    "haku/white_body",
+    "iisou/black_back",
+    "iisou/inlay",
+    "iisou/white_body"
   ],
-  "glb_bytes": 6370420,
-  "glb_sha256": "d9047c9fc6eff887c9e3cca9421e6926094958ef125f71eb0a1c32c6d6ae7bef"
+  "glb_bytes": 8739000,
+  "glb_sha256": "54d9627c54683572ba01e4d84bc5463f6d83c6b4d6f5c50137aa8df3363b7111"
 }

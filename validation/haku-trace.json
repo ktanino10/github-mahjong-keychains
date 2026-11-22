@@ -1,0 +1,12 @@
+{
+  "source": "User-supplied 135 x 110 raster showing a legacy Copilot-style face.",
+  "source_image_distributed": false,
+  "source_metadata_distributed": false,
+  "method": "127.5-level marching-squares contour, mild corner smoothing and 0.13-pixel simplification; all six boundaries retained.",
+  "reference_pixel_mask_iou": 0.9975928473177441,
+  "closed_contours": 6,
+  "no_background_rectangle_or_text": true,
+  "current_approved_logo_or_merchandise_permission_claimed": false,
+  "outline": "print-package/source/assets/haku-supplied-icon.svg",
+  "outline_sha256": "408da4875266883410f9dd73306f0621c1d5e1926e3a9e6313790f80af147422"
+}

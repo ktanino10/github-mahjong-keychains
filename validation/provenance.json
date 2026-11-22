@@ -18,6 +18,23 @@
       "note": "Not covered by the source-code license. No system font is needed by this build."
     },
     {
+      "file": "haku-supplied-icon.svg",
+      "source": "User-supplied 135 x 110 image of a legacy Copilot-style face.",
+      "modifications": "Faithful traced dark outline, all goggle/face negative spaces and two mouth details retained; uniformly scaled and placed below the center of the white tile. No text or background rectangle.",
+      "trace_verification": "validation/haku-trace.json",
+      "original_upload_and_metadata_distributed": false,
+      "note": "Not represented as a current approved Copilot logo. The upload does not establish merchandise, modification or redistribution permission. Excluded from the code-only MIT license."
+    },
+    {
+      "files": [
+        "iisou-ducky-silhouette.svg",
+        "iisou-ducky-details.svg"
+      ],
+      "source": "https://brand.github.com/graphic-elements/mascots",
+      "trace_verification": "validation/ducky-source.json",
+      "note": "Official central three-quarter Ducky is traced, horizontally mirrored and adapted to green line art with an original symmetrical peacock-inspired fan. The smaller eye is minimally moved inward/upward for printable separation. Not a new official mascot or colorway. Upstream requires Brand & Marketing Design approval for public uses; no downstream permission or code-only MIT coverage is granted."
+    },
+    {
       "file": "chun-custom.svg",
       "source": "Retained hand-outlined Chun glyph plus the white cat silhouette extracted from github-invertocat.svg.",
       "modifications": "Keep the head/body/tail region from convex hull minus the original black logo. Select only the connected region containing the head, excluding the circle and a disconnected hull-edge sliver. Fill the cat red, without moving the upper Chun glyph.",
@@ -71,7 +88,10 @@
     "chun-custom.svg": "d4c3ad3307f66765c12f653258992fb751c29f76aa89f00a11054f91eeeb71b5",
     "git-branch-24.svg": "76b97dde63b49eaa91978209f31f09c829cd690959fbcd7bbafdf96fa0a81474",
     "github-invertocat.svg": "693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1",
+    "haku-supplied-icon.svg": "408da4875266883410f9dd73306f0621c1d5e1926e3a9e6313790f80af147422",
     "hatsu.svg": "ad2515b54377e374b218dfdbc5046dc93931092029e343ec0506d233374b35f5",
+    "iisou-ducky-details.svg": "ca874905e91cf22884cd0fe2e5c36ad94ba96f7b2e0a7c98a0302be07aab6ad8",
+    "iisou-ducky-silhouette.svg": "8c278e75ea84b2a149f7d9e77d0f312008a33c665f75640308de2e230f8bd943",
     "octicons-LICENSE.txt": "da259c8bd0de62713ccdcf88910aebca810644f98c2c912bad814fc79ea778df"
   }
 }

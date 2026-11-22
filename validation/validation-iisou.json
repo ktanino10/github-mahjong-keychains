@@ -1,0 +1,79 @@
+{
+  "variant": "iisou",
+  "parts": {
+    "black_back": {
+      "file": "print-package/STL/06-iisou/black_back-black.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          0.0
+        ],
+        [
+          10.5,
+          22.0,
+          5.5
+        ]
+      ],
+      "volume_mm3": 3478.601532827492,
+      "faces": 1740,
+      "watertight": true,
+      "components": 1
+    },
+    "white_body": {
+      "file": "print-package/STL/06-iisou/white_body-white.stl",
+      "bounds_mm": [
+        [
+          -10.5,
+          -14.0,
+          5.5
+        ],
+        [
+          10.5,
+          14.0,
+          16.5
+        ]
+      ],
+      "volume_mm3": 6315.856711999782,
+      "faces": 11644,
+      "watertight": true,
+      "components": 1
+    },
+    "inlay": {
+      "file": "print-package/STL/06-iisou/inlay-green.stl",
+      "bounds_mm": [
+        [
+          -8.75,
+          -10.915749549865723,
+          15.699999809265137
+        ],
+        [
+          8.75,
+          11.3100004196167,
+          16.5
+        ]
+      ],
+      "volume_mm3": 87.88111321313994,
+      "faces": 11060,
+      "watertight": true,
+      "components": 11
+    }
+  },
+  "volume_sum_error_mm3": 0.0,
+  "accepted_blank_partition_matches_within_stl_precision": true,
+  "pairwise_part_intersections_have_no_volume": true,
+  "boolean_residual_boundary_facets": 4246,
+  "max_boolean_residual_inlay_surface_distance_mm": 0.0,
+  "boolean_residual_volume_mm3": 9.547918011776346e-15,
+  "geometry_tolerance_mm": 2e-05,
+  "common_black_back_byte_identical": true,
+  "reference_blank_sha256": "7289f85126e5ef6747b7638d32ffb2b064eedc43df16c653bd758239f2365632",
+  "source": "print-package/source/keychains.scad",
+  "physical_print_and_fit_tested": false,
+  "layout": {
+    "single_bird": true,
+    "peacock_fan_feathers": 7,
+    "duck": "Official central three-quarter GitHub Ducky, mirrored so its bill faces left, with both eyes and a symmetrical peacock fan behind it. All green.",
+    "numerals_or_text": false
+  }
+}

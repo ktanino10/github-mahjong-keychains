@@ -1,0 +1,19 @@
+{
+  "official_source": "https://brand.github.com/graphic-elements/mascots",
+  "source_image": "https://brand.github.com/_next/static/media/mascots-03.202752d0.png",
+  "source_image_sha256": "ca6a3fcf48085b29e15c9ebf5f582efcc0dcc921b7dbca74c1088aa9b8d89da9",
+  "selected_view": "Central three-quarter view; source crop x=520..915, y=130..600. Mirrored horizontally in OpenSCAD so the bill faces left.",
+  "silhouette_pixel_iou": 1.0,
+  "transform": "Uniform scale and horizontal reflection of the official three-quarter silhouette, both traced eyes and traced bill. Green line art with a simplified bill crease and an original symmetrical seven-feather peacock fan behind the duck, never over its face. No gradients or extra text.",
+  "green": "#238636",
+  "far_eye_adjustment_mm_before_reflection": [
+    -1.2095,
+    1.1504999999999999
+  ],
+  "far_eye_note": "The smaller eye is moved minimally inward/upward to preserve a white gap of at least 0.25 mm from the green head and bill outlines. Its traced shape is unchanged.",
+  "not_a_new_official_colorway_or_blanket_license": true,
+  "usage_notice": "The upstream guide requires approval for public mascot use. This adaptation does not grant downstream permissions or establish a new official colorway.",
+  "original_raster_distributed": false,
+  "outline_sha256": "8c278e75ea84b2a149f7d9e77d0f312008a33c665f75640308de2e230f8bd943",
+  "details_sha256": "ca874905e91cf22884cd0fe2e5c36ad94ba96f7b2e0a7c98a0302be07aab6ad8"
+}

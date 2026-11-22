@@ -1,11 +1,11 @@
 {
   "docs/downloads/github-mahjong-keychains-P1S-0.2-AMS-PLA.zip": {
-    "bytes": 11233883,
-    "sha256": "7553286a643af89609c40de7913e9b1ca6bfcb8d391c9897075bfd68766fddc9"
+    "bytes": 15422755,
+    "sha256": "9bf42371899efab79d9cf5c3204aacf0cc74be2770f211bc458547510210576c"
   },
   "docs/index.html": {
-    "bytes": 9504072,
-    "sha256": "0452fd68a650e049d205170ddc4b45e0132fa477019c2e145c02455001f920a2"
+    "bytes": 12683400,
+    "sha256": "9bb6a426c810aa74e2b635b032716794502a18d721966ded4acd25ff2f4410f9"
   },
   "print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf": {
     "bytes": 782167,
@@ -19,9 +19,17 @@
     "bytes": 113778,
     "sha256": "f8772a364387e7c86eef79ba22749a6504fb5892acf68e5ec39cc76de933ea49"
   },
+  "print-package/projects/haku-P1S-0.2-AMS-PLA.3mf": {
+    "bytes": 75223,
+    "sha256": "349db11757b336f5831b51c578bb1cc6faac57bfa96a8fcd3144f236713be5c1"
+  },
   "print-package/projects/hatsu-P1S-0.2-AMS-PLA.3mf": {
     "bytes": 417155,
     "sha256": "7ccf191915cceefc5c0ef562ebdeca65a9448661612e605c6b879abb6f7afefb"
+  },
+  "print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf": {
+    "bytes": 324251,
+    "sha256": "ddbb3e50e6fdde318387fad1e019b24e78a884b25318149e64dbce1a8f699022"
   },
   "print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf": {
     "bytes": 314490,

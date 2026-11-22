@@ -10,6 +10,8 @@ from mathutils import Vector
 
 
 OUT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(OUT / "scripts"))
+from designs import VARIANTS, parts_for
 MM = 0.001
 DRAFT = "--draft" in sys.argv
 
@@ -222,15 +224,15 @@ red = material("Printed red", 0xB33220, 0.32)
 metal = material("Purchased metal / illustrative finish", 0xBAC0C1, 0.23, metallic=1)
 ground = material("Warm studio ground", 0xEEEFE8, 0.8)
 
-for index, variant in enumerate(["git_branch", "octocat", "hatsu", "chun"]):
+for index, (variant, _, _) in enumerate(VARIANTS.values()):
     report = json.loads((OUT / "validation" / f"validation-{variant}.json").read_text())
     parent = bpy.data.objects.new(f"Keychain {index + 1} - {variant}", None)
     bpy.context.collection.objects.link(parent)
-    parent.location = ((index - 1.5) * 36 * MM, 0, 0)
-    parent.rotation_euler.z = math.radians([4, 0, -4, -5][index])
-    parts = ["black_back", "white_body", "inlay"] + (["light_inlay"] if variant == "hatsu" else [])
+    parent.location = ((index - (len(VARIANTS) - 1) / 2) * 36 * MM, 0, 0)
+    parent.rotation_euler.z = math.radians([4, 0, -4, -5, 2, -2][index])
+    parts = parts_for(variant)
     for part in parts:
-        mat = white if part == "white_body" else light_green if part == "light_inlay" else (green if part == "inlay" and variant != "octocat" else black)
+        mat = white if part == "white_body" else light_green if part == "light_inlay" else (green if part == "inlay" and variant not in {"octocat", "haku"} else black)
         if variant == "chun" and part == "inlay":
             mat = red
         mesh_from_stl(OUT / report["parts"][part]["file"], f"{variant}/{part}", mat, parent)
@@ -246,7 +248,7 @@ bpy.context.collection.objects.link(camera)
 camera.location = (0, -48 * MM, 210 * MM)
 aim(camera, (0, 22 * MM, 5 * MM))
 camera.data.type = "ORTHO"
-camera.data.ortho_scale = 180 * MM
+camera.data.ortho_scale = 240 * MM
 camera.data.lens = 60
 camera.data.clip_start = 0.001
 camera.data.clip_end = 10
@@ -284,4 +286,4 @@ scene.render.use_stamp_hostname = False
 (OUT / ".work").mkdir(exist_ok=True)
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT / ".work" / "keychain-studio.blend"))
 bpy.ops.render.render(write_still=True)
-print("Rendered unchanged STL parts with a 120 mm ball-chain reference. Metal is not printable.")
+print("Rendered all six exact STL assemblies with the unchanged 120 mm ball-chain reference.")
