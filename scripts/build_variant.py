@@ -165,7 +165,7 @@ if variant in ("chun", *ADDITIONS):
     elif variant == "iisou":
         components = trimesh.load_mesh(OUT / report["parts"]["inlay"]["file"], process=True).split()
         assert any(mesh.bounds[1, 1] > 11 for mesh in components), "The peacock fan must reach the upper face."
-        report["layout"] = {"single_bird": True, "peacock_fan_feathers": 7, "duck": "Official central three-quarter GitHub Ducky, mirrored so its bill faces left, with both eyes and a symmetrical peacock fan behind it. All green.", "numerals_or_text": False}
+        report["layout"] = {"single_bird": True, "peacock_fan_feathers": 7, "duck": "Official front-facing GitHub Ducky with both eyes and its broad bill, with the unchanged symmetrical peacock fan behind it. All green; not mirrored.", "numerals_or_text": False}
 
 (OUT / "validation" / f"validation-{variant}.json").write_text(
     json.dumps(report, indent=2), encoding="utf-8"

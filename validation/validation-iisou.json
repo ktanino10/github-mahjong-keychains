@@ -34,8 +34,8 @@
           16.5
         ]
       ],
-      "volume_mm3": 6315.856711999782,
-      "faces": 11644,
+      "volume_mm3": 6316.4379698429575,
+      "faces": 11860,
       "watertight": true,
       "components": 1
     },
@@ -44,7 +44,7 @@
       "bounds_mm": [
         [
           -8.75,
-          -10.915749549865723,
+          -10.945249557495117,
           15.699999809265137
         ],
         [
@@ -53,18 +53,18 @@
           16.5
         ]
       ],
-      "volume_mm3": 87.88111321313994,
-      "faces": 11060,
+      "volume_mm3": 87.29985536996497,
+      "faces": 11296,
       "watertight": true,
       "components": 11
     }
   },
-  "volume_sum_error_mm3": 0.0,
+  "volume_sum_error_mm3": 1.8189894035458565e-12,
   "accepted_blank_partition_matches_within_stl_precision": true,
   "pairwise_part_intersections_have_no_volume": true,
-  "boolean_residual_boundary_facets": 4246,
+  "boolean_residual_boundary_facets": 4266,
   "max_boolean_residual_inlay_surface_distance_mm": 0.0,
-  "boolean_residual_volume_mm3": 9.547918011776346e-15,
+  "boolean_residual_volume_mm3": 1.887379141862766e-14,
   "geometry_tolerance_mm": 2e-05,
   "common_black_back_byte_identical": true,
   "reference_blank_sha256": "7289f85126e5ef6747b7638d32ffb2b064eedc43df16c653bd758239f2365632",
@@ -73,7 +73,7 @@
   "layout": {
     "single_bird": true,
     "peacock_fan_feathers": 7,
-    "duck": "Official central three-quarter GitHub Ducky, mirrored so its bill faces left, with both eyes and a symmetrical peacock fan behind it. All green.",
+    "duck": "Official front-facing GitHub Ducky with both eyes and its broad bill, with the unchanged symmetrical peacock fan behind it. All green; not mirrored.",
     "numerals_or_text": false
   }
 }

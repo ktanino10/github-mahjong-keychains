@@ -114,9 +114,8 @@ module artwork_original(layer = "all") {
 }
 
 module duck_shape(details = false) {
-    mirror([1, 0, 0])
-        translate([-5.82625, -11.55])
-            import(details ? "assets/iisou-ducky-details.svg" : "assets/iisou-ducky-silhouette.svg");
+    translate([-5.7525, -11.55])
+        import(details ? "assets/iisou-ducky-details.svg" : "assets/iisou-ducky-silhouette.svg");
 }
 
 module ducky_artwork() {

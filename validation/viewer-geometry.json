@@ -137,17 +137,17 @@
   },
   {
     "part": "iisou/white_body",
-    "triangles": 11644,
+    "triangles": 11860,
     "max_bound_difference_mm": 4.3213367462158203e-07,
-    "volume_difference_mm3": 1.8153706150769722e-05,
+    "volume_difference_mm3": 1.94743370229844e-05,
     "max_vertex_distance_mm": 6.349188768979816e-07,
     "triangle_connectivity_and_winding_unchanged": true
   },
   {
     "part": "iisou/inlay",
-    "triangles": 11060,
+    "triangles": 11296,
     "max_bound_difference_mm": 4.470348358154297e-07,
-    "volume_difference_mm3": 3.4706286669461406e-05,
+    "volume_difference_mm3": 3.3385657388862455e-05,
     "max_vertex_distance_mm": 6.349188768979816e-07,
     "triangle_connectivity_and_winding_unchanged": true
   }

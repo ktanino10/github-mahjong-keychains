@@ -365,7 +365,7 @@ def main():
         "separate_iisou_project": {
             "project": "print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf",
             "palette": [{"slot": slot, "color": name, "rgb": color} for slot, (name, color) in enumerate(IISOU_PALETTE, 1)],
-            "note": "Iisou uses white/black/green in slots 1/2/3. Mirrored three-quarter Ducky and its peacock tail are green line art; no yellow or orange filament is needed.",
+            "note": "Iisou uses white/black/green in slots 1/2/3. Front-facing Ducky and its peacock tail are green line art; no yellow or orange filament is needed.",
         },
         "flush_note": "Conservative starting volumes; actual pigment transitions still need a physical first print.",
     })

@@ -6,7 +6,7 @@ VARIANTS = {
     "hatsu": ("hatsu", "03-hatsu", "Hatsu contribution"),
     "chun": ("chun", "04-chun", "Red Chun and red cat without circle"),
     "haku": ("haku", "05-haku", "Haku - supplied face icon, no text"),
-    "iisou": ("iisou", "06-iisou", "Iisou - mirrored three-quarter green Ducky with peacock tail"),
+    "iisou": ("iisou", "06-iisou", "Iisou - front-facing green Ducky with peacock tail"),
 }
 ADDITIONS = ("haku", "iisou")
 PROJECTS = {

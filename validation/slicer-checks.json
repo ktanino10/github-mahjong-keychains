@@ -453,7 +453,7 @@
     },
     {
       "project": "print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf",
-      "sha256": "ddbb3e50e6fdde318387fad1e019b24e78a884b25318149e64dbce1a8f699022",
+      "sha256": "af05bfc3fee4a36c5f03a3bb1b997cc0d43e8c27eb22ebedd09afd893253671a",
       "reopened_without_external_presets_or_setting_overrides": true,
       "slicer_return_code": 0,
       "plate_warning_message": "",
@@ -469,15 +469,15 @@
         {
           "part": "iisou/white_body",
           "slot": 1,
-          "triangles": 11644,
+          "triangles": 11860,
           "max_vertex_distance_mm": 5.157993439097885e-08,
           "triangle_connectivity_and_winding_unchanged": true
         },
         {
           "part": "iisou/inlay",
           "slot": 3,
-          "triangles": 11060,
-          "max_vertex_distance_mm": 6.800117624787702e-07,
+          "triangles": 11296,
+          "max_vertex_distance_mm": 7.132667906748975e-07,
           "triangle_connectivity_and_winding_unchanged": true
         }
       ],
@@ -500,9 +500,9 @@
         3
       ],
       "filament_changes": 9,
-      "estimated_print_seconds": 15324.5078125,
-      "estimated_filament_grams_including_flush_and_tower": 20.126837134361267,
-      "local_toolpath_sha256": "454c2021540188c14658d3efccc2ee0679a670e527ad5a1c8ea256f3a2671d84",
+      "estimated_print_seconds": 15324.271484375,
+      "estimated_filament_grams_including_flush_and_tower": 20.126068830490112,
+      "local_toolpath_sha256": "a93f135ea607d428f996a0160624f6c6a48e018a88d9eab987d6b1868d7fa10d",
       "toolpath_checks": {
         "object_layers_verified": 165,
         "actual_object_extrusion_matches_layer_colors": true,

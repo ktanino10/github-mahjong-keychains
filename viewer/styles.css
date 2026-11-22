@@ -109,7 +109,7 @@ legend, .spec-heading h2 { padding: 0; margin: 0 0 13px; font-size: 12px; font-w
 .chun-mini svg { width: 18px; height: 30px; }
 .haku-mini { align-items: flex-end; padding-bottom: 4px; }
 .haku-mini svg { width: 23px; height: 20px; }
-.iisou-mini svg { width: 22px; height: 28px; transform: scaleX(-1); }
+.iisou-mini svg { width: 22px; height: 28px; }
 .all-mini { background: transparent; box-shadow: none; border: 0; width: 32px; position: relative; }
 .all-mini i { width: 13px; height: 24px; border-radius: 3px; background: #fff; border: 1px solid #aec1b2; position: absolute; top: 9px; box-shadow: 0 2px 0 #234e35; }
 .all-mini i:nth-child(1) { left: -3px; transform: rotate(-15deg); }

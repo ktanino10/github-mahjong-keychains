@@ -106,7 +106,7 @@ provenance = {
             "files": ["iisou-ducky-silhouette.svg", "iisou-ducky-details.svg"],
             "source": "https://brand.github.com/graphic-elements/mascots",
             "trace_verification": "validation/ducky-source.json",
-            "note": "Official central three-quarter Ducky is traced, horizontally mirrored and adapted to green line art with an original symmetrical peacock-inspired fan. The smaller eye is minimally moved inward/upward for printable separation. Not a new official mascot or colorway. Upstream requires Brand & Marketing Design approval for public uses; no downstream permission or code-only MIT coverage is granted.",
+            "note": "Official front-facing Ducky, both eyes and broad bill are traced in their original positions and adapted to green line art with the unchanged symmetrical peacock-inspired fan. Not mirrored and not a new official mascot or colorway. Upstream requires Brand & Marketing Design approval for public uses; no downstream permission or code-only MIT coverage is granted.",
         },
         {
             "file": "chun-custom.svg",

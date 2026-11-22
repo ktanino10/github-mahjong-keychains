@@ -93,7 +93,7 @@ bpy.ops.export_scene.gltf(
 )
 assert target.is_file() and target.stat().st_size > 0
 metadata = {
-    "source": "28 x 21 x 16.5 mm tile bodies and 5 mm ears unchanged. All black/white boundaries share z=5.5 mm; the entire ear is black. Nineteen exact STL-derived parts: thirteen originals, three no-text Haku and three mirrored three-quarter green official-Ducky Iisou with a peacock-inspired tail.",
+    "source": "28 x 21 x 16.5 mm tile bodies and 5 mm ears unchanged. All black/white boundaries share z=5.5 mm; the entire ear is black. Nineteen exact STL-derived parts: thirteen originals, three no-text Haku and three front-facing green official-Ducky Iisou with a peacock-inspired tail.",
     "coordinate_system": "X right, Y along keychain, Z toward front; stored in meters.",
     "printed_geometry_modified": False,
     "metal_hardware": "Default: 2.4 mm balls on an approximately 120 mm loop through the unchanged ear. Alternate: purchased round wire-gate swivel-clasp shape. Pitch, connector and clasp internal dimensions are approximate; physical fit and strength untested. No metal in print files.",

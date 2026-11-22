@@ -1,11 +1,11 @@
 {
   "docs/downloads/github-mahjong-keychains-P1S-0.2-AMS-PLA.zip": {
-    "bytes": 15422755,
-    "sha256": "9bf42371899efab79d9cf5c3204aacf0cc74be2770f211bc458547510210576c"
+    "bytes": 15442305,
+    "sha256": "a8042bfe03dcd56ed6c48d8521cd79d3a1966e397e1707d45747005756917d8e"
   },
   "docs/index.html": {
-    "bytes": 12683400,
-    "sha256": "9bb6a426c810aa74e2b635b032716794502a18d721966ded4acd25ff2f4410f9"
+    "bytes": 12708519,
+    "sha256": "6beef5c1144d9e6174ea68674298cddbcb8f54a98722446192cdd580895c50d2"
   },
   "print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf": {
     "bytes": 782167,
@@ -28,8 +28,8 @@
     "sha256": "7ccf191915cceefc5c0ef562ebdeca65a9448661612e605c6b879abb6f7afefb"
   },
   "print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf": {
-    "bytes": 324251,
-    "sha256": "ddbb3e50e6fdde318387fad1e019b24e78a884b25318149e64dbce1a8f699022"
+    "bytes": 330445,
+    "sha256": "af05bfc3fee4a36c5f03a3bb1b997cc0d43e8c27eb22ebedd09afd893253671a"
   },
   "print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf": {
     "bytes": 314490,

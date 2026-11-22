@@ -60,4 +60,4 @@ for index, variant in enumerate(selected):
 sheet.save(args.output)
 face("haku", "Haku / supplied icon").save(ROOT / "docs/images/haku-front.png")
 face("iisou", "Iisou / green Ducky").save(ROOT / "docs/images/iisou-front.png")
-print("Rendered Haku and mirrored three-quarter peacock Ducky from STL cross sections.")
+print("Rendered Haku and front-facing peacock Ducky from STL cross sections.")

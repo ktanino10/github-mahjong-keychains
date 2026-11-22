@@ -53,7 +53,11 @@ class ProjectTests(unittest.TestCase):
         self.assertTrue(any(part.extents[0] > 10 and part.extents[1] > 10 and part.bounds[1, 1] < 2 for part in components),
                         "Ducky must remain a separate intact outline.")
         eyes = [part for part in components if 0.5 < part.extents[0] < 2.2 and 0.8 < part.extents[1] < 2.2]
-        self.assertEqual(len(eyes), 2, "Both visible three-quarter eyes must survive as separate printable components.")
+        self.assertEqual(len(eyes), 2, "Both front-facing eyes must survive as separate printable components.")
+        centers = sorted(eye.centroid[0] for eye in eyes)
+        self.assertLess(centers[0], -2)
+        self.assertGreater(centers[1], 2)
+        self.assertLess(abs(centers[0] + centers[1]), 0.5, "Front-facing eyes should sit on either side of the center.")
 
     def test_chun_cannot_enter_a_combined_five_color_project(self):
         with self.assertRaisesRegex(ValueError, "separate"):

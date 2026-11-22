@@ -46,6 +46,9 @@ const select = async (page, value) => {
 };
 const snapshot = async (page, name) => {
   await page.evaluate(() => document.fonts.ready);
+  await page.locator(".page-footer").scrollIntoViewIfNeeded();
+  await page.locator(".page-header").scrollIntoViewIfNeeded();
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   const directory = name.startsWith("viewer-") ? screenshots : scratch;
   await page.screenshot({ path: join(directory, name), fullPage: true });
 };
@@ -161,7 +164,7 @@ try {
   assert.equal(await page.locator(".print-links a").count(), 7);
   for (const [id, colorCount, label] of [
     ["haku", 2, "Haku / White dragon, no text"],
-    ["iisou", 3, "Iisou / Mirrored three-quarter Ducky"],
+    ["iisou", 3, "Iisou / Front-facing Ducky"],
   ]) {
     await select(page, id);
     assert.equal(await number(page, "visible-designs"), 1);
@@ -180,7 +183,7 @@ try {
     await snapshot(page, `viewer-en-${id}.png`);
     await page.getByRole("button", { name: "日本語", exact: true }).click();
   }
-  results.push("Haku and mirrored three-quarter peacock Ducky: independent 2/3-color palettes and downloads, no red/light green, named accessible states and Japanese/English front screenshots.");
+  results.push("Haku and front-facing peacock Ducky: independent 2/3-color palettes and downloads, no red/light green, named accessible states and Japanese/English front screenshots.");
   await select(page, "octocat");
   assert.equal(await page.locator("#green-chip").isVisible(), false);
   assert.equal(await page.locator("#light-green-chip").isVisible(), false);

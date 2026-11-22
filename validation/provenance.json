@@ -32,7 +32,7 @@
       ],
       "source": "https://brand.github.com/graphic-elements/mascots",
       "trace_verification": "validation/ducky-source.json",
-      "note": "Official central three-quarter Ducky is traced, horizontally mirrored and adapted to green line art with an original symmetrical peacock-inspired fan. The smaller eye is minimally moved inward/upward for printable separation. Not a new official mascot or colorway. Upstream requires Brand & Marketing Design approval for public uses; no downstream permission or code-only MIT coverage is granted."
+      "note": "Official front-facing Ducky, both eyes and broad bill are traced in their original positions and adapted to green line art with the unchanged symmetrical peacock-inspired fan. Not mirrored and not a new official mascot or colorway. Upstream requires Brand & Marketing Design approval for public uses; no downstream permission or code-only MIT coverage is granted."
     },
     {
       "file": "chun-custom.svg",
@@ -90,8 +90,8 @@
     "github-invertocat.svg": "693d7abe6f899646cc2e96856723b45e95f71885a54910b2749f6decdf7e1ee1",
     "haku-supplied-icon.svg": "408da4875266883410f9dd73306f0621c1d5e1926e3a9e6313790f80af147422",
     "hatsu.svg": "ad2515b54377e374b218dfdbc5046dc93931092029e343ec0506d233374b35f5",
-    "iisou-ducky-details.svg": "ca874905e91cf22884cd0fe2e5c36ad94ba96f7b2e0a7c98a0302be07aab6ad8",
-    "iisou-ducky-silhouette.svg": "8c278e75ea84b2a149f7d9e77d0f312008a33c665f75640308de2e230f8bd943",
+    "iisou-ducky-details.svg": "07a3d11a526177f464207ee3a7bfd918e3d89c3d1f9dc79602b3efb6a7fd3b90",
+    "iisou-ducky-silhouette.svg": "6227e038cdcf722be5ea34d6044e30e7bf04c810180d6442113292087917958a",
     "octicons-LICENSE.txt": "da259c8bd0de62713ccdcf88910aebca810644f98c2c912bad814fc79ea778df"
   }
 }

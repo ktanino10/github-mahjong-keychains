@@ -15,7 +15,7 @@ Git branch、GitHub Invertocat、發＋4列×3行のコントリビューショ�
 | [既存3種類セット（変更なし）](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf) | 10 | 白・黒・緑・薄緑 |
 | [中（独立したプロジェクト）](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/chun-P1S-0.2-AMS-PLA.3mf) | 3 | 白・黒・赤 |
 | [白：文字なし・下寄せアイコン](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/haku-P1S-0.2-AMS-PLA.3mf) | 3 | 白・黒 |
-| [一索：左右反転した斜めDucky＋孔雀風尾羽](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf) | 3 | 白・黒・緑 |
+| [一索：正面Ducky＋孔雀風尾羽](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf) | 3 | 白・黒・緑 |
 | [Git branch](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/git-branch-P1S-0.2-AMS-PLA.3mf) | 3 | 白・黒・緑 |
 | [Invertocat](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf) | 3 | 白・黒 |
 | [發](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/hatsu-P1S-0.2-AMS-PLA.3mf) | 4 | 白・黒・緑・薄緑 |
@@ -30,7 +30,7 @@ Git branch、GitHub Invertocat、發＋4列×3行のコントリビューショ�
 
 **白 / Haku：牌面に文字はありません。** 提供された135×110画像の黒い輪郭をトレースし、ゴーグル2つの白抜き、下の白い顔、口元の黒い2本を保持しています。幅13.2 mm、下余白約2.87 mmで、黒い図形の上端も牌の中心より下です。上半分は空白で、背景の四角いパッチはありません。「白」「Haku」「Copilot」や数字はモデルに入れていません。従来のCopilot風素材であり、現行の承認済みロゴとは主張しません。
 
-**一索 / Iisou：斜め正面のDuckyを左右反転し、緑の孔雀風にしています。** [公式Brand Toolkit](https://brand.github.com/graphic-elements/mascots)の中央にあるDuckyを基に、くちばしが左を向くよう反転。丸い頭・体、両目、くちばしを残し、その背後に左右対称の7枚の尾羽を加えています。小さい方の目だけは輪郭・くちばしと接しないよう最小限内側・上方へ移動しています。印刷可能な平らな線画で、グラデーション、黄色、オレンジや数字は使いません。公式の新しいマスコットや配色ではなく、加工したカスタム絵柄です。
+**一索 / Iisou：正面向きのDuckyを、緑の孔雀風にしています。** [公式Brand Toolkit](https://brand.github.com/graphic-elements/mascots)の左側にある正面向きのDuckyを使用しています。反転や目の移動は行わず、丸い頭・体、両目、幅広いくちばしを残し、その背後に左右対称の7枚の尾羽を加えています。印刷可能な平らな線画で、グラデーション、黄色、オレンジや数字は使いません。公式の新しいマスコットや配色ではなく、加工したカスタム絵柄です。
 
 ![白と一索の実メッシュから作った正面断面図](docs/images/new-designs-front.png)
 
@@ -122,7 +122,7 @@ RGBは画面表示の目安で、特定メーカーのPLA色を保証するも�
 
 新しい各3パーツは閉じた正体積のメッシュで、合計体積は共通の確定ブランクと一致します。ブール演算で体積のある重複・欠落がないこと、3MFの頂点・三角形接続・向き・座標が元STLと一致することも確認しています。[白の形状検証](validation/validation-haku.json) · [一索の形状検証](validation/validation-iisou.json) · [提供アイコンの輪郭照合](validation/haku-trace.json) · [公式Duckyの出典と加工](validation/ducky-source.json)
 
-最終層の実G-codeの押出経路から、両方のアイコン・目・くちばし・尾羽を確認しています。保存済みの公式ノズルXYオフセットを考慮し、インレイ内部と白抜きを照合しました。これは線幅情報による経路の近似図で、実物のビード幅・強度を保証しません。[経路の検証値](validation/top-layer-checks.json) · [白の165層目](docs/images/haku-sliced-top.png) · [一索の165層目](docs/images/iisou-sliced-top.png)
+最終層の実G-codeの押出経路から、両方のアイコン・目・くちばし・尾羽を確認しています。保存済みの公式ノズルXYオフセットを考慮し、インレイ内部と白抜きを照合しました。一索の比較では0.025 mm（1画素）の丸め誤差を考慮し、補正前の値も記録しています。白抜きは拡張前の経路で検査します。これは線幅情報による経路の近似図で、実物のビード幅・強度を保証しません。[経路の検証値](validation/top-layer-checks.json) · [白の165層目](docs/images/haku-sliced-top.png) · [一索の165層目](docs/images/iisou-sliced-top.png)
 
 中の3パーツと、赤の2つの連結成分は閉じた正体積のメッシュです。合計体積は共通の確定ブランクと一致し、ブール演算でも体積のある重複・欠落はありません（STL精度の照合許容差0.00002 mm）。頂点対応、全三角形の接続と向き、寸法、配置も3MF・GLBと照合しました。[中の形状検証](validation/validation-chun.json)
 
@@ -160,5 +160,7 @@ python3.13 scripts/audit_public.py
 ```
 
 `BAMBU` / `BLENDER` / `OPENSCAD` は実行ファイル、`BBL_PROFILES` は**アプリ同梱**の `Resources/profiles/BBL` ディレクトリです。個人のプリンター設定フォルダーは使いません。中間ファイルは `.work/` に保存します。上の例は白・一索だけを再生成し、既存13 STL・5プロジェクトを保持します。全プロジェクトを再スライスする場合だけ、検証コマンドの `--only haku iisou` を外してください。印刷・再梱包だけならSTL再生成は不要です。輪郭SVGは同梱済みのため、元のアップロード画像やシステムフォントは不要です。再トレースする場合のみ `trace_haku.py` / `trace_ducky.py` に指定した画像を渡します。
+
+一索だけを更新する場合は、経路確認にも `inspect_top_layers.py --only iisou` を使えます。未選択の白については、プロジェクトのSHA-256が一致する既存の検証記録だけを保持します。
 
 GitHub公式商品ではありません。**コードのMITライセンスはロゴ・字形・派生モデルを一括して自由利用可能にするものではありません。** [素材別の権利・ライセンス](ASSET-LICENSES.md)を確認してください。

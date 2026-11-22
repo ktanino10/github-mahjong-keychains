@@ -15,7 +15,7 @@ Six designs: the original Git branch, GitHub Invertocat, Hatsu (發) with a 4-co
 | [Original three-design set, unchanged](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/all-three-P1S-0.2-AMS-PLA.3mf) | 10 | White, black, green, light green |
 | [Chun, separate project](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/chun-P1S-0.2-AMS-PLA.3mf) | 3 | White, black, red |
 | [Haku: no text, low supplied icon](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/haku-P1S-0.2-AMS-PLA.3mf) | 3 | White, black |
-| [Iisou: mirrored three-quarter Ducky with peacock tail](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf) | 3 | White, black, green |
+| [Iisou: front-facing Ducky with peacock tail](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/iisou-P1S-0.2-AMS-PLA.3mf) | 3 | White, black, green |
 | [Git branch](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/git-branch-P1S-0.2-AMS-PLA.3mf) | 3 | White, black, green |
 | [Invertocat](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/invertocat-P1S-0.2-AMS-PLA.3mf) | 3 | White, black |
 | [Hatsu](https://github.com/ktanino10/github-mahjong-keychains/raw/refs/heads/main/print-package/projects/hatsu-P1S-0.2-AMS-PLA.3mf) | 4 | White, black, green, light green |
@@ -30,7 +30,7 @@ These are **not** generic geometry-only 3MFs with display colors. They retain pr
 
 **Haku / white dragon has no text on its physical face.** Its dark outline is traced from the supplied 135 × 110 image, retaining both white goggle openings, the white lower face and both black mouth details. The icon is 13.2 mm wide with approximately 2.87 mm bottom clearance; even its top stays below the tile center. The upper half is blank, with no rectangular background patch. No “Haku,” “Copilot,” character or number is modeled. This legacy Copilot-style artwork is not represented as a current approved logo.
 
-**Iisou / one bamboo uses mirrored three-quarter Ducky with a green peacock-inspired tail.** The central Ducky view from the [official Brand Toolkit](https://brand.github.com/graphic-elements/mascots) is reflected horizontally so its bill faces left. Its rounded head/body, both eyes and bill are retained, with an original symmetrical seven-feather fan behind it. Only the smaller eye is moved minimally inward/upward to keep a printable gap from the head and bill outlines. This is flat printable line art, without gradients, yellow/orange filament or numerals. It is adapted custom artwork, not a new official mascot or colorway.
+**Iisou / one bamboo uses front-facing Ducky with a green peacock-inspired tail.** It uses the left-hand, front-facing Ducky view from the [official Brand Toolkit](https://brand.github.com/graphic-elements/mascots), without mirroring or repositioning the eyes. Its rounded head/body, both eyes and broad bill are retained, with the original symmetrical seven-feather fan behind it. This is flat printable line art, without gradients, yellow/orange filament or numerals. It is adapted custom artwork, not a new official mascot or colorway.
 
 ![Front cross sections of the actual Haku and Iisou meshes](docs/images/new-designs-front.png)
 
@@ -122,7 +122,7 @@ The finished Haku and Iisou projects were **reopened and sliced with the officia
 
 All three parts of each addition are closed positive-volume meshes whose sum matches the accepted blank. Boolean checks reject volumetric overlap/missing material, and 3MF vertices, triangle connectivity, winding and coordinates are checked against the STLs. [Haku geometry](validation/validation-haku.json) · [Iisou geometry](validation/validation-iisou.json) · [Supplied-icon trace comparison](validation/haku-trace.json) · [Official Ducky source and adaptation](validation/ducky-source.json)
 
-Actual final-layer G-code extrusions are checked for the icons, eyes, bill and feathers, accounting for the saved stock nozzle XY offset. Inlay interiors and white gaps are compared using a line-width-based raster estimate, not a physical bead or strength simulation. [Measured checks](validation/top-layer-checks.json) · [Haku layer 165](docs/images/haku-sliced-top.png) · [Iisou layer 165](docs/images/iisou-sliced-top.png)
+Actual final-layer G-code extrusions are checked for the icons, eyes, bill and feathers, accounting for the saved stock nozzle XY offset. Iisou's inlay comparison allows 0.025 mm (one pixel) of rasterization error and retains the raw measurements. White gaps are checked against the unexpanded footprint. These are line-width-based raster estimates, not a physical bead or strength simulation. [Measured checks](validation/top-layer-checks.json) · [Haku layer 165](docs/images/haku-sliced-top.png) · [Iisou layer 165](docs/images/iisou-sliced-top.png)
 
 All three Chun parts and both red connected components are closed, positive-volume meshes. Their summed volume matches the accepted common blank; Boolean checks find no volumetric overlap or missing material at a 0.00002 mm STL precision tolerance. Vertex correspondence, triangle connectivity/winding, dimensions and alignment are also checked against the 3MF and GLB. [Chun geometry checks](validation/validation-chun.json)
 
@@ -160,5 +160,7 @@ python3.13 scripts/audit_public.py
 ```
 
 `BAMBU`, `BLENDER` and `OPENSCAD` are executable paths. `BBL_PROFILES` is the **application-supplied** `Resources/profiles/BBL` directory, never a personal printer-profile directory. Intermediate files stay under `.work/`. The example regenerates only Haku and Iisou, preserving the original 13 STLs and five projects. Omit `--only haku iisou` from verification only when re-slicing everything. Printing or repackaging does not require STL regeneration. Clean outline SVGs are included; the original upload and system fonts are not needed. `trace_haku.py` and `trace_ducky.py` accept an explicitly designated reference image only when retracing is wanted.
+
+For an Iisou-only update, use `inspect_top_layers.py --only iisou` as well. It retains Haku's prior evidence only when the unchanged project's SHA-256 matches.
 
 Not an official GitHub product. **The code's MIT license does not freely license the logos, glyph or derived model geometry as a whole.** See [asset-specific rights and licenses](ASSET-LICENSES.md).
